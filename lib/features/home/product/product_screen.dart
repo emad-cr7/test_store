@@ -19,7 +19,7 @@ class ProductScreen extends StatelessWidget {
         crossAxisCount: 2,
         crossAxisSpacing: 5,
         mainAxisSpacing: 5,
-        mainAxisExtent: 280,
+        mainAxisExtent: 300,
       ),
       itemCount: min(products.length, 10),
       itemBuilder: (context, index) {
@@ -99,7 +99,14 @@ class ProductScreen extends StatelessWidget {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text('\$${product.price.toStringAsFixed(2)}'),
+                              Text(
+                                '\$${product.price.toStringAsFixed(2)}',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 15,
+                                  color: Colors.lightGreen.shade700,
+                                ),
+                              ),
                               IconButton(
                                 onPressed: () {},
                                 icon: const Icon(

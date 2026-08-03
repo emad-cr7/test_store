@@ -7,8 +7,6 @@ import 'package:loading_animation_widget/loading_animation_widget.dart';
 import '../../details/product_detail_screen.dart';
 import '../../model/product_model.dart';
 
-
-
 class ProductAll extends StatelessWidget {
   const ProductAll({super.key, required this.products});
 
@@ -21,7 +19,7 @@ class ProductAll extends StatelessWidget {
         crossAxisCount: 2,
         crossAxisSpacing: 5,
         mainAxisSpacing: 5,
-        mainAxisExtent: 280,
+        mainAxisExtent: 300,
       ),
       itemCount: products.length,
       itemBuilder: (context, index) {
@@ -101,7 +99,15 @@ class ProductAll extends StatelessWidget {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text('\$${product.price.toStringAsFixed(2)}'),
+                              Text(
+                                '\$${product.price.toStringAsFixed(2)}',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 15,
+                                  color: Colors.lightGreen.shade700,
+
+                                ),
+                              ),
                               IconButton(
                                 onPressed: () {},
                                 icon: const Icon(

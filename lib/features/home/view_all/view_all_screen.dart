@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 
+import '../model/product_model.dart';
 import '../product/components/product_all_screen.dart';
 
 
 class ViewAllScreen extends StatelessWidget {
   const ViewAllScreen({super.key});
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +30,7 @@ class ViewAllScreen extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => ProductAllScreen(products: []),
+                    builder: (context) => ProductAllScreen(),
                   ),
                 );
               },

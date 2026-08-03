@@ -38,7 +38,7 @@ class HomeScreen extends StatelessWidget {
               final isNetworkError =
                   result.exception.toString().contains('SocketException') ||
                   result.exception.toString().contains('Failed host lookup');
-        
+
               return NoInternet(
                 isNetworkError: isNetworkError,
                 refetch: () async {
@@ -56,7 +56,7 @@ class HomeScreen extends StatelessWidget {
               },
               child: CustomScrollView(
                 slivers: [
-                  SearchScreen(),
+                  SearchScreen(products: products),
                   Categories(),
                   ViewAllScreen(),
                   ProductScreen(products: products),

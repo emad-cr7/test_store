@@ -12,6 +12,8 @@ class ProductDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final hasImage = product.images.isNotEmpty;
+
     return Scaffold(
       appBar: AppBar(title: const Text("Product Details")),
       body: SingleChildScrollView(
@@ -22,20 +24,38 @@ class ProductDetailScreen extends StatelessWidget {
             children: [
               ClipRRect(
                 borderRadius: BorderRadius.circular(12),
-                child: CachedNetworkImage(
-                  imageUrl: product.images[0],
-                  height: 250,
-                  width: double.infinity,
-                  fit: BoxFit.cover,
-                  placeholder: (context, url) => Center(
-                    child: LoadingAnimationWidget.fourRotatingDots(
-                      color: Colors.blue,
-                      size: 30,
-                    ),
-                  ),
-                  errorWidget: (context, url, error) =>
-                      const Icon(Icons.broken_image, size: 80),
-                ),
+                child: hasImage
+                    ? CachedNetworkImage(
+                        imageUrl: product.images[0],
+                        height: 350,
+                        width: double.infinity,
+                        fit: BoxFit.cover,
+                        placeholder: (context, url) => Center(
+                          child: LoadingAnimationWidget.fourRotatingDots(
+                            color: Colors.blue,
+                            size: 30,
+                          ),
+                        ),
+                        errorWidget: (context, url, error) => Container(
+                          color: Colors.grey[300],
+                          height: 350,
+                          child: const Icon(
+                            Icons.broken_image,
+                            size: 80,
+                            color: Colors.grey,
+                          ),
+                        ),
+                      )
+                    : Container(
+                        color: Colors.grey[300],
+                        height: 350,
+                        width: double.infinity,
+                        child: const Icon(
+                          Icons.image_not_supported,
+                          size: 80,
+                          color: Colors.grey,
+                        ),
+                      ),
               ),
 
               const SizedBox(height: 20),
@@ -46,9 +66,9 @@ class ProductDetailScreen extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(height: 8),
-              Center(child: SizedBox(width: 300, child: Divider())),
-              SizedBox(height: 8),
+              const SizedBox(height: 8),
+              const Center(child: SizedBox(width: 300, child: Divider())),
+              const SizedBox(height: 8),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -56,9 +76,8 @@ class ProductDetailScreen extends StatelessWidget {
                     "Description",
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
-
                   Text(
-                    "\$${product.price}",
+                    "\$${product.price.toStringAsFixed(2)}",
                     style: const TextStyle(
                       fontSize: 22,
                       color: Colors.green,
@@ -68,11 +87,12 @@ class ProductDetailScreen extends StatelessWidget {
                 ],
               ),
 
-
               const SizedBox(height: 8),
 
               ReadMoreText(
-                product.description,
+                product.description.isNotEmpty
+                    ? product.description
+                    : 'No description available.',
                 trimLines: 2,
                 trimMode: TrimMode.Line,
                 trimCollapsedText: ' Show more',

@@ -8,9 +8,8 @@ import '../../model/product_model.dart';
 import '../../no_internet/no_internet.dart';
 
 class ProductAllScreen extends StatelessWidget {
-  const ProductAllScreen({super.key, required this.products});
+  const ProductAllScreen({super.key});
 
-  final List<ProductModel> products;
 
   @override
   Widget build(BuildContext context) {
