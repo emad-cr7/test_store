@@ -22,6 +22,7 @@ class _SearchScreenState extends State<SearchScreen> {
       padding:  EdgeInsets.symmetric( horizontal: 10, vertical: 20),
       sliver: SliverToBoxAdapter(
         child: TextField(
+          controller: searchController,
           decoration: InputDecoration(
             hintText: "Search products...",
             prefixIcon: const Icon(Icons.search),
