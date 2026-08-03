@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:ql/features/home/product/product_screen.dart';
+import 'package:ql/features/home/search/search_screen.dart';
 import 'package:ql/features/home/view_all/view_all_screen.dart';
 import '../../api/api_config/api_config.dart';
 import '../../api/query.dart';
@@ -55,6 +56,7 @@ class HomeScreen extends StatelessWidget {
               },
               child: CustomScrollView(
                 slivers: [
+                  SearchScreen(),
                   Categories(),
                   ViewAllScreen(),
                   ProductScreen(products: products),
