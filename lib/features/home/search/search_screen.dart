@@ -1,7 +1,20 @@
 import 'package:flutter/material.dart';
 
-class SearchScreen extends StatelessWidget {
-  const SearchScreen({super.key});
+class SearchScreen extends StatefulWidget {
+   SearchScreen({super.key});
+
+  @override
+  State<SearchScreen> createState() => _SearchScreenState();
+}
+
+class _SearchScreenState extends State<SearchScreen> {
+  final TextEditingController searchController = TextEditingController();
+
+   @override
+   void dispose() {
+     searchController.dispose();
+     super.dispose();
+   }
 
   @override
   Widget build(BuildContext context) {
