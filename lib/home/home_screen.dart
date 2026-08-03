@@ -5,6 +5,7 @@ import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:ql/home/model/product_model.dart';
 import '../api/api_config/api_config.dart';
 import '../api/query.dart';
+import 'details/product_detail_screen.dart';
 import 'no_internet/no_internet.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -61,53 +62,64 @@ class HomeScreen extends StatelessWidget {
               itemBuilder: (context, index) {
                 final product = products[index];
 
-                return Card(
-                  clipBehavior: Clip.antiAlias,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Expanded(
-                        child: CachedNetworkImage(
-                          imageUrl: product.images[0],
-                          fit: BoxFit.cover,
-                          width: double.infinity,
-                          placeholder: (context, url) => Center(
-                            child: LoadingAnimationWidget.fourRotatingDots(
-                              color: Colors.blue,
-                              size: 20,
+                return InkWell(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            ProductDetailScreen(product: product),
+                      ),
+                    );
+                  },
+                  child: Card(
+                    clipBehavior: Clip.antiAlias,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Expanded(
+                          child: CachedNetworkImage(
+                            imageUrl: product.images[0],
+                            fit: BoxFit.cover,
+                            width: double.infinity,
+                            placeholder: (context, url) => Center(
+                              child: LoadingAnimationWidget.fourRotatingDots(
+                                color: Colors.blue,
+                                size: 20,
+                              ),
                             ),
+                            errorWidget: (context, url, error) {
+                              return Container(
+                                color: Colors.grey[300],
+                                child: const Icon(
+                                  Icons.broken_image,
+                                  size: 50,
+                                  color: Colors.grey,
+                                ),
+                              );
+                            },
                           ),
-                          errorWidget: (context, url, error) {
-                            return Container(
-                              color: Colors.grey[300],
-                              child: const Icon(
-                                Icons.broken_image,
-                                size: 50,
-                                color: Colors.grey,
-                              ),
-                            );
-                          },
                         ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              product.title,
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                              style: const TextStyle(
-                                fontWeight: FontWeight.bold,
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                product.title,
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
-                            ),
-                            const SizedBox(height: 4),
-                            Text('\$${product.price.toStringAsFixed(2)}'),
-                          ],
+                              const SizedBox(height: 4),
+                              Text('\$${product.price.toStringAsFixed(2)}'),
+                            ],
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 );
               },
