@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
+import '../features/cart/cart_screen.dart';
+import '../features/favorite/favorite_screen.dart';
 import '../features/home/home_screen.dart';
+import '../features/profile/profile_screen.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -14,9 +17,9 @@ class _MainScreenState extends State<MainScreen> {
 
   final List<Widget> pages = const [
     HomeScreen(),
-    Center(child: Text('Favorite')),
-    Center(child: Text('Cart')),
-    Center(child: Text('Profile')),
+    FavoriteScreen(),
+    CartScreen(),
+    ProfileScreen(),
   ];
 
   @override

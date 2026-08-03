@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../product/components/product_all_screen.dart';
+
 
 class ViewAllScreen extends StatelessWidget {
   const ViewAllScreen({super.key});
@@ -22,12 +24,12 @@ class ViewAllScreen extends StatelessWidget {
             ),
             InkWell(
               onTap: () {
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(
-                //     builder: (context) => ProductAllScreen(products: []),
-                //   ),
-                // );
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ProductAllScreen(products: []),
+                  ),
+                );
               },
               child: Text(
                 "View all",
