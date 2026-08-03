@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'api/api_config/api_config.dart';
-import 'home/home_screen.dart';
+import 'main/main_screen.dart';
 
 void main() {
   final HttpLink httpLink = HttpLink(ApiConfig.baseUrl);
@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
             ),
           ),
         ),
-        home: HomeScreen(),
+        home: MainScreen(),
       ),
     );
   }
