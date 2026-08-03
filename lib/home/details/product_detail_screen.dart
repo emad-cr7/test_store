@@ -1,23 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:readmore/readmore.dart';
 
 import '../model/product_model.dart';
 
 class ProductDetailScreen extends StatelessWidget {
-  const ProductDetailScreen({
-    super.key,
-    required this.product,
-  });
+  const ProductDetailScreen({super.key, required this.product});
 
   final ProductModel product;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Product Details"),
-      ),
+      appBar: AppBar(title: const Text("Product Details")),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(16),
@@ -38,12 +34,11 @@ class ProductDetailScreen extends StatelessWidget {
                     ),
                   ),
                   errorWidget: (context, url, error) =>
-                  const Icon(Icons.broken_image, size: 80),
+                      const Icon(Icons.broken_image, size: 80),
                 ),
               ),
 
               const SizedBox(height: 20),
-
               Text(
                 product.title,
                 style: const TextStyle(
@@ -51,35 +46,45 @@ class ProductDetailScreen extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
+              SizedBox(height: 8),
+              Center(child: SizedBox(width: 300, child: Divider())),
+              SizedBox(height: 8),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text(
+                    "Description",
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
 
-              const SizedBox(height: 10),
-
-              Text(
-                "\$${product.price}",
-                style: const TextStyle(
-                  fontSize: 22,
-                  color: Colors.green,
-                  fontWeight: FontWeight.w600,
-                ),
+                  Text(
+                    "\$${product.price}",
+                    style: const TextStyle(
+                      fontSize: 22,
+                      color: Colors.green,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ],
               ),
 
-              const SizedBox(height: 20),
-
-              const Text(
-                "Description",
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
 
               const SizedBox(height: 8),
 
-              Text(
+              ReadMoreText(
                 product.description,
-                style: const TextStyle(
-                  fontSize: 16,
-                  height: 1.5,
+                trimLines: 2,
+                trimMode: TrimMode.Line,
+                trimCollapsedText: ' Show more',
+                trimExpandedText: ' Show less',
+                style: const TextStyle(fontSize: 16, height: 1.5),
+                moreStyle: const TextStyle(
+                  color: Colors.blue,
+                  fontWeight: FontWeight.bold,
+                ),
+                lessStyle: const TextStyle(
+                  color: Colors.blue,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
             ],
