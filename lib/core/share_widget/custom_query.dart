@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import '../../features/home/model/product_model.dart';
-import '../../features/home/no_internet/no_internet.dart';
 import '../Preferences_manager/preferences_manager.dart';
 import '../api/api_config/api_config.dart';
 import '../api/query.dart';
+import 'no_internet/no_internet.dart';
 
 class CustomQuery extends StatelessWidget {
   const CustomQuery({super.key, required this.builder});

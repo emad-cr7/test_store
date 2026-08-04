@@ -2,11 +2,12 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:provider/provider.dart';
 import '../../features/home/details/product_detail_screen.dart';
+import '../../features/home/home_controller.dart';
 import '../../features/home/model/product_model.dart';
-import '../Preferences_manager/preferences_manager.dart';
 
-class CustomProduct extends StatefulWidget {
+class CustomProduct extends StatelessWidget {
   const CustomProduct({
     super.key,
     required this.products,
@@ -17,11 +18,6 @@ class CustomProduct extends StatefulWidget {
   final int itemCount;
 
   @override
-  State<CustomProduct> createState() => _CustomProductState();
-}
-
-class _CustomProductState extends State<CustomProduct> {
-  @override
   Widget build(BuildContext context) {
     return SliverGrid.builder(
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -30,10 +26,9 @@ class _CustomProductState extends State<CustomProduct> {
         mainAxisSpacing: 5,
         mainAxisExtent: 300,
       ),
-      itemCount: widget.itemCount,
+      itemCount: itemCount,
       itemBuilder: (context, index) {
-        final product = widget.products[index];
-
+        final product = products[index];
         return InkWell(
           onTap: () {
             Navigator.push(
@@ -80,33 +75,38 @@ class _CustomProductState extends State<CustomProduct> {
                           Positioned(
                             top: 1,
                             right: 1,
-                            child: IconButton(
-                              onPressed: () async {
-                                setState(() {
-                                  product.isFavorite = !product.isFavorite;
-                                });
-                                await PreferencesManager().setBool(
-                                  "favorite_${product.id}",
-                                  product.isFavorite,
-                                );
-                              },
-                              icon:
-                                  Icon(
-                                        product.isFavorite
-                                            ? Icons.favorite
-                                            : Icons.favorite_border,
-                                        color: product.isFavorite
-                                            ? Colors.red
-                                            : Colors.white,
-                                      )
-                                      .animate(
-                                        target: product.isFavorite ? 1 : 0,
-                                      )
-                                      .scale(
-                                        begin: const Offset(1, 1),
-                                        end: const Offset(1.3, 1.3),
-                                        duration: 250.ms,
-                                      ),
+                            child: Consumer<HomeController>(
+                              builder:
+                                  (
+                                    BuildContext context,
+                                    HomeController controller,
+                                    Widget? child,
+                                  ) {
+                                    return IconButton(
+                                      onPressed: () {
+                                        controller.toggleFavorite(product);
+                                      },
+                                      icon:
+                                          Icon(
+                                                product.isFavorite
+                                                    ? Icons.favorite
+                                                    : Icons.favorite_border,
+                                                color: product.isFavorite
+                                                    ? Colors.red
+                                                    : Colors.white,
+                                              )
+                                              .animate(
+                                                target: product.isFavorite
+                                                    ? 1
+                                                    : 0,
+                                              )
+                                              .scale(
+                                                begin: const Offset(1, 1),
+                                                end: const Offset(1.3, 1.3),
+                                                duration: 250.ms,
+                                              ),
+                                    );
+                                  },
                             ),
                           ),
                         ],
@@ -135,21 +135,29 @@ class _CustomProductState extends State<CustomProduct> {
                                   color: Colors.lightGreen.shade700,
                                 ),
                               ),
-                              IconButton(
-                                onPressed: () {
-                                  setState(() {
-                                    product.shoppingCart =
-                                        !product.shoppingCart;
-                                  });
-                                },
-                                icon: Icon(
-                                  product.shoppingCart
-                                      ? Icons.shopping_cart
-                                      : Icons.shopping_cart_outlined,
-                                  color: product.shoppingCart
-                                      ? Colors.green
-                                      : Colors.black,
-                                ),
+                              Consumer<HomeController>(
+                                builder:
+                                    (
+                                      BuildContext context,
+                                      HomeController controller,
+                                      Widget? child,
+                                    ) {
+                                      return IconButton(
+                                        onPressed: () {
+                                          controller.toggleShoppingCart(
+                                            product,
+                                          );
+                                        },
+                                        icon: Icon(
+                                          product.shoppingCart
+                                              ? Icons.shopping_cart
+                                              : Icons.shopping_cart_outlined,
+                                          color: product.shoppingCart
+                                              ? Colors.green
+                                              : Colors.black,
+                                        ),
+                                      );
+                                    },
                               ),
                             ],
                           ),

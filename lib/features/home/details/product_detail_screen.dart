@@ -1,18 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:readmore/readmore.dart';
 
+import '../../../core/Preferences_manager/preferences_manager.dart';
 import '../model/product_model.dart';
 
-class ProductDetailScreen extends StatelessWidget {
+class ProductDetailScreen extends StatefulWidget {
   const ProductDetailScreen({super.key, required this.product});
 
   final ProductModel product;
 
   @override
+  State<ProductDetailScreen> createState() => _ProductDetailScreenState();
+}
+
+class _ProductDetailScreenState extends State<ProductDetailScreen> {
+  @override
   Widget build(BuildContext context) {
-    final hasImage = product.images.isNotEmpty;
+    final hasImage = widget.product.images.isNotEmpty;
 
     return Scaffold(
       appBar: AppBar(title: const Text("Product Details")),
@@ -25,26 +32,65 @@ class ProductDetailScreen extends StatelessWidget {
               ClipRRect(
                 borderRadius: BorderRadius.circular(12),
                 child: hasImage
-                    ? CachedNetworkImage(
-                        imageUrl: product.images[0],
-                        height: 350,
-                        width: double.infinity,
-                        fit: BoxFit.cover,
-                        placeholder: (context, url) => Center(
-                          child: LoadingAnimationWidget.fourRotatingDots(
-                            color: Colors.blue,
-                            size: 30,
+                    ? Stack(
+                        children: [
+                          CachedNetworkImage(
+                            imageUrl: widget.product.images[0],
+                            height: 350,
+                            width: double.infinity,
+                            fit: BoxFit.cover,
+                            placeholder: (context, url) => Center(
+                              child: LoadingAnimationWidget.fourRotatingDots(
+                                color: Colors.blue,
+                                size: 30,
+                              ),
+                            ),
+                            errorWidget: (context, url, error) => Container(
+                              color: Colors.grey[300],
+                              height: 350,
+                              child: const Icon(
+                                Icons.broken_image,
+                                size: 80,
+                                color: Colors.grey,
+                              ),
+                            ),
                           ),
-                        ),
-                        errorWidget: (context, url, error) => Container(
-                          color: Colors.grey[300],
-                          height: 350,
-                          child: const Icon(
-                            Icons.broken_image,
-                            size: 80,
-                            color: Colors.grey,
+                          Positioned(
+                            top: 1,
+                            right: 1,
+                            child: IconButton(
+                              onPressed: () async {
+                                setState(() {
+                                  widget.product.isFavorite =
+                                      !widget.product.isFavorite;
+                                });
+                                await PreferencesManager().setBool(
+                                  "favorite_${widget.product.id}",
+                                  widget.product.isFavorite,
+                                );
+                              },
+                              icon:
+                                  Icon(
+                                        widget.product.isFavorite
+                                            ? Icons.favorite
+                                            : Icons.favorite_border,
+                                        color: widget.product.isFavorite
+                                            ? Colors.red
+                                            : Colors.white,
+                                      )
+                                      .animate(
+                                        target: widget.product.isFavorite
+                                            ? 1
+                                            : 0,
+                                      )
+                                      .scale(
+                                        begin: const Offset(1, 1),
+                                        end: const Offset(1.3, 1.3),
+                                        duration: 250.ms,
+                                      ),
+                            ),
                           ),
-                        ),
+                        ],
                       )
                     : Container(
                         color: Colors.grey[300],
@@ -60,7 +106,7 @@ class ProductDetailScreen extends StatelessWidget {
 
               const SizedBox(height: 20),
               Text(
-                product.title,
+                widget.product.title,
                 style: const TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
@@ -77,7 +123,7 @@ class ProductDetailScreen extends StatelessWidget {
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                   Text(
-                    "\$${product.price.toStringAsFixed(2)}",
+                    "\$${widget.product.price.toStringAsFixed(2)}",
                     style: const TextStyle(
                       fontSize: 22,
                       color: Colors.green,
@@ -90,8 +136,8 @@ class ProductDetailScreen extends StatelessWidget {
               const SizedBox(height: 8),
 
               ReadMoreText(
-                product.description.isNotEmpty
-                    ? product.description
+                widget.product.description.isNotEmpty
+                    ? widget.product.description
                     : 'No description available.',
                 trimLines: 2,
                 trimMode: TrimMode.Line,

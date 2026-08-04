@@ -51,7 +51,7 @@ class Categories extends StatelessWidget {
 final List<CategoryModel> categories = [
   CategoryModel(
     id: '1',
-    name: 'Mob',
+    name: 'Mobile',
     icon: Icons.phone_android,
   ),
   CategoryModel(
