@@ -1,17 +1,25 @@
-import 'dart:math';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
+import '../../features/home/details/product_detail_screen.dart';
+import '../../features/home/model/product_model.dart';
 
-import '../details/product_detail_screen.dart';
-import '../model/product_model.dart';
-
-class ProductScreen extends StatelessWidget {
-  const ProductScreen({super.key, required this.products});
+class CustomProduct extends StatefulWidget {
+  const CustomProduct({
+    super.key,
+    required this.products,
+    required this.itemCount,
+  });
 
   final List<ProductModel> products;
+  final int itemCount;
 
+  @override
+  State<CustomProduct> createState() => _CustomProductState();
+}
+
+class _CustomProductState extends State<CustomProduct> {
   @override
   Widget build(BuildContext context) {
     return SliverGrid.builder(
@@ -21,9 +29,9 @@ class ProductScreen extends StatelessWidget {
         mainAxisSpacing: 5,
         mainAxisExtent: 300,
       ),
-      itemCount: min(products.length, 10),
+      itemCount: widget.itemCount,
       itemBuilder: (context, index) {
-        final product = products[index];
+        final product = widget.products[index];
 
         return InkWell(
           onTap: () {
@@ -68,17 +76,32 @@ class ProductScreen extends StatelessWidget {
                               );
                             },
                           ),
-
                           Positioned(
                             top: 1,
                             right: 1,
                             child: IconButton(
-                              onPressed: () {},
-                              icon: const Icon(
-                                Icons.favorite_border,
-                                color: Colors.white,
-                                size: 26,
-                              ),
+                              onPressed: () {
+                                setState(() {
+                                  product.isFavorite = !product.isFavorite;
+                                });
+                              },
+                              icon:
+                                  Icon(
+                                        product.isFavorite
+                                            ? Icons.favorite
+                                            : Icons.favorite_border,
+                                        color: product.isFavorite
+                                            ? Colors.red
+                                            : Colors.white,
+                                      )
+                                      .animate(
+                                        target: product.isFavorite ? 1 : 0,
+                                      )
+                                      .scale(
+                                        begin: const Offset(1, 1),
+                                        end: const Offset(1.3, 1.3),
+                                        duration: 250.ms,
+                                      ),
                             ),
                           ),
                         ],
@@ -108,10 +131,19 @@ class ProductScreen extends StatelessWidget {
                                 ),
                               ),
                               IconButton(
-                                onPressed: () {},
-                                icon: const Icon(
-                                  Icons.add_shopping_cart,
-                                  size: 25,
+                                onPressed: () {
+                                  setState(() {
+                                    product.shoppingCart =
+                                        !product.shoppingCart;
+                                  });
+                                },
+                                icon: Icon(
+                                  product.shoppingCart
+                                      ? Icons.shopping_cart
+                                      : Icons.shopping_cart_outlined,
+                                  color: product.shoppingCart
+                                      ? Colors.green
+                                      : Colors.black,
                                 ),
                               ),
                             ],

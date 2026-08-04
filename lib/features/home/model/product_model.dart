@@ -7,6 +7,9 @@ class ProductModel {
   final String description;
   final List<String> images;
   final CategoryModel category;
+  bool isFavorite;
+  bool shoppingCart;
+
 
   ProductModel({
     required this.id,
@@ -15,6 +18,8 @@ class ProductModel {
     required this.description,
     required this.images,
     required this.category,
+    this.isFavorite = false,
+    this.shoppingCart = false,
   });
 
   Map<String, dynamic> toJson() {
@@ -25,6 +30,8 @@ class ProductModel {
       'description': this.description,
       'images': this.images,
       'category': this.category.toJson(),
+      'isFavorite': this.isFavorite,
+      'shoppingCart': this.shoppingCart,
     };
   }
 
@@ -36,6 +43,8 @@ class ProductModel {
       description: json['description']?.toString() ?? '',
       images: List<String>.from(json['images'] ?? []),
       category: CategoryModel.fromJson(json['category'] ?? {}),
+      isFavorite: json['isFavorite'] ?? false,
+      shoppingCart: json['shoppingCart'] ?? false,
     );
   }
 }

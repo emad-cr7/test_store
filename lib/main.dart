@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
+import 'package:provider/provider.dart';
 import 'api/api_config/api_config.dart';
+import 'features/home/home_controller.dart';
 import 'main/main_screen.dart';
 
 void main() {
@@ -20,19 +22,22 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GraphQLProvider(
-      client: client,
-      child: MaterialApp(
-        theme: ThemeData(
-          appBarTheme: AppBarTheme(
-            backgroundColor: Colors.blue,
-            titleTextStyle: TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
+    return ChangeNotifierProvider(
+      create: (BuildContext context) => HomeController(),
+      child: GraphQLProvider(
+        client: client,
+        child: MaterialApp(
+          theme: ThemeData(
+            appBarTheme: AppBarTheme(
+              backgroundColor: Colors.blue,
+              titleTextStyle: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
+          home: MainScreen(),
         ),
-        home: MainScreen(),
       ),
     );
   }

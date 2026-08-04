@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../model/product_model.dart';
-import '../product/components/product_all_screen.dart';
+import '../product/components/product_all.dart';
 
 
 class ViewAllScreen extends StatelessWidget {
@@ -30,7 +28,7 @@ class ViewAllScreen extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => ProductAllScreen(),
+                    builder: (context) => ProductAll(),
                   ),
                 );
               },
