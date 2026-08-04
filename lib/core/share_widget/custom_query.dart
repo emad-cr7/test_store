@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:provider/provider.dart';
+import '../../features/home/home_controller.dart';
 import '../../features/home/model/product_model.dart';
 import '../Preferences_manager/preferences_manager.dart';
 import '../api/api_config/api_config.dart';
@@ -47,6 +49,9 @@ class CustomQuery extends StatelessWidget {
               PreferencesManager().getBool("favorite_${product.id}") ?? false;
         }
 
+        final controller = context.read<HomeController>();
+
+        controller.init(products);
         return RefreshIndicator.adaptive(
           onRefresh: () async {
             await refetch?.call();
