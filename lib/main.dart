@@ -1,16 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:provider/provider.dart';
-import 'api/api_config/api_config.dart';
+import 'core/Preferences_manager/preferences_manager.dart';
+import 'core/api/api_config/api_config.dart';
 import 'features/home/home_controller.dart';
 import 'main/main_screen.dart';
 
-void main() {
+void main() async{
+
+  WidgetsFlutterBinding.ensureInitialized();
+
+
   final HttpLink httpLink = HttpLink(ApiConfig.baseUrl);
 
   final ValueNotifier<GraphQLClient> client = ValueNotifier(
     GraphQLClient(link: httpLink, cache: GraphQLCache()),
   );
+
+  await PreferencesManager().init();
+
 
   runApp(MyApp(client: client));
 }

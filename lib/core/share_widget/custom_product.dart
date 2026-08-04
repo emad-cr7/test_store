@@ -4,6 +4,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import '../../features/home/details/product_detail_screen.dart';
 import '../../features/home/model/product_model.dart';
+import '../Preferences_manager/preferences_manager.dart';
 
 class CustomProduct extends StatefulWidget {
   const CustomProduct({
@@ -80,10 +81,14 @@ class _CustomProductState extends State<CustomProduct> {
                             top: 1,
                             right: 1,
                             child: IconButton(
-                              onPressed: () {
+                              onPressed: () async {
                                 setState(() {
                                   product.isFavorite = !product.isFavorite;
                                 });
+                                await PreferencesManager().setBool(
+                                  "favorite_${product.id}",
+                                  product.isFavorite,
+                                );
                               },
                               icon:
                                   Icon(
