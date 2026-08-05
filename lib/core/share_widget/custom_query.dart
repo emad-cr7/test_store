@@ -49,9 +49,7 @@ class CustomQuery extends StatelessWidget {
               PreferencesManager().getBool("favorite_${product.id}") ?? false;
         }
 
-        final controller = context.read<HomeController>();
 
-        controller.init(products);
         return RefreshIndicator.adaptive(
           onRefresh: () async {
             await refetch?.call();

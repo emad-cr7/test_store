@@ -8,10 +8,7 @@ class HomeController extends ChangeNotifier {
 
   List<ProductModel> products = [];
 
-  void init(List<ProductModel> data) {
-    products = data;
-    notifyListeners();
-  }
+
 
   void toggleFavorite(ProductModel product)async {
     product.isFavorite = !product.isFavorite;
