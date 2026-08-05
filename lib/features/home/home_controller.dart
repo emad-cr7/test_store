@@ -19,8 +19,10 @@ class HomeController extends ChangeNotifier {
     notifyListeners();
   }
 
-  void toggleShoppingCart(ProductModel product) {
+  void toggleShoppingCart(ProductModel product) async{
     product.shoppingCart = !product.shoppingCart;
+    await PreferencesManager().setBool("shoppingCart_${product.id}", product.shoppingCart,
+    );
     notifyListeners();
   }
 }

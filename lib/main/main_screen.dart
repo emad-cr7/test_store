@@ -28,7 +28,7 @@ class _MainScreenState extends State<MainScreen> {
       body: pages[currentIndex],
 
       bottomNavigationBar: SizedBox(
-        height: 90,
+        height: 80,
         child: SalomonBottomBar(
           currentIndex: currentIndex,
           onTap: (index) {
@@ -39,7 +39,7 @@ class _MainScreenState extends State<MainScreen> {
 
           items: [
             SalomonBottomBarItem(
-              icon: const Icon(Icons.home_rounded, size: 20),
+              icon: const Icon(Icons.home_rounded, size: 23),
               title: const Text(
                 "Home",
                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
@@ -48,7 +48,7 @@ class _MainScreenState extends State<MainScreen> {
             ),
 
             SalomonBottomBarItem(
-              icon: const Icon(Icons.favorite_rounded, size: 20),
+              icon: const Icon(Icons.favorite_rounded, size: 23),
               title: const Text(
                 "Favorite",
                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
@@ -57,7 +57,7 @@ class _MainScreenState extends State<MainScreen> {
             ),
 
             SalomonBottomBarItem(
-              icon: const Icon(Icons.shopping_cart_rounded, size: 20),
+              icon: const Icon(Icons.shopping_cart_rounded, size: 23),
               title: const Text(
                 "Cart",
                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
@@ -66,7 +66,7 @@ class _MainScreenState extends State<MainScreen> {
             ),
 
             SalomonBottomBarItem(
-              icon: const Icon(Icons.person_rounded, size: 20),
+              icon: const Icon(Icons.person_rounded, size: 23),
               title: const Text(
                 "Profile",
                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),

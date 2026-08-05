@@ -30,7 +30,7 @@ class CustomQuery extends StatelessWidget {
         if (result.hasException) {
           final isNetworkError =
               result.exception.toString().contains('SocketException') ||
-                  result.exception.toString().contains('Failed host lookup');
+              result.exception.toString().contains('Failed host lookup');
 
           return NoInternet(
             isNetworkError: isNetworkError,
@@ -41,14 +41,19 @@ class CustomQuery extends StatelessWidget {
         }
 
         final productsJson = result.data?[ApiConfig.products] as List;
-        final products =
-        productsJson.map((json) => ProductModel.fromJson(json)).toList();
+        final products = productsJson
+            .map((json) => ProductModel.fromJson(json))
+            .toList();
 
         for (var product in products) {
           product.isFavorite =
               PreferencesManager().getBool("favorite_${product.id}") ?? false;
         }
-
+        for (var product in products) {
+          product.shoppingCart =
+              PreferencesManager().getBool("shoppingCart_${product.id}") ??
+              false;
+        }
 
         return RefreshIndicator.adaptive(
           onRefresh: () async {
