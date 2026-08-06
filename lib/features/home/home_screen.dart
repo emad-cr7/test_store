@@ -23,8 +23,9 @@ class HomeScreen extends StatelessWidget {
       body: SafeArea(
         child: CustomQuery(
           builder: (products) {
-            final controller = context.read<HomeController>();
-            controller.syncProducts(products);
+            WidgetsBinding.instance.addPostFrameCallback((_) {
+              context.read<HomeController>().syncProducts(products);
+            });
             return Consumer<HomeController>(
               builder: (context, controller, _) {
                 return CustomScrollView(

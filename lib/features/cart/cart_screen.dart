@@ -1,22 +1,12 @@
 import 'package:flutter/material.dart';
-
-import '../../core/Preferences_manager/preferences_manager.dart';
+import 'package:provider/provider.dart';
 import '../../core/share_widget/custom_no_product.dart';
 import '../../core/share_widget/custom_product.dart';
 import '../../core/share_widget/custom_query.dart';
-import '../home/model/product_model.dart';
+import '../home/home_controller.dart';
 
 class CartScreen extends StatelessWidget {
   const CartScreen({super.key});
-
-  Future<List<ProductModel>> getCartProducts(List<ProductModel> products) async {
-    for (var product in products) {
-      product.shoppingCart =
-          await PreferencesManager().getBool("shoppingCart_${product.id}") ?? false;
-    }
-
-    return products.where((product) => product.shoppingCart).toList();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,18 +17,21 @@ class CartScreen extends StatelessWidget {
           style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
         ),
       ),
-
       body: CustomQuery(
         builder: (products) {
-          return FutureBuilder<List<ProductModel>>(
-            future:  getCartProducts(products),
-            builder: (context, snapshot) {
-              final cartProducts = snapshot.data ?? [];
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            context.read<HomeController>().syncProducts(products);
+          });
+
+          return Consumer<HomeController>(
+            builder: (context, controller, _) {
+              final cartProducts = controller.cartProducts;
 
               if (cartProducts.isEmpty) {
                 return CustomNoProduct(
                   refetch: () {},
-                  title: 'No products in cart.', icon: Icons.shopping_cart,
+                  title: 'No products in cart.',
+                  icon: Icons.shopping_cart,
                 );
               }
 

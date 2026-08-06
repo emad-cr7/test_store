@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-
 import '../../core/Preferences_manager/preferences_manager.dart';
 import 'model/product_model.dart';
 
@@ -20,6 +19,7 @@ class HomeController extends ChangeNotifier {
   void syncProducts(List<ProductModel> products) {
     allProducts = products;
     filteredProducts = _applyFilter(searchQuery);
+    notifyListeners();
   }
 
   void onSearchChanged(String query) {
@@ -34,6 +34,13 @@ class HomeController extends ChangeNotifier {
   }
 
   /// save the favorite and shopping cart status to shared preferences
+
+  List<ProductModel> get favoriteProducts =>
+      allProducts.where((p) => p.isFavorite).toList();
+
+  List<ProductModel> get cartProducts =>
+      allProducts.where((p) => p.shoppingCart).toList();
+
 
   void toggleFavorite(ProductModel product) async {
     product.isFavorite = !product.isFavorite;

@@ -1,29 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-import '../../core/Preferences_manager/preferences_manager.dart';
 import '../../core/share_widget/custom_no_product.dart';
 import '../../core/share_widget/custom_product.dart';
 import '../../core/share_widget/custom_query.dart';
-import '../home/model/product_model.dart';
-
-class FavoriteScreen extends StatefulWidget {
+import '../home/home_controller.dart';
+class FavoriteScreen extends StatelessWidget {
   const FavoriteScreen({super.key});
-
-  @override
-  State<FavoriteScreen> createState() => _FavoriteScreenState();
-}
-
-class _FavoriteScreenState extends State<FavoriteScreen> {
-  Future<List<ProductModel>> getFavoriteProducts(
-    List<ProductModel> products,
-  ) async {
-    for (var product in products) {
-      product.isFavorite =
-          await PreferencesManager().getBool("favorite_${product.id}") ?? false;
-    }
-
-    return products.where((product) => product.isFavorite).toList();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,13 +17,15 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
           style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
         ),
       ),
-
       body: CustomQuery(
         builder: (products) {
-          return FutureBuilder<List<ProductModel>>(
-            future: getFavoriteProducts(products),
-            builder: (context, snapshot) {
-              final favoriteProducts = snapshot.data ?? [];
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            context.read<HomeController>().syncProducts(products);
+          });
+
+          return Consumer<HomeController>(
+            builder: (context, controller, _) {
+              final favoriteProducts = controller.favoriteProducts;
 
               if (favoriteProducts.isEmpty) {
                 return CustomNoProduct(
