@@ -4,13 +4,7 @@ import '../../core/Preferences_manager/preferences_manager.dart';
 import 'model/product_model.dart';
 
 class HomeController extends ChangeNotifier {
-
-
-  List<ProductModel> products = [];
-
-
-
-  void toggleFavorite(ProductModel product)async {
+  void toggleFavorite(ProductModel product) async {
     product.isFavorite = !product.isFavorite;
     await PreferencesManager().setBool(
       "favorite_${product.id}",
@@ -19,9 +13,11 @@ class HomeController extends ChangeNotifier {
     notifyListeners();
   }
 
-  void toggleShoppingCart(ProductModel product) async{
+  void toggleShoppingCart(ProductModel product) async {
     product.shoppingCart = !product.shoppingCart;
-    await PreferencesManager().setBool("shoppingCart_${product.id}", product.shoppingCart,
+    await PreferencesManager().setBool(
+      "shoppingCart_${product.id}",
+      product.shoppingCart,
     );
     notifyListeners();
   }
