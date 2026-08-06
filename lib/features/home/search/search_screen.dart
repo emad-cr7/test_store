@@ -3,11 +3,7 @@ import 'package:flutter/material.dart';
 import '../model/product_model.dart';
 
 class SearchScreen extends StatefulWidget {
-  const SearchScreen({
-    super.key,
-
-  });
-
+  const SearchScreen({super.key});
 
   @override
   State<SearchScreen> createState() => _SearchScreenState();
@@ -38,10 +34,7 @@ class _SearchScreenState extends State<SearchScreen> {
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(16),
-              borderSide: const BorderSide(
-                color: Colors.blue,
-                width: 2,
-              ),
+              borderSide: const BorderSide(color: Colors.blue, width: 2),
             ),
             contentPadding: const EdgeInsets.symmetric(
               horizontal: 16,
