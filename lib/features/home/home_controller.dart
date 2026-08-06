@@ -33,7 +33,7 @@ class HomeController extends ChangeNotifier {
     });
   }
 
-  /// save the favorite and shopping cart status to shared preferences
+  /// save the favorite and shopping cart status to shared preferences and screen
 
   List<ProductModel> get favoriteProducts =>
       allProducts.where((p) => p.isFavorite).toList();
