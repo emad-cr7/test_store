@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 
-class NoInternet extends StatelessWidget {
-  NoInternet({super.key, required this.isNetworkError, required this.refetch});
+class CustomNoProduct extends StatelessWidget {
+  CustomNoProduct({
+    super.key,
+    required this.refetch,
+    required this.title,
+    required this.icon,
+  });
 
-  final bool isNetworkError;
   final Function()? refetch;
-
+  final String title;
+  final IconData icon;
   @override
   Widget build(BuildContext context) {
     return RefreshIndicator.adaptive(
@@ -19,12 +24,9 @@ class NoInternet extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Icon(Icons.wifi_off, size: 60, color: Colors.grey),
-                  const SizedBox(height: 16),
-                  Text(
-                    isNetworkError ? 'No internet.' : 'An error occurred; try again.',
-                    style: const TextStyle(fontSize: 16),
-                  ),
+                   Icon(icon , size: 60, color: Colors.grey),
+                   SizedBox(height: 16),
+                  Text(title, style: TextStyle(fontSize: 16)),
                 ],
               ),
             ),

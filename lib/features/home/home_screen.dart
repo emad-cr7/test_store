@@ -1,10 +1,12 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:ql/features/home/search/search_screen.dart';
 import 'package:ql/features/home/view_all/view_all_screen.dart';
 import '../../core/share_widget/custom_product.dart';
 import '../../core/share_widget/custom_query.dart';
 import 'categories/categories_screen.dart';
+import 'home_controller.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -21,16 +23,22 @@ class HomeScreen extends StatelessWidget {
       body: SafeArea(
         child: CustomQuery(
           builder: (products) {
-            return CustomScrollView(
-              slivers: [
-                SearchScreen(),
-                Categories(),
-                ViewAllScreen(),
-                CustomProduct(
-                  products: products,
-                  itemCount: min(products.length, 10),
-                ),
-              ],
+            final controller = context.read<HomeController>();
+            controller.syncProducts(products);
+            return Consumer<HomeController>(
+              builder: (context, controller, _) {
+                return CustomScrollView(
+                  slivers: [
+                    SearchScreen(),
+                    Categories(),
+                    ViewAllScreen(),
+                    CustomProduct(
+                      products: controller.filteredProducts,
+                      itemCount: min(controller.filteredProducts.length, 10),
+                    ),
+                  ],
+                );
+              },
             );
           },
         ),

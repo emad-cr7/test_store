@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
-import 'package:provider/provider.dart';
-import '../../features/home/home_controller.dart';
 import '../../features/home/model/product_model.dart';
 import '../Preferences_manager/preferences_manager.dart';
 import '../api/api_config/api_config.dart';
 import '../api/query.dart';
-import 'no_internet/no_internet.dart';
+import 'custom_no_product.dart';
 
 class CustomQuery extends StatelessWidget {
   const CustomQuery({super.key, required this.builder});
@@ -32,11 +30,12 @@ class CustomQuery extends StatelessWidget {
               result.exception.toString().contains('SocketException') ||
               result.exception.toString().contains('Failed host lookup');
 
-          return NoInternet(
-            isNetworkError: isNetworkError,
-            refetch: () async {
-              await refetch?.call();
-            },
+          return CustomNoProduct(
+            refetch: refetch,
+            title: isNetworkError
+                ? 'No internet connection'
+                : 'Something went wrong',
+            icon: isNetworkError ? Icons.wifi_off : Icons.error,
           );
         }
 

@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../../../../core/share_widget/custom_product.dart';
 import '../../../../core/share_widget/custom_query.dart';
+import '../../home_controller.dart';
 import '../../model/product_model.dart';
+import '../../search/search_screen.dart';
 
 class ProductAll extends StatelessWidget {
   const ProductAll({super.key});
@@ -17,11 +20,21 @@ class ProductAll extends StatelessWidget {
       ),
       body: SafeArea(
         child: CustomQuery(
-          builder: (List<ProductModel> products) {
-            return CustomScrollView(
-              slivers: [
-                CustomProduct(products: products, itemCount: products.length),
-              ],
+          builder: (products) {
+            final controller = context.read<HomeController>();
+            controller.syncProducts(products);
+            return Consumer<HomeController>(
+              builder: (context, controller, _) {
+                return CustomScrollView(
+                  slivers: [
+                    SearchScreen(),
+                    CustomProduct(
+                      products: controller.filteredProducts,
+                      itemCount: controller.filteredProducts.length,
+                    ),
+                  ],
+                );
+              },
             );
           },
         ),
