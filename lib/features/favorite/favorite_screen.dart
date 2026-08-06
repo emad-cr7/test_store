@@ -14,9 +14,12 @@ class FavoriteScreen extends StatefulWidget {
 }
 
 class _FavoriteScreenState extends State<FavoriteScreen> {
-  Future<List<ProductModel>> getFavoriteProducts(List<ProductModel> products) async {
+  Future<List<ProductModel>> getFavoriteProducts(
+    List<ProductModel> products,
+  ) async {
     for (var product in products) {
-      product.isFavorite = await PreferencesManager().getBool("favorite_${product.id}") ?? false;
+      product.isFavorite =
+          await PreferencesManager().getBool("favorite_${product.id}") ?? false;
     }
 
     return products.where((product) => product.isFavorite).toList();
@@ -35,14 +38,15 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
       body: CustomQuery(
         builder: (products) {
           return FutureBuilder<List<ProductModel>>(
-            future:  getFavoriteProducts(products),
+            future: getFavoriteProducts(products),
             builder: (context, snapshot) {
               final favoriteProducts = snapshot.data ?? [];
 
               if (favoriteProducts.isEmpty) {
                 return CustomNoProduct(
                   refetch: () {},
-                  title: 'No favorite products found.', icon: Icons.favorite,
+                  title: 'No favorite products found.',
+                  icon: Icons.favorite,
                 );
               }
 

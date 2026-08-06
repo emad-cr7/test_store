@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import '../../features/home/details/product_detail_screen.dart';
 import '../../features/home/home_controller.dart';
 import '../../features/home/model/product_model.dart';
+import 'custom_snackbar.dart';
 
 class CustomProduct extends StatelessWidget {
   const CustomProduct({
@@ -85,6 +86,19 @@ class CustomProduct extends StatelessWidget {
                                     return IconButton(
                                       onPressed: () {
                                         controller.toggleFavorite(product);
+
+                                        AppSnackBar.show(
+                                          context,
+                                          message: product.isFavorite
+                                              ? "Product added to favorites"
+                                              : "Product removed from favorites",
+                                          icon: product.isFavorite
+                                              ? Icons.favorite
+                                              : Icons.favorite_border,
+                                          backgroundColor: product.isFavorite
+                                              ? Colors.redAccent
+                                              : Colors.grey,
+                                        );
                                       },
                                       icon:
                                           Icon(
@@ -144,8 +158,24 @@ class CustomProduct extends StatelessWidget {
                                     ) {
                                       return IconButton(
                                         onPressed: () {
+                                          final newValue =
+                                              !product.shoppingCart;
+
                                           controller.toggleShoppingCart(
                                             product,
+                                          );
+
+                                          AppSnackBar.show(
+                                            context,
+                                            message: newValue
+                                                ? "Product added to cart"
+                                                : "Product removed from cart",
+                                            icon: newValue
+                                                ? Icons.shopping_cart
+                                                : Icons.remove_shopping_cart,
+                                            backgroundColor: newValue
+                                                ? Colors.green
+                                                : Colors.grey,
                                           );
                                         },
                                         icon: Icon(

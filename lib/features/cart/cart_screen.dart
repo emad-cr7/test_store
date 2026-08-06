@@ -6,14 +6,9 @@ import '../../core/share_widget/custom_product.dart';
 import '../../core/share_widget/custom_query.dart';
 import '../home/model/product_model.dart';
 
-class CartScreen extends StatefulWidget {
+class CartScreen extends StatelessWidget {
   const CartScreen({super.key});
 
-  @override
-  State<CartScreen> createState() => _CartScreenState();
-}
-
-class _CartScreenState extends State<CartScreen> {
   Future<List<ProductModel>> getCartProducts(List<ProductModel> products) async {
     for (var product in products) {
       product.shoppingCart =
