@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../home_controller.dart';
+import '../../../core/provider/provider_controller.dart';
 
 class SearchScreen extends StatelessWidget {
   const SearchScreen({super.key});

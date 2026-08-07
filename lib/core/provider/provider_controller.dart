@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import '../../core/Preferences_manager/preferences_manager.dart';
-import 'model/product_model.dart';
+import '../Preferences_manager/preferences_manager.dart';
+import '../../features/home/model/product_model.dart';
 
 class HomeController extends ChangeNotifier {
   final TextEditingController searchController = TextEditingController();

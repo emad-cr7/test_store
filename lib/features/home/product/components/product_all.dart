@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../../core/share_widget/custom_product.dart';
 import '../../../../core/share_widget/custom_query.dart';
-import '../../home_controller.dart';
+import '../../../../core/provider/provider_controller.dart';
 import '../../model/product_model.dart';
 import '../../search/search_screen.dart';
 

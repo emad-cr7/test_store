@@ -4,7 +4,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:provider/provider.dart';
 import '../../features/home/details/product_detail_screen.dart';
-import '../../features/home/home_controller.dart';
+import '../provider/provider_controller.dart';
 import '../../features/home/model/product_model.dart';
 import 'custom_snackbar.dart';
 

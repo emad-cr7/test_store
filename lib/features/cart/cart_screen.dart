@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import '../../core/share_widget/custom_no_product.dart';
 import '../../core/share_widget/custom_product.dart';
 import '../../core/share_widget/custom_query.dart';
-import '../home/home_controller.dart';
+import '../../core/provider/provider_controller.dart';
 
 class CartScreen extends StatelessWidget {
   const CartScreen({super.key});

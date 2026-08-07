@@ -6,7 +6,7 @@ import 'package:ql/features/home/view_all/view_all_screen.dart';
 import '../../core/share_widget/custom_product.dart';
 import '../../core/share_widget/custom_query.dart';
 import 'categories/categories_screen.dart';
-import 'home_controller.dart';
+import '../../core/provider/provider_controller.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
