@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter_animate/flutter_animate.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:provider/provider.dart';
 import 'package:ql/core/provider/provider_controller.dart';
 import 'package:readmore/readmore.dart';
+
 import '../model/product_model.dart';
 
 class ProductDetailScreen extends StatelessWidget {
-  const ProductDetailScreen({super.key, required this.product});
+  ProductDetailScreen({super.key, required this.product});
 
   final ProductModel product;
+
+  // بديل الـ setState: ValueNotifier بيتابع الصورة الحالية بس
+  final ValueNotifier<int> _currentPage = ValueNotifier<int>(0);
 
   @override
   Widget build(BuildContext context) {
@@ -28,96 +32,124 @@ class ProductDetailScreen extends StatelessWidget {
                 borderRadius: BorderRadius.circular(12),
                 child: hasImage
                     ? Stack(
-                        children: [
-                          CachedNetworkImage(
-                            imageUrl: product.images[0],
-                            height: 350,
-                            width: double.infinity,
-                            fit: BoxFit.cover,
-                            placeholder: (context, url) => Center(
-                              child: LoadingAnimationWidget.fourRotatingDots(
-                                color: Colors.blue,
-                                size: 30,
-                              ),
-                            ),
-                            errorWidget: (context, url, error) => Container(
-                              color: Colors.grey[300],
-                              height: 350,
-                              child: const Icon(
-                                Icons.broken_image,
-                                size: 80,
-                                color: Colors.grey,
-                              ),
-                            ),
-                          ),
-                          Positioned(
-                            top: 1,
-                            right: 1,
-                            child: Consumer<ProviderController>(
-                              builder:
-                                  (
-                                    BuildContext context,
-                                    ProviderController controller,
-                                    Widget? child,
-                                  ) {
-                                    return IconButton(
-                                      onPressed: () {
-                                        controller.toggleFavorite(product);
-                                      },
-                                      icon:
-                                          Icon(
-                                                product.isFavorite
-                                                    ? Icons.favorite
-                                                    : Icons.favorite_border,
-                                                color: product.isFavorite
-                                                    ? Colors.red
-                                                    : Colors.white,
-                                              )
-                                              .animate(
-                                                target: product.isFavorite
-                                                    ? 1
-                                                    : 0,
-                                              )
-                                              .scale(
-                                                begin: const Offset(1, 1),
-                                                end: const Offset(1.3, 1.3),
-                                                duration: 250.ms,
-                                              ),
-                                    );
-                                  },
-                            ),
-                          ),
-                        ],
-                      )
-                    : Container(
-                        color: Colors.grey[300],
+                  children: [
+                    CarouselSlider(
+                      options: CarouselOptions(
                         height: 350,
-                        width: double.infinity,
-                        child: const Icon(
-                          Icons.image_not_supported,
-                          size: 80,
-                          color: Colors.grey,
+                        viewportFraction: 1,
+                        autoPlay: product.images.length > 1,
+                        autoPlayInterval: const Duration(seconds: 3),
+                        onPageChanged: (index, reason) {
+                          _currentPage.value = index;
+                        },
+                      ),
+                      items: product.images.map((url) {
+                        return CachedNetworkImage(
+                          imageUrl: url,
+                          width: double.infinity,
+                          fit: BoxFit.cover,
+                          placeholder: (context, url) => Center(
+                            child: LoadingAnimationWidget
+                                .fourRotatingDots(
+                                color: Colors.blue, size: 30),
+                          ),
+                          errorWidget: (context, url, error) =>
+                              Container(
+                                color: Colors.grey[300],
+                                child: const Icon(Icons.broken_image,
+                                    size: 80, color: Colors.grey),
+                              ),
+                        );
+                      }).toList(),
+                    ),
+
+                    Positioned(
+                      top: 1,
+                      right: 1,
+                      child: Consumer<ProviderController>(
+                        builder: (context, controller, _) {
+                          return IconButton(
+                            onPressed: () =>
+                                controller.toggleFavorite(product),
+                            icon: Icon(
+                              product.isFavorite
+                                  ? Icons.favorite
+                                  : Icons.favorite_border,
+                              color: product.isFavorite
+                                  ? Colors.red
+                                  : Colors.white,
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+
+                    // =========================
+                    // Dots (بتتابع الـ ValueNotifier بدل setState)
+                    // =========================
+                    if (product.images.length > 1)
+                      Positioned(
+                        bottom: 10,
+                        left: 0,
+                        right: 0,
+                        child: ValueListenableBuilder<int>(
+                          valueListenable: _currentPage,
+                          builder: (context, currentIndex, _) {
+                            return Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: List.generate(
+                                  product.images.length, (index) {
+                                final isSelected = index == currentIndex;
+                                return AnimatedContainer(
+                                  duration:
+                                  const Duration(milliseconds: 250),
+                                  margin: const EdgeInsets.symmetric(
+                                      horizontal: 4),
+                                  width: isSelected ? 20 : 8,
+                                  height: 8,
+                                  decoration: BoxDecoration(
+                                    color: isSelected
+                                        ? Colors.white
+                                        : Colors.white54,
+                                    borderRadius:
+                                    BorderRadius.circular(10),
+                                  ),
+                                );
+                              }),
+                            );
+                          },
                         ),
                       ),
+                  ],
+                )
+                    : Container(
+                  color: Colors.grey[300],
+                  height: 350,
+                  width: double.infinity,
+                  child: const Icon(Icons.image_not_supported,
+                      size: 80, color: Colors.grey),
+                ),
               ),
 
               const SizedBox(height: 20),
+
               Text(
                 product.title,
                 style: const TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                ),
+                    fontSize: 24, fontWeight: FontWeight.bold),
               ),
+
               const SizedBox(height: 8),
               const Center(child: SizedBox(width: 300, child: Divider())),
               const SizedBox(height: 8),
+
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   const Text(
                     "Description",
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    style:
+                    TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                   Text(
                     "\$${product.price.toStringAsFixed(2)}",
@@ -142,13 +174,9 @@ class ProductDetailScreen extends StatelessWidget {
                 trimExpandedText: ' Show less',
                 style: const TextStyle(fontSize: 16, height: 1.5),
                 moreStyle: const TextStyle(
-                  color: Colors.blue,
-                  fontWeight: FontWeight.bold,
-                ),
+                    color: Colors.blue, fontWeight: FontWeight.bold),
                 lessStyle: const TextStyle(
-                  color: Colors.blue,
-                  fontWeight: FontWeight.bold,
-                ),
+                    color: Colors.blue, fontWeight: FontWeight.bold),
               ),
             ],
           ),

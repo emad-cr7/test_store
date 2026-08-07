@@ -16,6 +16,7 @@ class ProviderController extends ChangeNotifier {
             .where((p) => p.title.toLowerCase().contains(query.toLowerCase()))
             .toList();
 
+
   void syncProducts(List<ProductModel> products) {
     allProducts = products;
     filteredProducts = _applyFilter(searchQuery);
@@ -31,6 +32,13 @@ class ProviderController extends ChangeNotifier {
       filteredProducts = _applyFilter(query);
       notifyListeners();
     });
+  }
+
+
+  @override
+  void dispose() {
+    searchController.dispose();
+    super.dispose();
   }
 
   /// save the favorite and shopping cart status to shared preferences and screen

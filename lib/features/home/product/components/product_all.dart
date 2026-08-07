@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
 import '../../../../core/share_widget/custom_product.dart';
 import '../../../../core/share_widget/custom_query.dart';
 import '../../../../core/provider/provider_controller.dart';
-import '../../model/product_model.dart';
 import '../../search/search_screen.dart';
 
 class ProductAll extends StatelessWidget {
@@ -22,7 +22,11 @@ class ProductAll extends StatelessWidget {
         child: CustomQuery(
           builder: (products) {
             final controller = context.read<ProviderController>();
-            controller.syncProducts(products);
+
+            WidgetsBinding.instance.addPostFrameCallback((_) {
+              controller.syncProducts(products);
+            });
+
             return Consumer<ProviderController>(
               builder: (context, controller, _) {
                 return CustomScrollView(
