@@ -6,7 +6,7 @@ class SearchScreen extends StatelessWidget {
   const SearchScreen({super.key});
   @override
   Widget build(BuildContext context) {
-    final controller = context.read<HomeController>();
+    final controller = context.read<ProviderController>();
     return SliverPadding(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
       sliver: SliverToBoxAdapter(

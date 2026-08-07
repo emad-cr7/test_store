@@ -24,9 +24,9 @@ class HomeScreen extends StatelessWidget {
         child: CustomQuery(
           builder: (products) {
             WidgetsBinding.instance.addPostFrameCallback((_) {
-              context.read<HomeController>().syncProducts(products);
+              context.read<ProviderController>().syncProducts(products);
             });
-            return Consumer<HomeController>(
+            return Consumer<ProviderController>(
               builder: (context, controller, _) {
                 return CustomScrollView(
                   slivers: [

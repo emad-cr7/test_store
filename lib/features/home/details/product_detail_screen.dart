@@ -53,11 +53,11 @@ class ProductDetailScreen extends StatelessWidget {
                           Positioned(
                             top: 1,
                             right: 1,
-                            child: Consumer<HomeController>(
+                            child: Consumer<ProviderController>(
                               builder:
                                   (
                                     BuildContext context,
-                                    HomeController controller,
+                                    ProviderController controller,
                                     Widget? child,
                                   ) {
                                     return IconButton(

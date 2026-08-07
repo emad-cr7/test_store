@@ -20,10 +20,10 @@ class CartScreen extends StatelessWidget {
       body: CustomQuery(
         builder: (products) {
           WidgetsBinding.instance.addPostFrameCallback((_) {
-            context.read<HomeController>().syncProducts(products);
+            context.read<ProviderController>().syncProducts(products);
           });
 
-          return Consumer<HomeController>(
+          return Consumer<ProviderController>(
             builder: (context, controller, _) {
               final cartProducts = controller.cartProducts;
 

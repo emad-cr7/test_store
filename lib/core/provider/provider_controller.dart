@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../Preferences_manager/preferences_manager.dart';
 import '../../features/home/model/product_model.dart';
 
-class HomeController extends ChangeNotifier {
+class ProviderController extends ChangeNotifier {
   final TextEditingController searchController = TextEditingController();
   List<ProductModel> allProducts = [];
   List<ProductModel> filteredProducts = [];

@@ -76,11 +76,11 @@ class CustomProduct extends StatelessWidget {
                           Positioned(
                             top: 1,
                             right: 1,
-                            child: Consumer<HomeController>(
+                            child: Consumer<ProviderController>(
                               builder:
                                   (
                                     BuildContext context,
-                                    HomeController controller,
+                                    ProviderController controller,
                                     Widget? child,
                                   ) {
                                     return IconButton(
@@ -149,11 +149,11 @@ class CustomProduct extends StatelessWidget {
                                   color: Colors.lightGreen.shade700,
                                 ),
                               ),
-                              Consumer<HomeController>(
+                              Consumer<ProviderController>(
                                 builder:
                                     (
                                       BuildContext context,
-                                      HomeController controller,
+                                      ProviderController controller,
                                       Widget? child,
                                     ) {
                                       return IconButton(
