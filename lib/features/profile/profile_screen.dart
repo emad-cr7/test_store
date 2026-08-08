@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../core/theme/theme_controller.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -10,19 +11,15 @@ class ProfileScreen extends StatelessWidget {
 
       body: Column(
         children: [
+          const SizedBox(height: 15),
+
           const CircleAvatar(radius: 50, child: Icon(Icons.person, size: 50)),
 
           const SizedBox(height: 15),
 
-          const Text(
-            'Emad Marri',
-            style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
-          ),
+          Text('Emad Marri', style: Theme.of(context).textTheme.titleLarge),
 
-          const Text(
-            'emad@example.com',
-            style: TextStyle(color: Colors.grey),
-          ),
+          Text('emad@example.com', style: Theme.of(context).textTheme.bodySmall),
 
           const SizedBox(height: 30),
 
@@ -33,18 +30,23 @@ class ProfileScreen extends StatelessWidget {
             onTap: () {},
           ),
 
-          ListTile(
-            leading: const Icon(Icons.favorite_border),
-            title: const Text('Favorites'),
-            trailing: const Icon(Icons.arrow_forward_ios, size: 16),
-            onTap: () {},
-          ),
-
-          ListTile(
-            leading: const Icon(Icons.settings_outlined),
-            title: const Text('Settings'),
-            trailing: const Icon(Icons.arrow_forward_ios, size: 16),
-            onTap: () {},
+          // زرار التبديل بين الوضع الفاتح والغامق
+          ValueListenableBuilder<ThemeMode>(
+            valueListenable: ThemeController.themeNotifier,
+            builder: (context, mode, _) {
+              final isDark = mode == ThemeMode.dark;
+              return ListTile(
+                leading: Icon(
+                  isDark ? Icons.dark_mode_outlined : Icons.light_mode_outlined,
+                ),
+                title: const Text('Dark Mode'),
+                trailing: Switch(
+                  value: isDark,
+                  onChanged: (_) => ThemeController().toggleTheme(),
+                ),
+                onTap: () => ThemeController().toggleTheme(),
+              );
+            },
           ),
 
           ListTile(
