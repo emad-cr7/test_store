@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:provider/provider.dart';
-import 'core/Preferences_manager/preferences_manager.dart';
 import 'core/api/api_config/api_config.dart';
+import 'core/datasource/Preferences_manager/preferences_manager.dart';
 import 'core/provider/provider_controller.dart';
 import 'main/main_screen.dart';
 

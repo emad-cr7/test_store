@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import '../Preferences_manager/preferences_manager.dart';
 import '../../features/home/model/product_model.dart';
+import '../datasource/Preferences_manager/preferences_manager.dart';
 
 class ProviderController extends ChangeNotifier {
   final TextEditingController searchController = TextEditingController();

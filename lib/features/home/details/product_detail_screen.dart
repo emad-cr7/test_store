@@ -13,7 +13,6 @@ class ProductDetailScreen extends StatelessWidget {
 
   final ProductModel product;
 
-  // بديل الـ setState: ValueNotifier بيتابع الصورة الحالية بس
   final ValueNotifier<int> _currentPage = ValueNotifier<int>(0);
 
   @override
