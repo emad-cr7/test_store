@@ -10,46 +10,31 @@ class ProfileScreen extends StatelessWidget {
 
       body: Column(
         children: [
-          const CircleAvatar(radius: 50, child: Icon(Icons.person, size: 50)),
+          SizedBox(height: 15),
 
-          const SizedBox(height: 15),
+          CircleAvatar(radius: 50, child: Icon(Icons.person, size: 50)),
 
-          const Text(
+          SizedBox(height: 15),
+
+          Text(
             'Emad Marri',
             style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
           ),
 
-          const Text(
-            'emad@example.com',
-            style: TextStyle(color: Colors.grey),
-          ),
+          Text('emad@example.com', style: TextStyle(color: Colors.grey)),
 
-          const SizedBox(height: 30),
+          SizedBox(height: 30),
 
           ListTile(
-            leading: const Icon(Icons.person_outline),
-            title: const Text('Edit Profile'),
-            trailing: const Icon(Icons.arrow_forward_ios, size: 16),
+            leading: Icon(Icons.person_outline),
+            title: Text('Edit Profile'),
+            trailing: Icon(Icons.arrow_forward_ios, size: 16),
             onTap: () {},
           ),
 
           ListTile(
-            leading: const Icon(Icons.favorite_border),
-            title: const Text('Favorites'),
-            trailing: const Icon(Icons.arrow_forward_ios, size: 16),
-            onTap: () {},
-          ),
-
-          ListTile(
-            leading: const Icon(Icons.settings_outlined),
-            title: const Text('Settings'),
-            trailing: const Icon(Icons.arrow_forward_ios, size: 16),
-            onTap: () {},
-          ),
-
-          ListTile(
-            leading: const Icon(Icons.logout),
-            title: const Text('Logout'),
+            leading: Icon(Icons.logout),
+            title: Text('Logout'),
             onTap: () {},
           ),
         ],
