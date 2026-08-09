@@ -17,6 +17,9 @@ class ForgetPasswordController extends ChangeNotifier {
     isLoading = true;
     notifyListeners();
 
+    // نفس الـ delay الموجود في الكود القديم
+    await Future.delayed(const Duration(seconds: 2));
+
     try {
       await FirebaseAuth.instance.sendPasswordResetEmail(
         email: emailController.text.trim(),
@@ -45,24 +48,31 @@ class ForgetPasswordController extends ChangeNotifier {
       isLoading = false;
       notifyListeners();
 
-      if (e.code == 'user-not-found') {
-        showErrorDialog('تأكد من البريد الذي قمت بإدخاله.');
-      } else if (e.code == 'invalid-email') {
-        showErrorDialog('البريد الإلكتروني غير صحيح.');
-      } else {
-        showErrorDialog(
-          e.message ?? 'حدث خطأ، حاول مرة أخرى.',
-        );
-      }
+      _showErrorDialog(_mapFirebaseError(e));
     } catch (e) {
       isLoading = false;
       notifyListeners();
 
-      showErrorDialog('حدث خطأ، حاول مرة أخرى.');
+      _showErrorDialog('حدث خطأ، حاول مرة أخرى.');
     }
   }
 
-  void showErrorDialog(String message) {
+  String _mapFirebaseError(FirebaseAuthException e) {
+    switch (e.code) {
+      case 'user-not-found':
+        return 'لا يوجد حساب مرتبط بهذا البريد الإلكتروني.';
+      case 'invalid-email':
+        return 'صيغة البريد الإلكتروني غير صحيحة.';
+      case 'too-many-requests':
+        return 'محاولات كثيرة، حاول مرة أخرى بعد قليل.';
+      case 'network-request-failed':
+        return 'تأكد من اتصالك بالإنترنت وحاول مرة أخرى.';
+      default:
+        return 'تأكد من البريد الذي قمت بإدخاله.';
+    }
+  }
+
+  void _showErrorDialog(String message) {
     AwesomeDialog(
       context: navigatorKey.currentState!.context,
       dialogType: DialogType.error,
