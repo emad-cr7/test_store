@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import '../constants/storage_key.dart';
 import '../datasource/Preferences_manager/preferences_manager.dart';
 
-/// يتحكم في وضع الثيم (فاتح / غامق) للتطبيق كله،
-/// ويحفظ اختيار المستخدم في SharedPreferences عشان يفضل زي ما هو
-/// حتى لو المستخدم قفل التطبيق وفتحه تاني.
+
 class ThemeController {
   static final ThemeController _instance = ThemeController._internal();
 

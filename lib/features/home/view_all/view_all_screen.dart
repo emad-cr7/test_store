@@ -17,11 +17,7 @@ class ViewAllScreen extends StatelessWidget {
           children: [
             Text(
               "Product",
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 20,
-                fontWeight: FontWeight.w700,
-              ),
+              style: Theme.of(context).textTheme.titleLarge
             ),
             InkWell(
               onTap: () {
@@ -34,13 +30,7 @@ class ViewAllScreen extends StatelessWidget {
               },
               child: Text(
                 "View all",
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 16,
-                  fontWeight: FontWeight.w400,
-                  decoration: TextDecoration.underline,
-                  decorationColor: Colors.black,
-                ),
+                  style: Theme.of(context).textTheme.bodyLarge
               ),
             ),
           ],

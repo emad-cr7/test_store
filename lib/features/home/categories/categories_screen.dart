@@ -2,11 +2,17 @@ import 'package:flutter/material.dart';
 
 import '../model/category_model.dart';
 
+import 'package:flutter/material.dart';
+
+import '../model/category_model.dart';
+
 class Categories extends StatelessWidget {
   const Categories({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return SliverToBoxAdapter(
       child: SizedBox(
         height: 110,
@@ -15,18 +21,18 @@ class Categories extends StatelessWidget {
           itemCount: categories.length,
           itemBuilder: (context, index) {
             final category = categories[index];
-      
+
             return Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8),
               child: Column(
                 children: [
                   CircleAvatar(
                     radius: 35,
-                    backgroundColor: Colors.grey.shade200,
+                    backgroundColor: theme.dividerColor,
                     child: Icon(
                       category.icon ?? Icons.category,
                       size: 30,
-                      color: Colors.black,
+                      color: theme.colorScheme.primary,
                     ),
                   ),
                   const SizedBox(height: 8),
@@ -37,6 +43,7 @@ class Categories extends StatelessWidget {
                       textAlign: TextAlign.center,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
+                      style: theme.textTheme.bodyMedium,
                     ),
                   ),
                 ],

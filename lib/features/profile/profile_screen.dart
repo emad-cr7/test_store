@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ql/features/auth/login/login_screen.dart';
 import '../../core/theme/theme_controller.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -52,7 +53,11 @@ class ProfileScreen extends StatelessWidget {
           ListTile(
             leading: const Icon(Icons.logout),
             title: const Text('Logout'),
-            onTap: () {},
+            onTap: () {
+              Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
+                return LoginScreen();
+              }));
+            },
           ),
         ],
       ),
