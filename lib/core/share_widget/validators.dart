@@ -8,11 +8,11 @@ class Validators {
 
   static String? password(String? value) {
     if (value == null || value.isEmpty) {
-      return 'من فضلك ادخل الباسورد';
+      return 'Please enter the password.';
     }
 
     if (value.length < 6) {
-      return 'الباسورد لازم يكون 6 حروف على الأقل';
+      return 'The password must be at least 6 characters long.';
     }
 
     return null;
@@ -23,11 +23,11 @@ class Validators {
       String password,
       ) {
     if (value == null || value.isEmpty) {
-      return 'من فضلك أكّد الباسورد';
+      return 'Please confirm the password.';
     }
 
     if (value != password) {
-      return 'الباسورد مش متطابق';
+      return 'The passwords do not match.';
     }
 
     return null;
@@ -35,11 +35,11 @@ class Validators {
 
   static String? email(String? value) {
     if (value == null || value.isEmpty) {
-      return 'من فضلك ادخل الإيميل';
+      return 'Please enter your email.';
     }
 
     if (!value.contains('@')) {
-      return 'إيميل غير صحيح';
+      return 'Invalid email';
     }
 
     return null;
@@ -47,11 +47,11 @@ class Validators {
 
   static String? name(String? value) {
     if (value == null || value.trim().isEmpty) {
-      return 'من فضلك ادخل الاسم';
+      return 'Please enter the name.';
     }
 
     if (value.trim().length < 3) {
-      return 'الاسم لازم يكون 3 حروف على الأقل';
+      return 'The name must be at least 3 characters long.';
     }
 
     return null;
