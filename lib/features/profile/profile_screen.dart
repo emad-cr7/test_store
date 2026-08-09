@@ -46,10 +46,13 @@ class ProfileScreen extends StatelessWidget {
 
           const SizedBox(height: 15),
 
-          Text('Emad Marri', style: Theme.of(context).textTheme.titleLarge),
+          Text(
+            '${FirebaseAuth.instance.currentUser?.displayName}',
+            style: Theme.of(context).textTheme.titleLarge,
+          ),
 
           Text(
-            'emad@example.com',
+            '${FirebaseAuth.instance.currentUser?.email}',
             style: Theme.of(context).textTheme.bodySmall,
           ),
 

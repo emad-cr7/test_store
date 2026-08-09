@@ -38,28 +38,46 @@ class RegisterController extends ChangeNotifier {
   }
 
   Future<void> register() async {
-    if (formKey.currentState!.validate()) {
-      isLoading = true;
-      notifyListeners();
+    if (!formKey.currentState!.validate()) return;
 
-      try {
-        await FirebaseAuth.instance.createUserWithEmailAndPassword(
-          email: emailController.text,
-          password: passwordController.text,
+    isLoading = true;
+    notifyListeners();
+
+    try {
+      final credential =
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: emailController.text.trim(),
+        password: passwordController.text.trim(),
+      );
+
+      final user = credential.user;
+
+      if (user != null) {
+        await user.updateDisplayName(
+          nameController.text.trim(),
         );
-        FirebaseAuth.instance.currentUser!.sendEmailVerification();
-        navigatorKey.currentState!.pushReplacement(
-          MaterialPageRoute(builder: (_) => LoginScreen()),
-        );
-      } on FirebaseAuthException catch (e) {
-        if (e.code == 'weak-password') {
-          showErrorDialog("The password provided is too weak.");
-        } else if (e.code == 'email-already-in-use') {
-          showErrorDialog("The account already exists for that email.");
-        }
-      } catch (e) {
-        print(e);
+
+        await user.sendEmailVerification();
       }
+
+      navigatorKey.currentState!.pushReplacement(
+        MaterialPageRoute(
+          builder: (_) => LoginScreen(),
+        ),
+      );
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'weak-password') {
+        showErrorDialog('The password provided is too weak.');
+      } else if (e.code == 'email-already-in-use') {
+        showErrorDialog('The account already exists for that email.');
+      } else if (e.code == 'invalid-email') {
+        showErrorDialog('Please enter a valid email.');
+      } else {
+        showErrorDialog(e.message ?? 'Something went wrong.');
+      }
+    } catch (e) {
+      showErrorDialog('Something went wrong.');
+    } finally {
       isLoading = false;
       notifyListeners();
     }
