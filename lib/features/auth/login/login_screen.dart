@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../core/share_widget/custom_text_formField.dart';
 import '../register/register_screen.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -82,33 +83,30 @@ class _LoginScreenState extends State<LoginScreen> {
 
                 Text('Email', style: textTheme.labelLarge),
                 const SizedBox(height: 8),
-                TextFormField(
+                CustomTextFormField(
                   controller: _emailController,
                   keyboardType: TextInputType.emailAddress,
                   textInputAction: TextInputAction.next,
+                  prefixIcon: Icons.email_outlined,
+                  hintText: 'Enter your email',
                   validator: (value) {
                     if (value == null || value.isEmpty)
                       return 'من فضلك ادخل الإيميل';
                     if (!value.contains('@')) return 'إيميل غير صحيح';
                     return null;
                   },
-                  decoration: InputDecoration(
-                    hintText: 'Enter your email',
-                    prefixIcon: Icon(
-                      Icons.email_outlined,
-                      color: colors.primary,
-                    ),
-                  ),
                 ),
 
                 const SizedBox(height: 20),
 
                 Text('Password', style: textTheme.labelLarge),
                 const SizedBox(height: 8),
-                TextFormField(
+                CustomTextFormField(
                   controller: _passwordController,
-                  obscureText: _obscurePassword,
                   textInputAction: TextInputAction.done,
+                  prefixIcon: Icons.lock_outline,
+                  hintText: 'Enter your password',
+                  obscureText: _obscurePassword,
                   validator: (value) {
                     if (value == null || value.isEmpty)
                       return 'من فضلك ادخل الباسورد';
@@ -116,19 +114,15 @@ class _LoginScreenState extends State<LoginScreen> {
                       return 'الباسورد لازم يكون 6 حروف على الأقل';
                     return null;
                   },
-                  decoration: InputDecoration(
-                    hintText: 'Enter your password',
-                    prefixIcon: Icon(Icons.lock_outline, color: colors.primary),
-                    suffixIcon: IconButton(
-                      icon: Icon(
-                        _obscurePassword
-                            ? Icons.visibility_off_outlined
-                            : Icons.visibility_outlined,
-                        size: 20,
-                      ),
-                      onPressed: () =>
-                          setState(() => _obscurePassword = !_obscurePassword),
+                  suffixIcon: IconButton(
+                    icon: Icon(
+                      _obscurePassword
+                          ? Icons.visibility_off_outlined
+                          : Icons.visibility_outlined,
+                      size: 20,
                     ),
+                    onPressed: () =>
+                        setState(() => _obscurePassword = !_obscurePassword),
                   ),
                 ),
 

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../core/share_widget/custom_text_formField.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -85,10 +86,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
                 Text('Full Name', style: textTheme.labelLarge),
                 const SizedBox(height: 8),
-                TextFormField(
+                CustomTextFormField(
                   controller: _nameController,
                   keyboardType: TextInputType.name,
                   textInputAction: TextInputAction.next,
+                  prefixIcon: Icons.person_outline,
+                  hintText: 'Enter your full name',
                   validator: (value) {
                     if (value == null || value.isEmpty)
                       return 'من فضلك ادخل الاسم';
@@ -96,46 +99,36 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       return 'الاسم لازم يكون 3 حروف على الأقل';
                     return null;
                   },
-                  decoration: InputDecoration(
-                    hintText: 'Enter your full name',
-                    prefixIcon: Icon(
-                      Icons.person_outline,
-                      color: colors.primary,
-                    ),
-                  ),
                 ),
 
                 const SizedBox(height: 20),
 
                 Text('Email', style: textTheme.labelLarge),
                 const SizedBox(height: 8),
-                TextFormField(
+                CustomTextFormField(
                   controller: _emailController,
                   keyboardType: TextInputType.emailAddress,
                   textInputAction: TextInputAction.next,
+                  prefixIcon: Icons.email_outlined,
+                  hintText: 'Enter your email',
                   validator: (value) {
                     if (value == null || value.isEmpty)
                       return 'من فضلك ادخل الإيميل';
                     if (!value.contains('@')) return 'إيميل غير صحيح';
                     return null;
                   },
-                  decoration: InputDecoration(
-                    hintText: 'Enter your email',
-                    prefixIcon: Icon(
-                      Icons.email_outlined,
-                      color: colors.primary,
-                    ),
-                  ),
                 ),
 
                 const SizedBox(height: 20),
 
                 Text('Password', style: textTheme.labelLarge),
                 const SizedBox(height: 8),
-                TextFormField(
+                CustomTextFormField(
                   controller: _passwordController,
                   obscureText: _obscurePassword,
                   textInputAction: TextInputAction.next,
+                  prefixIcon: Icons.lock_outline,
+                  hintText: 'Enter your password',
                   validator: (value) {
                     if (value == null || value.isEmpty)
                       return 'من فضلك ادخل الباسورد';
@@ -143,19 +136,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       return 'الباسورد لازم يكون 6 حروف على الأقل';
                     return null;
                   },
-                  decoration: InputDecoration(
-                    hintText: 'Enter your password',
-                    prefixIcon: Icon(Icons.lock_outline, color: colors.primary),
-                    suffixIcon: IconButton(
-                      icon: Icon(
-                        _obscurePassword
-                            ? Icons.visibility_off_outlined
-                            : Icons.visibility_outlined,
-                        size: 20,
-                      ),
-                      onPressed: () =>
-                          setState(() => _obscurePassword = !_obscurePassword),
+                  suffixIcon: IconButton(
+                    icon: Icon(
+                      _obscurePassword
+                          ? Icons.visibility_off_outlined
+                          : Icons.visibility_outlined,
+                      size: 20,
                     ),
+                    onPressed: () =>
+                        setState(() => _obscurePassword = !_obscurePassword),
                   ),
                 ),
 
@@ -163,10 +152,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
                 Text('Confirm Password', style: textTheme.labelLarge),
                 const SizedBox(height: 8),
-                TextFormField(
+                CustomTextFormField(
                   controller: _confirmPasswordController,
                   obscureText: _obscureConfirmPassword,
                   textInputAction: TextInputAction.done,
+                  prefixIcon: Icons.lock_outline,
+                  hintText: 'Re-enter your password',
                   validator: (value) {
                     if (value == null || value.isEmpty)
                       return 'من فضلك أكّد الباسورد';
@@ -174,20 +165,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       return 'الباسورد مش متطابق';
                     return null;
                   },
-                  decoration: InputDecoration(
-                    hintText: 'Re-enter your password',
-                    prefixIcon: Icon(Icons.lock_outline, color: colors.primary),
-                    suffixIcon: IconButton(
-                      icon: Icon(
-                        _obscureConfirmPassword
-                            ? Icons.visibility_off_outlined
-                            : Icons.visibility_outlined,
-                        size: 20,
-                      ),
-                      onPressed: () => setState(
-                            () => _obscureConfirmPassword =
-                        !_obscureConfirmPassword,
-                      ),
+                  suffixIcon: IconButton(
+                    icon: Icon(
+                      _obscureConfirmPassword
+                          ? Icons.visibility_off_outlined
+                          : Icons.visibility_outlined,
+                      size: 20,
+                    ),
+                    onPressed: () => setState(
+                          () => _obscureConfirmPassword =
+                      !_obscureConfirmPassword,
                     ),
                   ),
                 ),
