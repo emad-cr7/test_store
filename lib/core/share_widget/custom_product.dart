@@ -86,7 +86,6 @@ class CustomProduct extends StatelessWidget {
                                     return IconButton(
                                       onPressed: () {
                                         controller.toggleFavorite(product);
-
                                         AppSnackBar.show(
                                           context,
                                           message: product.isFavorite
