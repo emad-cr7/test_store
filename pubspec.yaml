@@ -49,6 +49,8 @@ dependencies:
   carousel_slider: ^5.1.2
   image_picker: ^1.1.2
   google_fonts: ^6.2.1
+  persistent_bottom_nav_bar_v2: ^6.0.0
+
 
 
   ############ firebase
