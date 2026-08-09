@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ql/features/auth/login/login_screen.dart';
 import '../../../core/share_widget/custom_text_formField.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -213,7 +214,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         style: textTheme.bodySmall,
                       ),
                       TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (BuildContext context) {
+                                return LoginScreen();
+                              },
+                            ),
+                          );
+                        },
                         style: TextButton.styleFrom(
                           foregroundColor: colors.secondary,
                         ),

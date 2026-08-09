@@ -142,14 +142,12 @@ class _LoginScreenState extends State<LoginScreen> {
 
                 const SizedBox(height: 8),
 
-                // زرار بألوان الثيم وظل خفيف بدل الشكل الافتراضي المسطح
                 SizedBox(
                   width: double.infinity,
                   height: 56,
                   child: ElevatedButton(
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
-                        // نفّذ عملية اللوجين هنا
                       }
                     },
                     child: const Text(
@@ -175,7 +173,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       TextButton(
                         onPressed: () {
-                          Navigator.push(
+                          Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
                               builder: (BuildContext context) {
