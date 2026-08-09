@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:provider/provider.dart';
 
 import '../../core/share_widget/custom_no_product.dart';
 import '../../core/share_widget/custom_product.dart';
-import '../../core/share_widget/custom_query.dart';
 import '../../core/provider/provider_controller.dart';
+
 class FavoriteScreen extends StatelessWidget {
   const FavoriteScreen({super.key});
 
@@ -17,38 +18,37 @@ class FavoriteScreen extends StatelessWidget {
           style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
         ),
       ),
-      body: CustomQuery(
-        builder: (products) {
-          WidgetsBinding.instance.addPostFrameCallback((_) {
-            context.read<ProviderController>().syncProducts(products);
-          });
+      body: Consumer<ProviderController>(
+        builder: (context, controller, _) {
+          if (controller.allProducts.isEmpty) {
+            return Center(
+              child: LoadingAnimationWidget.fourRotatingDots(
+                color: Colors.blue,
+                size: 55,
+              ),
+            );
+          }
 
-          return Consumer<ProviderController>(
-            builder: (context, controller, _) {
-              final favoriteProducts = controller.favoriteProducts;
+          final favoriteProducts = controller.favoriteProducts;
 
-              if (favoriteProducts.isEmpty) {
-                return CustomNoProduct(
-                  refetch: () {},
-                  title: 'No favorite products found.',
-                  icon: Icons.favorite,
-                );
-              }
+          if (favoriteProducts.isEmpty) {
+            return CustomNoProduct(
+              refetch: () {},
+              title: 'No favorite products found.',
+              icon: Icons.favorite,
+            );
+          }
 
-              return CustomScrollView(
-                slivers: [
-                  CustomProduct(
-                    products: favoriteProducts,
-                    itemCount: favoriteProducts.length,
-                  ),
-                  SliverToBoxAdapter(
-                    child: SizedBox(
-                      height: 105,
-                    ),
-                  ),
-                ],
-              );
-            },
+          return CustomScrollView(
+            slivers: [
+              CustomProduct(
+                products: favoriteProducts,
+                itemCount: favoriteProducts.length,
+              ),
+              const SliverToBoxAdapter(
+                child: SizedBox(height: 105),
+              ),
+            ],
           );
         },
       ),
