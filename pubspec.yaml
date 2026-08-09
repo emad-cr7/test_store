@@ -51,7 +51,7 @@ dependencies:
   google_fonts: ^6.2.1
   persistent_bottom_nav_bar_v2: ^6.0.0
   scroll_to_hide: ^2.3.0
-
+  awesome_dialog: ^3.0.2
 
   ############ firebase
   firebase_core: ^4.12.1

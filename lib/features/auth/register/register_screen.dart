@@ -1,4 +1,7 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:ql/features/auth/login/login_screen.dart';
 import '../../../core/share_widget/custom_text_formField.dart';
 
@@ -17,6 +20,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final _confirmPasswordController = TextEditingController();
   bool _obscurePassword = true;
   bool _obscureConfirmPassword = true;
+  bool isLoading = false;
 
   @override
   void dispose() {
@@ -25,6 +29,51 @@ class _RegisterScreenState extends State<RegisterScreen> {
     _passwordController.dispose();
     _confirmPasswordController.dispose();
     super.dispose();
+  }
+
+  void showErrorDialog(String message) {
+    AwesomeDialog(
+      context: context,
+      dialogType: DialogType.error,
+      animType: AnimType.scale,
+      title: 'Error',
+      desc: message,
+    ).show();
+  }
+
+  void _register() async {
+    if (_formKey.currentState!.validate()) {
+      setState(() {
+        isLoading = true;
+      });
+      try {
+        final credential = await FirebaseAuth.instance
+            .createUserWithEmailAndPassword(
+              email: _emailController.text,
+              password: _passwordController.text,
+            );
+        FirebaseAuth.instance.currentUser!.sendEmailVerification();
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (BuildContext context) {
+              return LoginScreen();
+            },
+          ),
+        );
+      } on FirebaseAuthException catch (e) {
+        if (e.code == 'weak-password') {
+          showErrorDialog("The password provided is too weak.");
+        } else if (e.code == 'email-already-in-use') {
+          showErrorDialog("The account already exists for that email.");
+        }
+      } catch (e) {
+        print(e);
+      }
+      setState(() {
+        isLoading = false;
+      });
+    }
   }
 
   @override
@@ -174,8 +223,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       size: 20,
                     ),
                     onPressed: () => setState(
-                          () => _obscureConfirmPassword =
-                      !_obscureConfirmPassword,
+                      () => _obscureConfirmPassword = !_obscureConfirmPassword,
                     ),
                   ),
                 ),
@@ -187,19 +235,20 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   width: double.infinity,
                   height: 56,
                   child: ElevatedButton(
-                    onPressed: () {
-                      if (_formKey.currentState!.validate()) {
-                        // نفّذ عملية التسجيل هنا
-                      }
-                    },
-                    child: const Text(
-                      'Register',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w700,
-                        letterSpacing: 0.3,
-                      ),
-                    ),
+                    onPressed: isLoading ? null : _register,
+                    child: isLoading
+                        ? LoadingAnimationWidget.fourRotatingDots(
+                            color: Colors.blue,
+                            size: 25,
+                          )
+                        : Text(
+                            'Register',
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w700,
+                              letterSpacing: 0.3,
+                            ),
+                          ),
                   ),
                 ),
 
