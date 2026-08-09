@@ -41,6 +41,11 @@ class FavoriteScreen extends StatelessWidget {
                     products: favoriteProducts,
                     itemCount: favoriteProducts.length,
                   ),
+                  SliverToBoxAdapter(
+                    child: SizedBox(
+                      height: 105,
+                    ),
+                  ),
                 ],
               );
             },

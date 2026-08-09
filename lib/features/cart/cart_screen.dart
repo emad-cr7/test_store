@@ -41,6 +41,11 @@ class CartScreen extends StatelessWidget {
                     products: cartProducts,
                     itemCount: cartProducts.length,
                   ),
+                  SliverToBoxAdapter(
+                    child: SizedBox(
+                      height: 105,
+                    ),
+                  ),
                 ],
               );
             },

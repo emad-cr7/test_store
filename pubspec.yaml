@@ -50,7 +50,7 @@ dependencies:
   image_picker: ^1.1.2
   google_fonts: ^6.2.1
   persistent_bottom_nav_bar_v2: ^6.0.0
-
+  scroll_to_hide: ^2.3.0
 
 
   ############ firebase
@@ -60,6 +60,7 @@ dependencies:
   firebase_storage: ^13.4.5
   firebase_messaging: ^16.4.3
   google_sign_in: ^7.2.0
+
 
 dev_dependencies:
   flutter_test:

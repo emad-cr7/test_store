@@ -37,6 +37,11 @@ class HomeScreen extends StatelessWidget {
                       products: controller.filteredProducts,
                       itemCount: min(controller.filteredProducts.length, 10),
                     ),
+                    SliverToBoxAdapter(
+                      child: SizedBox(
+                        height: 80,
+                      ),
+                    ),
                   ],
                 );
               },
