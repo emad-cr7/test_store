@@ -2,14 +2,15 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:provider/provider.dart';
-import 'package:ql/features/auth/login/login_screen.dart';
-import 'package:ql/main/main_screen.dart';
+import 'package:ql/features/splash/splash_screen.dart';
 import 'core/datasource/Preferences_manager/preferences_manager.dart';
 import 'core/datasource/api/api_config/api_config.dart';
 import 'core/provider/provider_controller.dart';
 import 'core/theme/light_theme.dart';
 import 'core/theme/dark_theme.dart';
 import 'core/theme/theme_controller.dart';
+
+final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -43,12 +44,13 @@ class MyApp extends StatelessWidget {
           valueListenable: ThemeController.themeNotifier,
           builder: (context, themeMode, _) {
             return MaterialApp(
+              navigatorKey: navigatorKey,
               debugShowCheckedModeBanner: false,
               title: 'QL Shop',
               theme: lightTheme,
               darkTheme: darkTheme,
               themeMode: themeMode,
-              home: LoginScreen(),
+              home: SplashScreen(),
             );
           },
         ),
