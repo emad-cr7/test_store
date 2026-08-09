@@ -7,18 +7,13 @@ import '../../../main/main_screen.dart';
 
 class LoginController extends ChangeNotifier {
   final formKey = GlobalKey<FormState>();
-  final  emailController = TextEditingController();
+  final emailController = TextEditingController();
 
   final passwordController = TextEditingController();
   bool isLoading = false;
   bool obscurePassword = true;
 
-  @override
-  void dispose() {
-    emailController.dispose();
-    passwordController.dispose();
-    super.dispose();
-  }
+
 
   void showErrorDialog(String message) {
     AwesomeDialog(
@@ -29,7 +24,6 @@ class LoginController extends ChangeNotifier {
       desc: message,
     ).show();
   }
-
 
   void togglePassword() {
     obscurePassword = !obscurePassword;
@@ -67,5 +61,12 @@ class LoginController extends ChangeNotifier {
       isLoading = false;
       notifyListeners();
     }
+  }
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
   }
 }

@@ -1,4 +1,7 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:ql/features/auth/login/login_screen.dart';
 import '../../core/theme/theme_controller.dart';
 
@@ -7,6 +10,31 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    void _logout() {
+      AwesomeDialog(
+        context: context,
+        dialogType: DialogType.warning,
+        animType: AnimType.scale,
+        title: 'تسجيل الخروج',
+        desc: 'هل انت متاكد من تسجيل الخروج ',
+        btnCancelText: "إلغاء",
+        btnCancelOnPress: () {},
+        btnOkText: "نعم",
+        btnOkOnPress: () async {
+          await FirebaseAuth.instance.signOut();
+          await GoogleSignIn.instance.disconnect();
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (BuildContext context) {
+                return LoginScreen();
+              },
+            ),
+          );
+        },
+      ).show();
+    }
+
     return Scaffold(
       appBar: AppBar(title: const Text('Profile'), centerTitle: true),
 
@@ -20,7 +48,10 @@ class ProfileScreen extends StatelessWidget {
 
           Text('Emad Marri', style: Theme.of(context).textTheme.titleLarge),
 
-          Text('emad@example.com', style: Theme.of(context).textTheme.bodySmall),
+          Text(
+            'emad@example.com',
+            style: Theme.of(context).textTheme.bodySmall,
+          ),
 
           const SizedBox(height: 30),
 
@@ -54,9 +85,7 @@ class ProfileScreen extends StatelessWidget {
             leading: const Icon(Icons.logout),
             title: const Text('Logout'),
             onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
-                return LoginScreen();
-              }));
+              _logout();
             },
           ),
         ],

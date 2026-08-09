@@ -9,7 +9,6 @@ import '../auth/login/login_screen.dart';
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
 
-  /// بيحدد الشاشة التالية حسب حالة تسجيل الدخول
   Future<Widget> _resolveNextScreen() async {
     final user = FirebaseAuth.instance.currentUser;
 
