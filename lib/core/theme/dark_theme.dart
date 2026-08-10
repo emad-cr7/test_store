@@ -54,9 +54,7 @@ final ThemeData darkTheme = ThemeData(
       foregroundColor: Colors.white,
       elevation: 0,
       minimumSize: const Size.fromHeight(56),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(16),
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
     ),
   ),
 

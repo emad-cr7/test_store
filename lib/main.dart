@@ -18,12 +18,12 @@ void main() async {
   await Firebase.initializeApp();
 
   final HttpLink httpLink = HttpLink(ApiConfig.baseUrl);
-
   final ValueNotifier<GraphQLClient> client = ValueNotifier(
     GraphQLClient(link: httpLink, cache: GraphQLCache()),
   );
 
   await PreferencesManager().init();
+
   ThemeController().init();
 
   runApp(MyApp(client: client));

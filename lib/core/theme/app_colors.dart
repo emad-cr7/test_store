@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 
-/// لوحة الألوان الموحدة للتطبيق - نسخة فاتحة ونسخة غامقة
-/// نفس الهوية البصرية (أخضر غامق + كهرماني) بس بتباين مختلف لكل وضع
+
 class AppColors {
   AppColors._();
 
-  // ==== Light Mode ====
+  //  Light Mode
   static const lightPrimary = Color(0xFF1B4B43);
   static const lightAccent = Color(0xFFE8A33D);
   static const lightBackground = Color(0xFFFAF8F4);
@@ -14,7 +13,7 @@ class AppColors {
   static const lightTextPrimary = Color(0xFF1F2421);
   static const lightTextSecondary = Color(0xFF7A8481);
 
-  // ==== Dark Mode ====
+  //  Dark Mode
   static const darkPrimary = Color(0xFF3E9C89);
   static const darkAccent = Color(0xFFF0B357);
   static const darkBackground = Color(0xFF121714);
