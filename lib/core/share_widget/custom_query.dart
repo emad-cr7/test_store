@@ -6,6 +6,7 @@ import '../../features/home/model/product_model.dart';
 import '../datasource/Preferences_manager/preferences_manager.dart';
 import '../datasource/api/api_config/api_config.dart';
 import '../datasource/api/query.dart';
+import '../skeleton/skeleton_loading.dart';
 import 'custom_no_product.dart';
 
 class CustomQuery extends StatelessWidget {
@@ -19,12 +20,8 @@ class CustomQuery extends StatelessWidget {
       options: QueryOptions(document: gql(Queries.getProducts)),
       builder: (result, {fetchMore, refetch}) {
         if (result.isLoading) {
-          return Center(
-            child: LoadingAnimationWidget.fourRotatingDots(
-              color: Colors.blue,
-              size: 55,
-            ),
-          );
+          return SkeletonLoading();
+
         }
         if (result.hasException) {
           final isNetworkError =
