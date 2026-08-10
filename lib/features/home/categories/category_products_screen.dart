@@ -22,9 +22,9 @@ class CategoryProductsScreen extends StatelessWidget {
       body: SafeArea(
         child: Consumer<ProviderController>(
           builder: (context, controller, _) {
-            final categoryProducts = controller.allProducts
-                .where((p) => p.category.id.toString() == category.id)
-                .toList();
+            final categoryProducts =
+            controller.allProducts.where((p) =>
+            p.category.id.toString() == category.id).toList();
 
             if (categoryProducts.isEmpty) {
               return CustomNoProduct(
