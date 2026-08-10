@@ -32,53 +32,19 @@ final ThemeData darkTheme = ThemeData(
   ),
 
   iconTheme: const IconThemeData(color: AppColors.darkTextPrimary),
-  textTheme: TextTheme(
-    displaySmall: TextStyle(
-      color: AppColors.darkTextPrimary,
-      fontWeight: FontWeight.w400,
-    ),
-    displayMedium: TextStyle(
-      fontSize: 28,
-      color: AppColors.darkTextPrimary,
-      fontWeight: FontWeight.w400,
-    ),
-    displayLarge: TextStyle(
-      fontSize: 32,
-      color: AppColors.darkTextPrimary,
-      fontWeight: FontWeight.w400,
-    ),
-    titleSmall: TextStyle(
-      color: AppColors.darkTextPrimary,
-      fontSize: 14,
-      fontWeight: FontWeight.w400,
-    ),
-    titleMedium: TextStyle(
-      color: AppColors.darkTextPrimary,
-      fontSize: 16,
-      fontWeight: FontWeight.w400,
-    ),
-    titleLarge: TextStyle(
-      color: AppColors.darkTextPrimary,
-      fontSize: 16,
-      fontWeight: FontWeight.w400,
-      decorationColor: AppColors.darkTextPrimary,
-    ),
-    labelSmall: TextStyle(color: Color(0XFFFFFCFC), fontSize: 16),
-    labelMedium: TextStyle(color: Color(0XFFFFFCFC), fontSize: 24),
-  ),
 
 
-  // textTheme: const TextTheme(
-  //   titleLarge: TextStyle(
-  //     color: AppColors.darkTextPrimary,
-  //     fontWeight: FontWeight.bold,
-  //     fontSize: 22,
-  //   ),
-  //   bodyLarge: TextStyle(color: AppColors.darkTextPrimary),
-  //   bodyMedium: TextStyle(color: AppColors.darkTextPrimary),
-  //   bodySmall: TextStyle(color: AppColors.darkTextSecondary),
-  //   labelLarge: TextStyle(color: AppColors.darkTextPrimary, fontWeight: FontWeight.w600,),
-  // ),
+   textTheme: const TextTheme(
+     titleLarge: TextStyle(
+       color: AppColors.darkTextPrimary,
+       fontWeight: FontWeight.bold,
+       fontSize: 22,
+     ),
+     bodyLarge: TextStyle(color: AppColors.darkTextPrimary),
+     bodyMedium: TextStyle(color: AppColors.darkTextPrimary),
+     bodySmall: TextStyle(color: AppColors.darkTextSecondary),
+     labelLarge: TextStyle(color: AppColors.darkTextPrimary, fontWeight: FontWeight.w600,),
+   ),
 
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
