@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:ql/features/home/categories/categories_controller.dart';
 
 import '../model/category_model.dart';
+import 'categories_data.dart';
 import 'category_products_screen.dart';
 
 class Categories extends StatelessWidget {
@@ -102,30 +103,3 @@ class Categories extends StatelessWidget {
   }
 }
 
-final List<CategoryModel> categories = [
-  CategoryModel(
-    id: '1',
-    name: 'Clothes',
-    icon: Icons.checkroom,
-  ),
-  CategoryModel(
-    id: '2',
-    name: 'Electronics',
-    icon: Icons.devices_other,
-  ),
-  CategoryModel(
-    id: '3',
-    name: 'Furniture',
-    icon: Icons.chair,
-  ),
-  CategoryModel(
-    id: '4',
-    name: 'Shoes',
-    icon: Icons.hiking,
-  ),
-  CategoryModel(
-    id: '5',
-    name: 'Others',
-    icon: Icons.category,
-  ),
-];
