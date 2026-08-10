@@ -30,7 +30,9 @@ class ViewAllScreen extends StatelessWidget {
               },
               child: Text(
                 "View all",
-                  style: Theme.of(context).textTheme.bodyLarge
+                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                    decoration: TextDecoration.underline,
+                  )
               ),
             ),
           ],
