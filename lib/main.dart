@@ -14,18 +14,13 @@ final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
   await Firebase.initializeApp();
-
   final HttpLink httpLink = HttpLink(ApiConfig.baseUrl);
   final ValueNotifier<GraphQLClient> client = ValueNotifier(
     GraphQLClient(link: httpLink, cache: GraphQLCache()),
   );
-
   await PreferencesManager().init();
-
   ThemeController().init();
-
   runApp(MyApp(client: client));
 }
 

@@ -1,10 +1,7 @@
-import 'package:awesome_dialog/awesome_dialog.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:provider/provider.dart';
 import '../../../../core/share_widget/custom_text_formField.dart';
-import '../login_screen.dart';
 import 'forget_password_controller.dart';
 
 class ForgetPasswordScreen extends StatelessWidget {
