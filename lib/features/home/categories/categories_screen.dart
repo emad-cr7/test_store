@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:ql/features/home/categories/categories_controller.dart';
-
-import '../model/category_model.dart';
 import 'categories_data.dart';
 import 'category_products_screen.dart';
 

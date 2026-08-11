@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
 import '../../../../core/share_widget/custom_product.dart';
 import '../../../../core/share_widget/custom_query.dart';

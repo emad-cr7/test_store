@@ -1,11 +1,7 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:ql/core/provider/provider_controller.dart';
-import 'package:ql/core/share_widget/custom_product.dart';
 import 'package:skeletonizer/skeletonizer.dart';
-
 import '../../features/home/categories/categories_screen.dart';
 import '../../features/home/search/search_screen.dart';
 import '../../features/home/view_all/view_all_screen.dart';

@@ -30,7 +30,7 @@ class CustomProduct extends StatelessWidget {
       itemCount: itemCount,
       itemBuilder: (context, index) {
         final product = products[index];
-        return InkWell(
+        return GestureDetector(
           onTap: () {
             Navigator.push(
               context,
@@ -44,7 +44,7 @@ class CustomProduct extends StatelessWidget {
               Card(
                 clipBehavior: Clip.antiAlias,
                 elevation: 5,
-                borderOnForeground: true,
+                borderOnForeground: false,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [

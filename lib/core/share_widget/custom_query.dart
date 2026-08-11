@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
-import 'package:loading_animation_widget/loading_animation_widget.dart';
 import '../../features/home/model/product_model.dart';
 
 import '../datasource/Preferences_manager/preferences_manager.dart';
