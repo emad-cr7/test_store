@@ -17,7 +17,6 @@ class ForgetPasswordController extends ChangeNotifier {
     isLoading = true;
     notifyListeners();
 
-    // نفس الـ delay الموجود في الكود القديم
     await Future.delayed(const Duration(seconds: 2));
 
     try {
@@ -37,11 +36,13 @@ class ForgetPasswordController extends ChangeNotifier {
         title: 'تم الإرسال',
         desc: 'تم إرسال رابط إعادة تعيين كلمة المرور إلى بريدك الإلكتروني.',
         btnOkOnPress: () {
-          navigatorKey.currentState!.pushReplacement(
-            MaterialPageRoute(
-              builder: (_) => LoginScreen(),
-            ),
-          );
+          final navigator = navigatorKey.currentState!;
+
+          navigator.pop();
+
+          if (navigator.canPop()) {
+            navigator.pop();
+          }
         },
       ).show();
     } on FirebaseAuthException catch (e) {
@@ -56,7 +57,6 @@ class ForgetPasswordController extends ChangeNotifier {
       _showErrorDialog('حدث خطأ، حاول مرة أخرى.');
     }
   }
-
   String _mapFirebaseError(FirebaseAuthException e) {
     switch (e.code) {
       case 'user-not-found':

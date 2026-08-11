@@ -3,7 +3,6 @@ import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:provider/provider.dart';
 import 'package:ql/features/profile/widget_profile/change_password_controller.dart';
 import 'package:ql/features/profile/widget_profile/password_field.dart';
-import '../../../../core/share_widget/custom_text_formField.dart';
 import '../../../core/share_widget/validators.dart';
 import '../../auth/login/forget_password/forget_password_screen.dart';
 
@@ -12,22 +11,17 @@ class ChangePassword extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colors = Theme
-        .of(context)
-        .colorScheme;
-    final textTheme = Theme
-        .of(context)
-        .textTheme;
+    final colors = Theme.of(context).colorScheme;
+    final textTheme = Theme.of(context).textTheme;
     return ChangeNotifierProvider(
       create: (BuildContext context) => ChangePasswordController(),
       child: Scaffold(
         body: SafeArea(
           child: Consumer<ChangePasswordController>(
-            builder: (context, controller,
+            builder: ( context,  controller,
                 Widget? child) {
               return SingleChildScrollView(
-                padding: const EdgeInsets.symmetric(
-                    horizontal: 26, vertical: 20),
+                padding: const EdgeInsets.symmetric(horizontal: 26, vertical: 20),
                 child: Form(
                   key: controller.formKey,
                   child: Column(
@@ -60,7 +54,7 @@ class ChangePassword extends StatelessWidget {
                           ),
                         ),
                       ),
-                      SizedBox(height: 32),
+                       SizedBox(height: 32),
                       Text(
                         'Change Password',
                         style: textTheme.titleLarge?.copyWith(
@@ -69,13 +63,13 @@ class ChangePassword extends StatelessWidget {
                           letterSpacing: -0.5,
                         ),
                       ),
-                      SizedBox(height: 6),
+                       SizedBox(height: 6),
                       Text(
                         'Enter your current password and choose a new password',
                         style: textTheme.bodySmall?.copyWith(fontSize: 15),
                       ),
 
-                      SizedBox(height: 36),
+                       SizedBox(height: 36),
                       PasswordField(
                         controller: controller.currentPasswordController,
                         obscureText: controller.obscureCurrentPassword,
@@ -83,11 +77,10 @@ class ChangePassword extends StatelessWidget {
                         hintText: 'Enter current password',
                         prefixIcon: Icons.lock_outline,
                         onToggle: controller.toggleCurrentPassword,
-                        validator: (value) =>
-                            Validators.required(
-                              value,
-                              'Please enter your current password',
-                            ),
+                        validator: (value) => Validators.required(
+                          value,
+                          'Please enter your current password',
+                        ),
                       ),
                       Align(
                         alignment: Alignment.centerRight,
@@ -134,19 +127,17 @@ class ChangePassword extends StatelessWidget {
                         prefixIcon: Icons.lock_outline,
                         onToggle: controller.toggleConfirmPassword,
                         textInputAction: TextInputAction.done,
-                        validator: (value) =>
-                            Validators.confirmPassword(
-                              value,
-                              controller.newPasswordController.text,
-                            ),
+                        validator: (value) => Validators.confirmPassword(
+                          value,
+                          controller.newPasswordController.text,
+                        ),
                       ),
                       SizedBox(height: 36,),
                       SizedBox(
                         width: double.infinity,
                         height: 56,
                         child: ElevatedButton(
-                          onPressed: controller.isLoading ? null : controller
-                              .changePassword,
+                          onPressed: controller.isLoading ? null : controller.changePassword,
                           child: controller.isLoading
                               ? LoadingAnimationWidget.fourRotatingDots(
                             color: colors.onPrimary,
