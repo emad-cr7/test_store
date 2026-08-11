@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:ql/features/auth/login/login_screen.dart';
+import 'package:ql/features/profile/share_widget_profile.dart';
 import '../../core/theme/theme_controller.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -58,62 +59,35 @@ class ProfileScreen extends StatelessWidget {
 
           SizedBox(height: 30),
 
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15),
-            child: Material(
-              color: Theme.of(context).colorScheme.surface,
-              borderRadius: BorderRadius.circular(20),
-              clipBehavior: Clip.antiAlias,
-              child: Column(
-                children: [
-                  ListTile(
-                    leading: Icon(Icons.person_outline),
-                    title: Text('Edit Profile'),
-                    trailing: Icon(Icons.arrow_forward_ios, size: 16),
-                    onTap: () {},
-                  ),
-
-                  ValueListenableBuilder<ThemeMode>(
-                    valueListenable: ThemeController.themeNotifier,
-                    builder: (context, mode, _) {
-                      final isDark = mode == ThemeMode.dark;
-                      return ListTile(
-                        leading: Icon(
-                          isDark
-                              ? Icons.dark_mode_outlined
-                              : Icons.light_mode_outlined,
-                        ),
-                        title: const Text('Dark Mode'),
-                        trailing: Switch(
-                          value: isDark,
-                          onChanged: (_) => ThemeController().toggleTheme(),
-                        ),
-                        onTap: () => ThemeController().toggleTheme(),
-                      );
-                    },
-                  ),
-                ],
-              ),
-            ),
+          ValueListenableBuilder<ThemeMode>(
+            valueListenable: ThemeController.themeNotifier,
+            builder: (context, mode, _) {
+              final isDark = mode == ThemeMode.dark;
+              return ShareWidgetProfile(
+                icon1: Icons.person_outline,
+                titleList1: 'Edit Profile',
+                onTap1: () {},
+                icon2: isDark
+                    ? Icons.dark_mode_outlined
+                    : Icons.light_mode_outlined,
+                titleList2: 'Dark Mode',
+                trailing2: Switch(
+                  value: isDark,
+                  onChanged: (_) => ThemeController().toggleTheme(),
+                ),
+                onTap2: () {
+                  ThemeController().toggleTheme();
+                },
+              );
+            },
           ),
-          Padding(
-            padding: const EdgeInsets.all(15),
-            child: Material(
-              color: Theme.of(context).colorScheme.surface,
-              borderRadius: BorderRadius.circular(20),
-              clipBehavior: Clip.antiAlias,
-              child: Column(
-                children: [
-                  ListTile(
-                    leading: const Icon(Icons.logout),
-                    title: const Text('Logout'),
-                    onTap: () {
-                      _logout();
-                    },
-                  ),
-                ],
-              ),
-            ),
+
+          ShareWidgetProfile(
+            icon1: Icons.logout,
+            titleList1: 'Logout',
+            onTap1: () {
+              _logout();
+            },
           ),
         ],
       ),
