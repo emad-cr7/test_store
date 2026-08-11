@@ -24,7 +24,6 @@ class Categories extends StatelessWidget {
                 itemBuilder: (context, index) {
                   final category = categories[index];
                   final isSelected = category.id == controller.selectedCategoryId;
-
                   Future<void> handleTap() async {
                     controller.selectCategory(category.id!);
 
@@ -52,7 +51,7 @@ class Categories extends StatelessWidget {
                             child: Material(
                               color: isSelected
                                   ? theme.colorScheme.primary
-                                  : theme.dividerColor,
+                                    : theme.dividerColor,
                               child: InkWell(
                                 onTap: handleTap,
                                 child: SizedBox(

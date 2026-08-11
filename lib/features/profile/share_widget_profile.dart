@@ -39,7 +39,7 @@ class ShareWidgetProfile extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(15),
       child: Material(
-        color: Theme.of(context).colorScheme.surface,
+        color: Theme.of(context).dividerColor,
         borderRadius: BorderRadius.circular(20),
         clipBehavior: Clip.antiAlias,
         child: Column(
