@@ -7,10 +7,16 @@ class ShareWidgetProfile extends StatelessWidget {
     required this.titleList1,
     required this.onTap1,
     this.trailing1,
+
     this.icon2,
     this.titleList2,
     this.trailing2,
     this.onTap2,
+
+    this.icon3,
+    this.titleList3,
+    this.trailing3,
+    this.onTap3,
   });
 
   final IconData icon1;
@@ -22,6 +28,11 @@ class ShareWidgetProfile extends StatelessWidget {
   final String? titleList2;
   final Widget? trailing2;
   final VoidCallback? onTap2;
+
+  final IconData? icon3;
+  final String? titleList3;
+  final Widget? trailing3;
+  final VoidCallback? onTap3;
 
   @override
   Widget build(BuildContext context) {
@@ -41,11 +52,18 @@ class ShareWidgetProfile extends StatelessWidget {
             ),
             if (icon2 != null)
               ListTile(
-              leading: Icon(icon2),
-              title: Text(titleList2 ?? ''),
-              trailing: trailing2,
-              onTap: onTap2,
-            ),
+                leading: Icon(icon2),
+                title: Text(titleList2 ?? ''),
+                trailing: trailing2,
+                onTap: onTap2,
+              ),
+            if (icon3 != null)
+              ListTile(
+                leading: Icon(icon3),
+                title: Text(titleList3 ?? ''),
+                trailing: trailing3,
+                onTap: onTap3,
+              ),
           ],
         ),
       ),

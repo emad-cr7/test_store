@@ -11,6 +11,7 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final User? user = FirebaseAuth.instance.currentUser;
     void _logout() {
       AwesomeDialog(
         context: context,
@@ -48,14 +49,11 @@ class ProfileScreen extends StatelessWidget {
           SizedBox(height: 15),
 
           Text(
-            '${FirebaseAuth.instance.currentUser?.displayName}',
+            '${user!.displayName}',
             style: Theme.of(context).textTheme.titleLarge,
           ),
 
-          Text(
-            '${FirebaseAuth.instance.currentUser?.email}',
-            style: Theme.of(context).textTheme.bodySmall,
-          ),
+          Text('${user.email}', style: Theme.of(context).textTheme.bodySmall),
 
           SizedBox(height: 30),
 
@@ -64,9 +62,13 @@ class ProfileScreen extends StatelessWidget {
             builder: (context, mode, _) {
               final isDark = mode == ThemeMode.dark;
               return ShareWidgetProfile(
+                /// list 1
                 icon1: Icons.person_outline,
                 titleList1: 'Edit Profile',
+                trailing1: Icon(Icons.arrow_forward_ios, size: 20),
                 onTap1: () {},
+
+                /// list 2
                 icon2: isDark
                     ? Icons.dark_mode_outlined
                     : Icons.light_mode_outlined,
@@ -78,10 +80,15 @@ class ProfileScreen extends StatelessWidget {
                 onTap2: () {
                   ThemeController().toggleTheme();
                 },
+
+                /// list 3
+                icon3: Icons.lock_outline,
+                titleList3: "Change Password",
+                trailing3: Icon(Icons.arrow_forward_ios, size: 20),
+                onTap3: () {},
               );
             },
           ),
-
           ShareWidgetProfile(
             icon1: Icons.logout,
             titleList1: 'Logout',
