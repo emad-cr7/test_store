@@ -5,7 +5,6 @@ import 'package:provider/provider.dart';
 import '../../core/share_widget/custom_no_product.dart';
 import '../../core/share_widget/custom_product.dart';
 import '../../core/provider/provider_controller.dart';
-import 'favorite_controller.dart';
 
 class FavoriteScreen extends StatelessWidget {
   const FavoriteScreen({super.key});
@@ -19,7 +18,7 @@ class FavoriteScreen extends StatelessWidget {
           style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
         ),
       ),
-      body: Consumer<FavoriteController>(
+      body: Consumer<ProviderController>(
         builder: (context, controller, _) {
           if (controller.allProducts.isEmpty) {
             return Center(
