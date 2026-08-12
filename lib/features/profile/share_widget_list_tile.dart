@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class ShareWidgetProfile extends StatelessWidget {
-  const ShareWidgetProfile({
+class ShareWidgetListTile extends StatelessWidget {
+  const ShareWidgetListTile({
     super.key,
     required this.icon1,
     required this.titleList1,
