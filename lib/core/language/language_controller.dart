@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import '../constants/storage_key.dart';
 import '../datasource/Preferences_manager/preferences_manager.dart';
 
-/// Controller مسؤول عن كل منطق تغيير لغة التطبيق (عربي / إنجليزي)
 class LanguageController extends ChangeNotifier {
   Locale _locale = const Locale('en');
 
@@ -11,7 +10,6 @@ class LanguageController extends ChangeNotifier {
 
   bool get isArabic => _locale.languageCode == 'ar';
 
-  /// يقرأ اللغة المحفوظة في SharedPreferences (لو موجودة) عند تشغيل التطبيق
   void init() {
     final savedLanguageCode = PreferencesManager().getString(
       StorageKey.languageCode,

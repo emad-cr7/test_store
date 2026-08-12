@@ -37,7 +37,7 @@ class ProfileScreen extends StatelessWidget {
           Provider.of<CartController>(context, listen: false).resetOnLogout();
 
           await FirebaseAuth.instance.signOut();
-          await PreferencesManager().clearAll();
+          await PreferencesManager().clearUserData();
           await GoogleSignIn.instance.disconnect();
 
           Navigator.pushAndRemoveUntil(

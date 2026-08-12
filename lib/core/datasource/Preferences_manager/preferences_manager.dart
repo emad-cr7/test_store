@@ -1,5 +1,7 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../constants/storage_key.dart';
+
 class PreferencesManager {
   static final PreferencesManager _instance = PreferencesManager._internal();
 
@@ -37,5 +39,22 @@ class PreferencesManager {
 
   Future<bool> clearAll() async {
     return await _preferences.clear();
+  }
+
+  /// بيمسح بيانات المستخدم (تسجيل الدخول، الفيفوريت، السلة، ...) بس
+  /// من غير ما يمسح إعدادات التطبيق العامة زي اللغة والثيم،
+  /// عشان تفضل محفوظة حتى بعد تسجيل الخروج.
+  Future<void> clearUserData() async {
+    final savedLanguage = _preferences.getString(StorageKey.languageCode);
+    final savedIsDarkMode = _preferences.getBool(StorageKey.isDarkMode);
+
+    await _preferences.clear();
+
+    if (savedLanguage != null) {
+      await _preferences.setString(StorageKey.languageCode, savedLanguage);
+    }
+    if (savedIsDarkMode != null) {
+      await _preferences.setBool(StorageKey.isDarkMode, savedIsDarkMode);
+    }
   }
 }
