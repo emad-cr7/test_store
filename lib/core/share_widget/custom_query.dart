@@ -6,6 +6,8 @@ import '../datasource/Preferences_manager/preferences_manager.dart';
 import '../datasource/api/api_config/api_config.dart';
 import '../datasource/api/query.dart';
 import '../provider/provider_controller.dart';
+import '../../features/favorite/favorite_controller.dart';
+import '../../features/cart/cart_controller.dart';
 import '../skeleton/skeleton_loading.dart';
 import 'custom_no_product.dart';
 
@@ -19,8 +21,8 @@ class CustomQuery extends StatelessWidget {
     return Query(
       options: QueryOptions(document: gql(Queries.getProducts)),
       builder: (result, {fetchMore, refetch}) {
-        return Consumer<ProviderController>(
-          builder: (context, controller, _) {
+        return Consumer3<ProviderController, FavoriteController, CartController>(
+          builder: (context, controller, favoriteController, cartController, _) {
             if (result.isLoading) {
               return const SkeletonLoading();
             }
@@ -56,11 +58,16 @@ class CustomQuery extends StatelessWidget {
             WidgetsBinding.instance.addPostFrameCallback((_) {
               if (controller.allProducts.isEmpty) {
                 controller.syncProducts(products);
+                favoriteController.setProducts(products);
+                cartController.setProducts(products);
+                favoriteController.loadFavorites();
+                cartController.loadCart();
               }
             });
 
             if (controller.allProducts.isEmpty ||
-                controller.isLoadingFirebase) {
+                favoriteController.isLoadingFirebase ||
+                cartController.isLoadingFirebase) {
               return const SkeletonLoading();
             }
 

@@ -3,7 +3,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:provider/provider.dart';
-import 'package:ql/core/provider/provider_controller.dart';
+import 'package:ql/features/favorite/favorite_controller.dart';
 import 'package:readmore/readmore.dart';
 
 import '../model/product_model.dart';
@@ -69,11 +69,11 @@ class ProductDetailScreen extends StatelessWidget {
                           Positioned(
                             top: 1,
                             right: 1,
-                            child: Consumer<ProviderController>(
-                              builder: (context, controller, _) {
+                            child: Consumer<FavoriteController>(
+                              builder: (context, favoriteController, _) {
                                 return IconButton(
                                   onPressed: () =>
-                                      controller.toggleFavorite(product),
+                                      favoriteController.toggleFavorite(product),
                                   icon: Icon(
                                     product.isFavorite
                                         ? Icons.favorite

@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import '../../core/share_widget/custom_no_product.dart';
 import '../../core/share_widget/custom_product.dart';
 import '../../core/provider/provider_controller.dart';
+import 'cart_controller.dart';
 
 class CartScreen extends StatelessWidget {
   const CartScreen({super.key});
@@ -18,8 +19,8 @@ class CartScreen extends StatelessWidget {
           style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
         ),
       ),
-      body: Consumer<ProviderController>(
-        builder: (context, controller, _) {
+      body: Consumer2<ProviderController, CartController>(
+        builder: (context, controller, cartController, _) {
           if (controller.allProducts.isEmpty) {
             return Center(
               child: LoadingAnimationWidget.fourRotatingDots(
@@ -29,7 +30,7 @@ class CartScreen extends StatelessWidget {
             );
           }
 
-          final cartProducts = controller.cartProducts;
+          final cartProducts = cartController.cartProducts;
 
           if (cartProducts.isEmpty) {
             return CustomNoProduct(

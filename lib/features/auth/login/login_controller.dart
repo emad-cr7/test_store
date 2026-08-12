@@ -3,7 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../core/provider/provider_controller.dart';
+import '../../favorite/favorite_controller.dart';
+import '../../cart/cart_controller.dart';
 import '../../../main.dart';
 import '../../../main/main_screen.dart';
 
@@ -43,11 +44,16 @@ class LoginController extends ChangeNotifier {
       if (credential.user!.emailVerified) {
         final context = navigatorKey.currentState!.context;
 
-        final providerController = Provider.of<ProviderController>(
+        final favoriteController = Provider.of<FavoriteController>(
           context,
           listen: false,
         );
-        await providerController.loadFirebaseData();
+        final cartController = Provider.of<CartController>(
+          context,
+          listen: false,
+        );
+        await favoriteController.loadFavorites();
+        await cartController.loadCart();
 
         // امسح الـ stack كله وادخل MainScreen من جديد بحالة نضيفة
         navigatorKey.currentState!.pushAndRemoveUntil(

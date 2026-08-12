@@ -8,6 +8,8 @@ import 'package:ql/features/profile/share_profile/share_widget_list_tile.dart';
 import 'package:ql/features/profile/widget_profile/change_password.dart';
 import '../../core/datasource/Preferences_manager/preferences_manager.dart';
 import '../../core/provider/provider_controller.dart';
+import '../favorite/favorite_controller.dart';
+import '../cart/cart_controller.dart';
 import '../../core/theme/theme_controller.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -28,6 +30,8 @@ class ProfileScreen extends StatelessWidget {
         btnOkText: "نعم",
         btnOkOnPress: () async {
           Provider.of<ProviderController>(context, listen: false).resetOnLogout();
+          Provider.of<FavoriteController>(context, listen: false).resetOnLogout();
+          Provider.of<CartController>(context, listen: false).resetOnLogout();
 
           await FirebaseAuth.instance.signOut();
           await PreferencesManager().clearAll();

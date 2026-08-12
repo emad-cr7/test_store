@@ -6,6 +6,8 @@ import 'package:ql/features/splash/splash_screen.dart';
 import 'core/datasource/Preferences_manager/preferences_manager.dart';
 import 'core/datasource/api/api_config/api_config.dart';
 import 'core/provider/provider_controller.dart';
+import 'features/favorite/favorite_controller.dart';
+import 'features/cart/cart_controller.dart';
 import 'core/theme/light_theme.dart';
 import 'core/theme/dark_theme.dart';
 import 'core/theme/theme_controller.dart';
@@ -31,8 +33,18 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (BuildContext context) => ProviderController(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (BuildContext context) => ProviderController(),
+        ),
+        ChangeNotifierProvider(
+          create: (BuildContext context) => FavoriteController(),
+        ),
+        ChangeNotifierProvider(
+          create: (BuildContext context) => CartController(),
+        ),
+      ],
       child: GraphQLProvider(
         client: client,
         child: ValueListenableBuilder<ThemeMode>(

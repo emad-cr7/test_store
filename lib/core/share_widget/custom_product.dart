@@ -4,7 +4,8 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:provider/provider.dart';
 import '../../features/home/details/product_detail_screen.dart';
-import '../provider/provider_controller.dart';
+import '../../features/favorite/favorite_controller.dart';
+import '../../features/cart/cart_controller.dart';
 import '../../features/home/model/product_model.dart';
 import 'custom_snackbar.dart';
 
@@ -76,16 +77,16 @@ class CustomProduct extends StatelessWidget {
                           Positioned(
                             top: 1,
                             right: 1,
-                            child: Consumer<ProviderController>(
+                            child: Consumer<FavoriteController>(
                               builder:
                                   (
                                     BuildContext context,
-                                    ProviderController controller,
+                                    FavoriteController favoriteController,
                                     Widget? child,
                                   ) {
                                     return IconButton(
                                       onPressed: () {
-                                        controller.toggleFavorite(product);
+                                        favoriteController.toggleFavorite(product);
                                         AppSnackBar.show(
                                           context,
                                           message: product.isFavorite
@@ -148,11 +149,11 @@ class CustomProduct extends StatelessWidget {
                                   color: Colors.lightGreen.shade700,
                                 ),
                               ),
-                              Consumer<ProviderController>(
+                              Consumer<CartController>(
                                 builder:
                                     (
                                       BuildContext context,
-                                      ProviderController controller,
+                                      CartController cartController,
                                       Widget? child,
                                     ) {
                                       return IconButton(
@@ -160,7 +161,7 @@ class CustomProduct extends StatelessWidget {
                                           final newValue =
                                               !product.shoppingCart;
 
-                                          controller.toggleShoppingCart(
+                                          cartController.toggleShoppingCart(
                                             product,
                                           );
 
