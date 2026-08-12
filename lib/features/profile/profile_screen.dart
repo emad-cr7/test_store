@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:provider/provider.dart';
 import 'package:ql/features/auth/login/login_screen.dart';
-import 'package:ql/features/profile/share_widget_profile.dart';
+import 'package:ql/features/profile/share_widget_list_tile.dart';
 import 'package:ql/features/profile/widget_profile/change_password.dart';
 import '../../core/datasource/Preferences_manager/preferences_manager.dart';
 import '../../core/provider/provider_controller.dart';
@@ -27,7 +27,6 @@ class ProfileScreen extends StatelessWidget {
         btnCancelOnPress: () {},
         btnOkText: "نعم",
         btnOkOnPress: () async {
-          // امسح الـ state القديم الأول
           Provider.of<ProviderController>(context, listen: false).resetOnLogout();
 
           await FirebaseAuth.instance.signOut();
@@ -37,7 +36,7 @@ class ProfileScreen extends StatelessWidget {
           Navigator.pushAndRemoveUntil(
             context,
             MaterialPageRoute(builder: (context) => LoginScreen()),
-                (route) => false, // يشيل كل الـ stack القديم، ده مهم جدًا
+                (route) => false,
           );
         },
       ).show();
@@ -67,7 +66,7 @@ class ProfileScreen extends StatelessWidget {
             valueListenable: ThemeController.themeNotifier,
             builder: (context, mode, _) {
               final isDark = mode == ThemeMode.dark;
-              return ShareWidgetProfile(
+              return ShareWidgetListTile(
                 /// list 1
                 icon1: Icons.person_outline,
                 titleList1: 'Edit Profile',
@@ -104,7 +103,7 @@ class ProfileScreen extends StatelessWidget {
               );
             },
           ),
-          ShareWidgetProfile(
+          ShareWidgetListTile(
             icon1: Icons.logout,
             titleList1: 'Logout',
             onTap1: () {
