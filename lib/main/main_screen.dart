@@ -4,6 +4,7 @@ import '../features/cart/cart_screen.dart';
 import '../features/favorite/favorite_screen.dart';
 import '../features/home/home_screen.dart';
 import '../features/profile/profile_screen.dart';
+import '../core/l10n/app_localizations.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -22,17 +23,18 @@ class _MainScreenState extends State<MainScreen> {
     ProfileScreen(),
   ];
 
-  final List<_NavItemData> items = const [
-    _NavItemData(icon: Icons.home_rounded, label: "Home"),
-    _NavItemData(icon: Icons.favorite_rounded, label: "Favorite"),
-    _NavItemData(icon: Icons.shopping_cart_rounded, label: "Cart"),
-    _NavItemData(icon: Icons.person_rounded, label: "Profile"),
-  ];
-
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final selectedColor = theme.colorScheme.primary;
+    final t = AppLocalizations.of(context)!;
+
+    final List<_NavItemData> items = [
+      _NavItemData(icon: Icons.home_rounded, label: t.navHome),
+      _NavItemData(icon: Icons.favorite_rounded, label: t.navFavorite),
+      _NavItemData(icon: Icons.shopping_cart_rounded, label: t.navCart),
+      _NavItemData(icon: Icons.person_rounded, label: t.navProfile),
+    ];
 
     return Scaffold(
       extendBody: true,

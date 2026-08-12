@@ -7,17 +7,19 @@ import '../../core/share_widget/custom_product.dart';
 import '../../core/share_widget/custom_query.dart';
 import 'categories/categories_screen.dart';
 import '../../core/provider/provider_controller.dart';
+import '../../core/l10n/app_localizations.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final t = AppLocalizations.of(context)!;
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          'Store',
-          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+        title: Text(
+          t.store,
+          style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
         ),
       ),
       body: SafeArea(

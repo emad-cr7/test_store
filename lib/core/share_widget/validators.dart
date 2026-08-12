@@ -1,4 +1,10 @@
+import '../../main.dart';
+import '../l10n/app_localizations.dart';
+
 class Validators {
+  static AppLocalizations get _t =>
+      AppLocalizations.of(navigatorKey.currentContext!)!;
+
   static String? required(String? value, String message) {
     if (value == null || value.trim().isEmpty) {
       return message;
@@ -8,11 +14,11 @@ class Validators {
 
   static String? password(String? value) {
     if (value == null || value.isEmpty) {
-      return 'Please enter the password.';
+      return _t.pleaseEnterPassword;
     }
 
     if (value.length < 6) {
-      return 'The password must be at least 6 characters long.';
+      return _t.passwordMinLength;
     }
 
     return null;
@@ -23,11 +29,11 @@ class Validators {
       String password,
       ) {
     if (value == null || value.isEmpty) {
-      return 'Please confirm the password.';
+      return _t.pleaseConfirmPassword;
     }
 
     if (value != password) {
-      return 'The passwords do not match.';
+      return _t.passwordsDoNotMatch;
     }
 
     return null;
@@ -35,11 +41,11 @@ class Validators {
 
   static String? email(String? value) {
     if (value == null || value.isEmpty) {
-      return 'Please enter your email.';
+      return _t.pleaseEnterEmail;
     }
 
     if (!value.contains('@')) {
-      return 'Invalid email';
+      return _t.invalidEmail;
     }
 
     return null;
@@ -47,11 +53,11 @@ class Validators {
 
   static String? name(String? value) {
     if (value == null || value.trim().isEmpty) {
-      return 'Please enter the name.';
+      return _t.pleaseEnterName;
     }
 
     if (value.trim().length < 3) {
-      return 'The name must be at least 3 characters long.';
+      return _t.nameMinLength;
     }
 
     return null;

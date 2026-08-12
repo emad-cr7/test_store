@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:ql/main/main_screen.dart';
+import '../../core/l10n/app_localizations.dart';
 import '../auth/login/login_screen.dart';
 
 class SplashScreen extends StatelessWidget {
@@ -23,6 +24,7 @@ class SplashScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
     final textTheme = Theme.of(context).textTheme;
+    final t = AppLocalizations.of(context)!;
 
     return AnimatedSplashScreen.withScreenFunction(
       duration: 2400,
@@ -69,7 +71,7 @@ class SplashScreen extends StatelessWidget {
           ),
           const SizedBox(height: 6),
           Text(
-            'Shop the best, effortlessly',
+            t.splashTagline,
             style: textTheme.bodySmall?.copyWith(
               color: colors.onPrimary.withOpacity(0.85),
               fontSize: 13,

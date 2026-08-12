@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:provider/provider.dart';
+import '../../../../core/l10n/app_localizations.dart';
 import '../../../../core/share_widget/custom_text_formField.dart';
+import '../../../../core/share_widget/validators.dart';
 import 'forget_password_controller.dart';
 
 class ForgetPasswordScreen extends StatelessWidget {
@@ -11,6 +13,7 @@ class ForgetPasswordScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
     final textTheme = Theme.of(context).textTheme;
+    final t = AppLocalizations.of(context)!;
 
     return Scaffold(
       body: ChangeNotifierProvider(
@@ -62,7 +65,7 @@ class ForgetPasswordScreen extends StatelessWidget {
                       const SizedBox(height: 32),
 
                       Text(
-                        'Forgot Password?',
+                        t.forgotPassword,
                         style: textTheme.titleLarge?.copyWith(
                           fontSize: 30,
                           fontWeight: FontWeight.w800,
@@ -73,26 +76,21 @@ class ForgetPasswordScreen extends StatelessWidget {
                       const SizedBox(height: 6),
 
                       Text(
-                        'Enter your email and we will send you a link to reset your password',
+                        t.forgotPasswordSubtitle,
                         style: textTheme.bodySmall?.copyWith(fontSize: 15),
                       ),
 
                       const SizedBox(height: 36),
 
-                      Text('Email', style: textTheme.labelLarge),
+                      Text(t.email, style: textTheme.labelLarge),
                       const SizedBox(height: 8),
                       CustomTextFormField(
                         controller: controller.emailController,
                         keyboardType: TextInputType.emailAddress,
                         textInputAction: TextInputAction.done,
                         prefixIcon: Icons.email_outlined,
-                        hintText: 'Enter your email',
-                        validator: (value) {
-                          if (value == null || value.isEmpty)
-                            return 'من فضلك ادخل الإيميل';
-                          if (!value.contains('@')) return 'إيميل غير صحيح';
-                          return null;
-                        },
+                        hintText: t.enterYourEmail,
+                        validator: Validators.email,
                       ),
 
                       const SizedBox(height: 36),
@@ -110,7 +108,7 @@ class ForgetPasswordScreen extends StatelessWidget {
                                   size: 25,
                                 )
                               : Text(
-                                  'Send Reset Link',
+                                  t.sendResetLink,
                                   style: TextStyle(
                                     fontSize: 16,
                                     fontWeight: FontWeight.w700,

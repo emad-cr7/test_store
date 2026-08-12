@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../product/components/product_all.dart';
+import '../../../core/l10n/app_localizations.dart';
 
 
 class ViewAllScreen extends StatelessWidget {
@@ -9,6 +10,7 @@ class ViewAllScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final t = AppLocalizations.of(context)!;
     return SliverToBoxAdapter(
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 16),
@@ -16,7 +18,7 @@ class ViewAllScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              "Product",
+              t.product,
               style: Theme.of(context).textTheme.titleLarge
             ),
             InkWell(
@@ -29,7 +31,7 @@ class ViewAllScreen extends StatelessWidget {
                 );
               },
               child: Text(
-                "View all",
+                t.viewAll,
                   style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                     decoration: TextDecoration.underline,
                   )

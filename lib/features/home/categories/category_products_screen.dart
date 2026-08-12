@@ -4,6 +4,8 @@ import '../../../core/provider/provider_controller.dart';
 import '../../../core/share_widget/custom_product.dart';
 import '../../../core/share_widget/custom_no_product.dart';
 import '../model/category_model.dart';
+import '../../../core/l10n/app_localizations.dart';
+import 'category_localization.dart';
 
 class CategoryProductsScreen extends StatelessWidget {
   const CategoryProductsScreen({super.key, required this.category});
@@ -12,10 +14,13 @@ class CategoryProductsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final t = AppLocalizations.of(context)!;
+    final categoryDisplayName = localizedCategoryName(context, category.id, category.name);
+
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          category.name ?? 'Category',
+          categoryDisplayName,
           style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
         ),
       ),
@@ -29,7 +34,7 @@ class CategoryProductsScreen extends StatelessWidget {
             if (categoryProducts.isEmpty) {
               return CustomNoProduct(
                 refetch: null,
-                title: 'No products in "${category.name}" yet',
+                title: t.noProductsInCategory(categoryDisplayName),
                 icon: Icons.category_outlined,
               );
             }

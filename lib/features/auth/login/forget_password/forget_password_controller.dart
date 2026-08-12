@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:ql/features/auth/login/login_screen.dart';
 
+import '../../../../core/l10n/app_localizations.dart';
 import '../../../../main.dart';
 
 class ForgetPasswordController extends ChangeNotifier {
@@ -19,6 +20,8 @@ class ForgetPasswordController extends ChangeNotifier {
 
     await Future.delayed(const Duration(seconds: 2));
 
+    final t = AppLocalizations.of(navigatorKey.currentState!.context)!;
+
     try {
       await FirebaseAuth.instance.sendPasswordResetEmail(
         email: emailController.text.trim(),
@@ -33,8 +36,8 @@ class ForgetPasswordController extends ChangeNotifier {
         dismissOnBackKeyPress: false,
         dialogType: DialogType.success,
         animType: AnimType.scale,
-        title: 'تم الإرسال',
-        desc: 'تم إرسال رابط إعادة تعيين كلمة المرور إلى بريدك الإلكتروني.',
+        title: t.resetLinkSentTitle,
+        desc: t.resetLinkSentDesc,
         btnOkOnPress: () {
           final navigator = navigatorKey.currentState!;
 
@@ -49,35 +52,36 @@ class ForgetPasswordController extends ChangeNotifier {
       isLoading = false;
       notifyListeners();
 
-      _showErrorDialog(_mapFirebaseError(e));
+      _showErrorDialog(_mapFirebaseError(e, t));
     } catch (e) {
       isLoading = false;
       notifyListeners();
 
-      _showErrorDialog('حدث خطأ، حاول مرة أخرى.');
+      _showErrorDialog(t.genericTryAgain);
     }
   }
-  String _mapFirebaseError(FirebaseAuthException e) {
+  String _mapFirebaseError(FirebaseAuthException e, AppLocalizations t) {
     switch (e.code) {
       case 'user-not-found':
-        return 'لا يوجد حساب مرتبط بهذا البريد الإلكتروني.';
+        return t.userNotFoundForEmail;
       case 'invalid-email':
-        return 'صيغة البريد الإلكتروني غير صحيحة.';
+        return t.invalidEmailFormat;
       case 'too-many-requests':
-        return 'محاولات كثيرة، حاول مرة أخرى بعد قليل.';
+        return t.tooManyRequests;
       case 'network-request-failed':
-        return 'تأكد من اتصالك بالإنترنت وحاول مرة أخرى.';
+        return t.checkInternetConnection;
       default:
-        return 'تأكد من البريد الذي قمت بإدخاله.';
+        return t.checkEnteredEmail;
     }
   }
 
   void _showErrorDialog(String message) {
+    final context = navigatorKey.currentState!.context;
     AwesomeDialog(
-      context: navigatorKey.currentState!.context,
+      context: context,
       dialogType: DialogType.error,
       animType: AnimType.scale,
-      title: 'خطأ',
+      title: AppLocalizations.of(context)!.error,
       desc: message,
     ).show();
   }

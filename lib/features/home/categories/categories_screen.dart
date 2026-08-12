@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:ql/features/home/categories/categories_controller.dart';
+import 'category_localization.dart';
 import 'categories_data.dart';
 import 'category_products_screen.dart';
 
@@ -72,7 +73,7 @@ class Categories extends StatelessWidget {
                           SizedBox(
                             width: 70,
                             child: Text(
-                              category.name ?? '',
+                              localizedCategoryName(context, category.id, category.name),
                               textAlign: TextAlign.center,
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,

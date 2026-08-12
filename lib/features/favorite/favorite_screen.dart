@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import '../../core/share_widget/custom_no_product.dart';
 import '../../core/share_widget/custom_product.dart';
 import '../../core/provider/provider_controller.dart';
+import '../../core/l10n/app_localizations.dart';
 import 'favorite_controller.dart';
 
 class FavoriteScreen extends StatelessWidget {
@@ -12,11 +13,12 @@ class FavoriteScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final t = AppLocalizations.of(context)!;
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          'Favorite',
-          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+        title: Text(
+          t.favorite,
+          style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
         ),
       ),
       body: Consumer2<ProviderController, FavoriteController>(
@@ -35,7 +37,7 @@ class FavoriteScreen extends StatelessWidget {
           if (favoriteProducts.isEmpty) {
             return CustomNoProduct(
               refetch: () {},
-              title: 'No favorite products found.',
+              title: t.noFavoriteProducts,
               icon: Icons.favorite,
             );
           }

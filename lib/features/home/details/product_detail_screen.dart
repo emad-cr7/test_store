@@ -7,6 +7,7 @@ import 'package:ql/features/favorite/favorite_controller.dart';
 import 'package:readmore/readmore.dart';
 
 import '../model/product_model.dart';
+import '../../../core/l10n/app_localizations.dart';
 
 class ProductDetailScreen extends StatelessWidget {
   ProductDetailScreen({super.key, required this.product});
@@ -18,9 +19,10 @@ class ProductDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final hasImage = product.images.isNotEmpty;
+    final t = AppLocalizations.of(context)!;
 
     return Scaffold(
-      appBar: AppBar(title: const Text("Product Details")),
+      appBar: AppBar(title: Text(t.productDetails)),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(16),
@@ -156,9 +158,9 @@ class ProductDetailScreen extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text(
-                    "Description",
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  Text(
+                    t.description,
+                    style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                   Text(
                     "\$${product.price.toStringAsFixed(2)}",
@@ -176,11 +178,11 @@ class ProductDetailScreen extends StatelessWidget {
               ReadMoreText(
                 product.description.isNotEmpty
                     ? product.description
-                    : 'No description available.',
+                    : t.noDescriptionAvailable,
                 trimLines: 2,
                 trimMode: TrimMode.Line,
-                trimCollapsedText: ' Show more',
-                trimExpandedText: ' Show less',
+                trimCollapsedText: t.showMore,
+                trimExpandedText: t.showLess,
                 style: const TextStyle(fontSize: 16, height: 1.5),
                 moreStyle: const TextStyle(
                   color: Colors.blue,

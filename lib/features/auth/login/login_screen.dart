@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:provider/provider.dart';
+import 'package:ql/core/l10n/app_localizations.dart';
+import 'package:ql/core/language/language_controller.dart';
 import '../../../core/share_widget/custom_text_formField.dart';
 import '../../../core/share_widget/validators.dart';
 import '../register/register_screen.dart';
@@ -14,6 +16,7 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
     final textTheme = Theme.of(context).textTheme;
+    final t = AppLocalizations.of(context)!;
     return ChangeNotifierProvider(
       create: (BuildContext context) => LoginController(),
       child: Scaffold(
@@ -36,6 +39,26 @@ class LoginScreen extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           const SizedBox(height: 30),
+
+                          Consumer<LanguageController>(
+                            builder: (context, languageController, _) {
+                              final t = AppLocalizations.of(context)!;
+                              return Align(
+                                alignment: Alignment.centerRight,
+                                child: TextButton.icon(
+                                  onPressed: () {
+                                    languageController.toggleLanguage();
+                                  },
+                                  icon: const Icon(Icons.language, size: 18),
+                                  label: Text(
+                                    languageController.isArabic
+                                        ? t.english
+                                        : t.arabic,
+                                  ),
+                                ),
+                              );
+                            },
+                          ),
 
                           Center(
                             child: Container(
@@ -62,7 +85,7 @@ class LoginScreen extends StatelessWidget {
                           const SizedBox(height: 32),
 
                           Text(
-                            'Welcome Back!',
+                            AppLocalizations.of(context)!.welcomeBack,
                             style: textTheme.titleLarge?.copyWith(
                               fontSize: 30,
                               fontWeight: FontWeight.w800,
@@ -73,32 +96,32 @@ class LoginScreen extends StatelessWidget {
                           const SizedBox(height: 6),
 
                           Text(
-                            'Login to continue shopping',
+                            t.loginSubtitle,
                             style: textTheme.bodySmall?.copyWith(fontSize: 15),
                           ),
 
                           const SizedBox(height: 36),
 
-                          Text('Email', style: textTheme.labelLarge),
+                          Text(t.email, style: textTheme.labelLarge),
                           const SizedBox(height: 8),
                           CustomTextFormField(
                             controller: controller.emailController,
                             keyboardType: TextInputType.emailAddress,
                             textInputAction: TextInputAction.next,
                             prefixIcon: Icons.email_outlined,
-                            hintText: 'Enter your email',
+                            hintText: t.enterYourEmail,
                             validator: Validators.email,
                           ),
 
                           const SizedBox(height: 20),
 
-                          Text('Password', style: textTheme.labelLarge),
+                          Text(t.password, style: textTheme.labelLarge),
                           const SizedBox(height: 8),
                           CustomTextFormField(
                             controller: controller.passwordController,
                             textInputAction: TextInputAction.done,
                             prefixIcon: Icons.lock_outline,
-                            hintText: 'Enter your password',
+                            hintText: t.enterYourPassword,
                             obscureText: controller.obscurePassword,
                             validator: Validators.password,
                             suffixIcon: IconButton(
@@ -125,9 +148,9 @@ class LoginScreen extends StatelessWidget {
                                   ),
                                 );
                               },
-                              child: const Text(
-                                'Forgot Password?',
-                                style: TextStyle(
+                              child: Text(
+                                t.forgotPassword,
+                                style: const TextStyle(
                                   fontWeight: FontWeight.w600,
                                   fontSize: 13,
                                 ),
@@ -150,7 +173,7 @@ class LoginScreen extends StatelessWidget {
                                       size: 25,
                                     )
                                   : Text(
-                                      'Login',
+                                      t.login,
                                       style: TextStyle(
                                         fontSize: 16,
                                         fontWeight: FontWeight.w700,
@@ -167,7 +190,7 @@ class LoginScreen extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                  "Don't have an account?",
+                                  t.dontHaveAccount,
                                   style: textTheme.bodySmall,
                                 ),
                                 TextButton(
@@ -184,9 +207,9 @@ class LoginScreen extends StatelessWidget {
                                   style: TextButton.styleFrom(
                                     foregroundColor: colors.secondary,
                                   ),
-                                  child: const Text(
-                                    'Sign Up',
-                                    style: TextStyle(
+                                  child: Text(
+                                    t.signUp,
+                                    style: const TextStyle(
                                       fontWeight: FontWeight.w700,
                                       fontSize: 14,
                                     ),

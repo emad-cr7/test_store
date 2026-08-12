@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+import '../../../core/l10n/app_localizations.dart';
 import '../../../core/share_widget/custom_snackbar.dart';
 import '../../../main.dart';
 
@@ -22,6 +23,9 @@ class ChangePasswordController extends ChangeNotifier {
     isLoading = true;
     notifyListeners();
 
+    final context = navigatorKey.currentContext;
+    final t = context != null ? AppLocalizations.of(context) : null;
+
     try {
       final user = FirebaseAuth.instance.currentUser;
 
@@ -40,12 +44,10 @@ class ChangePasswordController extends ChangeNotifier {
         newPasswordController.text.trim(),
       );
 
-      final context = navigatorKey.currentContext;
-
-      if (context != null) {
+      if (context != null && t != null) {
         AppSnackBar.show(
           context,
-          message: 'Password changed successfully',
+          message: t.passwordChangedSuccessfully,
           icon: Icons.check_circle_outline,
           backgroundColor: Colors.green,
         );
@@ -54,18 +56,18 @@ class ChangePasswordController extends ChangeNotifier {
       navigatorKey.currentState?.pop();
 
     } on FirebaseAuthException catch (e) {
-      String message = 'Something went wrong';
+      String message = t?.somethingWentWrong ?? 'Something went wrong';
 
-      if (e.code == 'wrong-password' ||
-          e.code == 'invalid-credential') {
-        message = 'Current password is incorrect';
-      } else if (e.code == 'weak-password') {
-        message = 'New password is too weak';
-      } else if (e.code == 'requires-recent-login') {
-        message = 'Please login again and try again';
+      if (t != null) {
+        if (e.code == 'wrong-password' ||
+            e.code == 'invalid-credential') {
+          message = t.currentPasswordIncorrect;
+        } else if (e.code == 'weak-password') {
+          message = t.newPasswordTooWeak;
+        } else if (e.code == 'requires-recent-login') {
+          message = t.pleaseLoginAgainAndTry;
+        }
       }
-
-      final context = navigatorKey.currentContext;
 
       if (context != null) {
         AppSnackBar.show(
@@ -76,12 +78,10 @@ class ChangePasswordController extends ChangeNotifier {
         );
       }
     } catch (e) {
-      final context = navigatorKey.currentContext;
-
-      if (context != null) {
+      if (context != null && t != null) {
         AppSnackBar.show(
           context,
-          message: 'Something went wrong',
+          message: t.somethingWentWrong,
           icon: Icons.error_outline,
           backgroundColor: Colors.red,
         );

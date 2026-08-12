@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:ql/features/auth/login/login_screen.dart';
 
 import '../../../main.dart';
+import '../../../core/l10n/app_localizations.dart';
 
 class RegisterController extends ChangeNotifier {
   final formKey = GlobalKey<FormState>();
@@ -28,11 +29,12 @@ class RegisterController extends ChangeNotifier {
 
 
   void showErrorDialog(String message) {
+    final context = navigatorKey.currentState!.context;
     AwesomeDialog(
-      context: navigatorKey.currentState!.context,
+      context: context,
       dialogType: DialogType.error,
       animType: AnimType.scale,
-      title: 'Error',
+      title: AppLocalizations.of(context)!.error,
       desc: message,
     ).show();
   }
@@ -66,17 +68,19 @@ class RegisterController extends ChangeNotifier {
         ),
       );
     } on FirebaseAuthException catch (e) {
+      final t = AppLocalizations.of(navigatorKey.currentState!.context)!;
       if (e.code == 'weak-password') {
-        showErrorDialog('The password provided is too weak.');
+        showErrorDialog(t.weakPasswordProvided);
       } else if (e.code == 'email-already-in-use') {
-        showErrorDialog('The account already exists for that email.');
+        showErrorDialog(t.emailAlreadyInUse);
       } else if (e.code == 'invalid-email') {
-        showErrorDialog('Please enter a valid email.');
+        showErrorDialog(t.pleaseEnterValidEmail);
       } else {
-        showErrorDialog(e.message ?? 'Something went wrong.');
+        showErrorDialog(e.message ?? t.somethingWentWrong);
       }
     } catch (e) {
-      showErrorDialog('Something went wrong.');
+      final t = AppLocalizations.of(navigatorKey.currentState!.context)!;
+      showErrorDialog(t.somethingWentWrong);
     } finally {
       isLoading = false;
       notifyListeners();

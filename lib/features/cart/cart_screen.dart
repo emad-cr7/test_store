@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import '../../core/share_widget/custom_no_product.dart';
 import '../../core/share_widget/custom_product.dart';
 import '../../core/provider/provider_controller.dart';
+import '../../core/l10n/app_localizations.dart';
 import 'cart_controller.dart';
 
 class CartScreen extends StatelessWidget {
@@ -12,11 +13,12 @@ class CartScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final t = AppLocalizations.of(context)!;
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          'Cart',
-          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+        title: Text(
+          t.cart,
+          style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
         ),
       ),
       body: Consumer2<ProviderController, CartController>(
@@ -35,7 +37,7 @@ class CartScreen extends StatelessWidget {
           if (cartProducts.isEmpty) {
             return CustomNoProduct(
               refetch: () {},
-              title: 'No products in cart.',
+              title: t.noProductsInCart,
               icon: Icons.shopping_cart,
             );
           }

@@ -3,6 +3,7 @@ import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:provider/provider.dart';
 import 'package:ql/features/profile/widget_profile/change_password_controller.dart';
 import 'package:ql/features/profile/widget_profile/password_field.dart';
+import '../../../core/l10n/app_localizations.dart';
 import '../../../core/share_widget/validators.dart';
 import '../../auth/login/forget_password/forget_password_screen.dart';
 
@@ -13,6 +14,7 @@ class ChangePassword extends StatelessWidget {
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
     final textTheme = Theme.of(context).textTheme;
+    final t = AppLocalizations.of(context)!;
     return ChangeNotifierProvider(
       create: (BuildContext context) => ChangePasswordController(),
       child: Scaffold(
@@ -56,7 +58,7 @@ class ChangePassword extends StatelessWidget {
                       ),
                        SizedBox(height: 32),
                       Text(
-                        'Change Password',
+                        t.changePassword,
                         style: textTheme.titleLarge?.copyWith(
                           fontSize: 30,
                           fontWeight: FontWeight.w800,
@@ -65,7 +67,7 @@ class ChangePassword extends StatelessWidget {
                       ),
                        SizedBox(height: 6),
                       Text(
-                        'Enter your current password and choose a new password',
+                        t.changePasswordSubtitle,
                         style: textTheme.bodySmall?.copyWith(fontSize: 15),
                       ),
 
@@ -73,13 +75,13 @@ class ChangePassword extends StatelessWidget {
                       PasswordField(
                         controller: controller.currentPasswordController,
                         obscureText: controller.obscureCurrentPassword,
-                        label: 'Current Password',
-                        hintText: 'Enter current password',
+                        label: t.currentPassword,
+                        hintText: t.enterCurrentPassword,
                         prefixIcon: Icons.lock_outline,
                         onToggle: controller.toggleCurrentPassword,
                         validator: (value) => Validators.required(
                           value,
-                          'Please enter your current password',
+                          t.pleaseEnterCurrentPassword,
                         ),
                       ),
                       Align(
@@ -98,8 +100,8 @@ class ChangePassword extends StatelessWidget {
                               ),
                             );
                           },
-                          child: const Text(
-                            'Forgot Password?',
+                          child: Text(
+                            t.forgotPassword,
                             style: TextStyle(
                               fontWeight: FontWeight.w600,
                               fontSize: 13,
@@ -110,8 +112,8 @@ class ChangePassword extends StatelessWidget {
                       PasswordField(
                         controller: controller.newPasswordController,
                         obscureText: controller.obscureNewPassword,
-                        label: 'New Password',
-                        hintText: 'Enter new password',
+                        label: t.newPassword,
+                        hintText: t.enterNewPassword,
                         prefixIcon: Icons.lock_reset_outlined,
                         onToggle: controller.toggleNewPassword,
                         validator: Validators.password,
@@ -122,8 +124,8 @@ class ChangePassword extends StatelessWidget {
                       PasswordField(
                         controller: controller.confirmPasswordController,
                         obscureText: controller.obscureConfirmPassword,
-                        label: 'Confirm New Password',
-                        hintText: 'Confirm new password',
+                        label: t.confirmNewPassword,
+                        hintText: t.confirmNewPasswordHint,
                         prefixIcon: Icons.lock_outline,
                         onToggle: controller.toggleConfirmPassword,
                         textInputAction: TextInputAction.done,
@@ -143,8 +145,8 @@ class ChangePassword extends StatelessWidget {
                             color: colors.onPrimary,
                             size: 25,
                           )
-                              : const Text(
-                            'Change Password',
+                              : Text(
+                            t.changePassword,
                             style: TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.w700,

@@ -7,6 +7,7 @@ import '../../features/home/details/product_detail_screen.dart';
 import '../../features/favorite/favorite_controller.dart';
 import '../../features/cart/cart_controller.dart';
 import '../../features/home/model/product_model.dart';
+import '../l10n/app_localizations.dart';
 import 'custom_snackbar.dart';
 
 class CustomProduct extends StatelessWidget {
@@ -21,6 +22,7 @@ class CustomProduct extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final t = AppLocalizations.of(context)!;
     return SliverGrid.builder(
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
@@ -90,8 +92,8 @@ class CustomProduct extends StatelessWidget {
                                         AppSnackBar.show(
                                           context,
                                           message: product.isFavorite
-                                              ? "Product added to favorites"
-                                              : "Product removed from favorites",
+                                              ? t.productAddedToFavorites
+                                              : t.productRemovedFromFavorites,
                                           icon: product.isFavorite
                                               ? Icons.favorite
                                               : Icons.favorite_border,
@@ -168,8 +170,8 @@ class CustomProduct extends StatelessWidget {
                                           AppSnackBar.show(
                                             context,
                                             message: newValue
-                                                ? "Product added to cart"
-                                                : "Product removed from cart",
+                                                ? t.productAddedToCart
+                                                : t.productRemovedFromCart,
                                             icon: newValue
                                                 ? Icons.shopping_cart
                                                 : Icons.remove_shopping_cart,

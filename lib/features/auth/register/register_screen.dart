@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:provider/provider.dart';
+import 'package:ql/core/l10n/app_localizations.dart';
 import 'package:ql/features/auth/login/login_screen.dart';
 import 'package:ql/features/auth/register/register_controller.dart';
 import '../../../core/share_widget/custom_text_formField.dart';
@@ -13,6 +14,7 @@ class RegisterScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
     final textTheme = Theme.of(context).textTheme;
+    final t = AppLocalizations.of(context)!;
 
     return ChangeNotifierProvider(
       create: (BuildContext context) => RegisterController(),
@@ -62,7 +64,7 @@ class RegisterScreen extends StatelessWidget {
                           const SizedBox(height: 32),
 
                           Text(
-                            'Create Account',
+                            t.createAccount,
                             style: textTheme.titleLarge?.copyWith(
                               fontSize: 30,
                               fontWeight: FontWeight.w800,
@@ -73,46 +75,46 @@ class RegisterScreen extends StatelessWidget {
                           const SizedBox(height: 6),
 
                           Text(
-                            'Sign up to start shopping',
+                            t.registerSubtitle,
                             style: textTheme.bodySmall?.copyWith(fontSize: 15),
                           ),
 
                           const SizedBox(height: 36),
 
-                          Text('Full Name', style: textTheme.labelLarge),
+                          Text(t.fullName, style: textTheme.labelLarge),
                           const SizedBox(height: 8),
                           CustomTextFormField(
                             controller: controller.nameController,
                             keyboardType: TextInputType.name,
                             textInputAction: TextInputAction.next,
                             prefixIcon: Icons.person_outline,
-                            hintText: 'Enter your full name',
+                            hintText: t.enterYourFullName,
                             validator: Validators.name,
                           ),
 
                           const SizedBox(height: 20),
 
-                          Text('Email', style: textTheme.labelLarge),
+                          Text(t.email, style: textTheme.labelLarge),
                           const SizedBox(height: 8),
                           CustomTextFormField(
                             controller: controller.emailController,
                             keyboardType: TextInputType.emailAddress,
                             textInputAction: TextInputAction.next,
                             prefixIcon: Icons.email_outlined,
-                            hintText: 'Enter your email',
+                            hintText: t.enterYourEmail,
                             validator: Validators.email,
                           ),
 
                           const SizedBox(height: 20),
 
-                          Text('Password', style: textTheme.labelLarge),
+                          Text(t.password, style: textTheme.labelLarge),
                           const SizedBox(height: 8),
                           CustomTextFormField(
                             controller: controller.passwordController,
                             obscureText: controller.obscurePassword,
                             textInputAction: TextInputAction.next,
                             prefixIcon: Icons.lock_outline,
-                            hintText: 'Enter your password',
+                            hintText: t.enterYourPassword,
                             validator: Validators.password,
                             suffixIcon: IconButton(
                               icon: Icon(
@@ -127,14 +129,14 @@ class RegisterScreen extends StatelessWidget {
 
                           const SizedBox(height: 20),
 
-                          Text('Confirm Password', style: textTheme.labelLarge),
+                          Text(t.confirmPassword, style: textTheme.labelLarge),
                           const SizedBox(height: 8),
                           CustomTextFormField(
                             controller: controller.confirmPasswordController,
                             obscureText: controller.obscureConfirmPassword,
                             textInputAction: TextInputAction.done,
                             prefixIcon: Icons.lock_outline,
-                            hintText: 'Re-enter your password',
+                            hintText: t.reEnterYourPassword,
                             validator: (value) => Validators.confirmPassword(
                               value,
                               controller.passwordController.text,
@@ -163,7 +165,7 @@ class RegisterScreen extends StatelessWidget {
                                       size: 25,
                                     )
                                   : Text(
-                                      'Register',
+                                      t.register,
                                       style: TextStyle(
                                         fontSize: 16,
                                         fontWeight: FontWeight.w700,
@@ -180,7 +182,7 @@ class RegisterScreen extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                  'Already have an account?',
+                                  t.alreadyHaveAccount,
                                   style: textTheme.bodySmall,
                                 ),
                                 TextButton(
@@ -197,9 +199,9 @@ class RegisterScreen extends StatelessWidget {
                                   style: TextButton.styleFrom(
                                     foregroundColor: colors.secondary,
                                   ),
-                                  child: const Text(
-                                    'Login',
-                                    style: TextStyle(
+                                  child: Text(
+                                    t.login,
+                                    style: const TextStyle(
                                       fontWeight: FontWeight.w700,
                                       fontSize: 14,
                                     ),
