@@ -1,20 +1,18 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import '../../../core/provider/provider_controller.dart';
 import '../../../main.dart';
 import '../../../main/main_screen.dart';
 
 class LoginController extends ChangeNotifier {
   final formKey = GlobalKey<FormState>();
   final emailController = TextEditingController();
-
   final passwordController = TextEditingController();
   bool isLoading = false;
   bool obscurePassword = true;
-
-
-
   void showErrorDialog(String message) {
     AwesomeDialog(
       context: navigatorKey.currentState!.context,
@@ -43,8 +41,18 @@ class LoginController extends ChangeNotifier {
       );
 
       if (credential.user!.emailVerified) {
-        navigatorKey.currentState!.pushReplacement(
+        final context = navigatorKey.currentState!.context;
+
+        final providerController = Provider.of<ProviderController>(
+          context,
+          listen: false,
+        );
+        await providerController.loadFirebaseData();
+
+        // امسح الـ stack كله وادخل MainScreen من جديد بحالة نضيفة
+        navigatorKey.currentState!.pushAndRemoveUntil(
           MaterialPageRoute(builder: (_) => MainScreen()),
+              (route) => false,
         );
       } else {
         showErrorDialog('Please verify your email first.');

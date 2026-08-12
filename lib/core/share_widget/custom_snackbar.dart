@@ -15,7 +15,6 @@ class AppSnackBar {
     ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           behavior: SnackBarBehavior.floating,
-
           margin: EdgeInsets.only(
             bottom: 85,
             left: 20,

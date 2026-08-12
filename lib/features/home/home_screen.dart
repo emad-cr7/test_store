@@ -23,9 +23,6 @@ class HomeScreen extends StatelessWidget {
       body: SafeArea(
         child: CustomQuery(
           builder: (products) {
-            WidgetsBinding.instance.addPostFrameCallback((_) {
-              context.read<ProviderController>().syncProducts(products);
-            });
             return Consumer<ProviderController>(
               builder: (context, controller, _) {
                 return CustomScrollView(
@@ -37,11 +34,7 @@ class HomeScreen extends StatelessWidget {
                       products: controller.filteredProducts,
                       itemCount: min(controller.filteredProducts.length, 10),
                     ),
-                    SliverToBoxAdapter(
-                      child: SizedBox(
-                        height: 80,
-                      ),
-                    ),
+                    const SliverToBoxAdapter(child: SizedBox(height: 80)),
                   ],
                 );
               },

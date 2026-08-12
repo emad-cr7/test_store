@@ -2,9 +2,12 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:provider/provider.dart';
 import 'package:ql/features/auth/login/login_screen.dart';
 import 'package:ql/features/profile/share_widget_profile.dart';
 import 'package:ql/features/profile/widget_profile/change_password.dart';
+import '../../core/datasource/Preferences_manager/preferences_manager.dart';
+import '../../core/provider/provider_controller.dart';
 import '../../core/theme/theme_controller.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -24,15 +27,17 @@ class ProfileScreen extends StatelessWidget {
         btnCancelOnPress: () {},
         btnOkText: "نعم",
         btnOkOnPress: () async {
+          // امسح الـ state القديم الأول
+          Provider.of<ProviderController>(context, listen: false).resetOnLogout();
+
           await FirebaseAuth.instance.signOut();
+          await PreferencesManager().clearAll();
           await GoogleSignIn.instance.disconnect();
-          Navigator.pushReplacement(
+
+          Navigator.pushAndRemoveUntil(
             context,
-            MaterialPageRoute(
-              builder: (BuildContext context) {
-                return LoginScreen();
-              },
-            ),
+            MaterialPageRoute(builder: (context) => LoginScreen()),
+                (route) => false, // يشيل كل الـ stack القديم، ده مهم جدًا
           );
         },
       ).show();

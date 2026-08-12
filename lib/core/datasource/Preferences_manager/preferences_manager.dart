@@ -34,4 +34,8 @@ class PreferencesManager {
   remove(String key) async {
     await _preferences.remove(key);
   }
+
+  Future<bool> clearAll() async {
+    return await _preferences.clear();
+  }
 }
