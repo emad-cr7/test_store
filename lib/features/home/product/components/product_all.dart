@@ -20,12 +20,6 @@ class ProductAll extends StatelessWidget {
       body: SafeArea(
         child: CustomQuery(
           builder: (products) {
-            final controller = context.read<ProviderController>();
-
-            WidgetsBinding.instance.addPostFrameCallback((_) {
-              controller.syncProducts(products);
-            });
-
             return Consumer<ProviderController>(
               builder: (context, controller, _) {
                 return CustomScrollView(

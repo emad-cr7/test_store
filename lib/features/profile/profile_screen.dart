@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:provider/provider.dart';
 import 'package:ql/features/auth/login/login_screen.dart';
-import 'package:ql/features/profile/share_widget_list_tile.dart';
+import 'package:ql/features/profile/share_profile/share_widget_list_tile.dart';
 import 'package:ql/features/profile/widget_profile/change_password.dart';
 import '../../core/datasource/Preferences_manager/preferences_manager.dart';
 import '../../core/provider/provider_controller.dart';
