@@ -28,7 +28,7 @@ class CustomQuery extends StatelessWidget {
             if (result.hasException) {
               final isNetworkError =
                   result.exception.toString().contains('SocketException') ||
-                      result.exception.toString().contains('Failed host lookup');
+                  result.exception.toString().contains('Failed host lookup');
 
               return CustomNoProduct(
                 refetch: refetch,
@@ -47,12 +47,10 @@ class CustomQuery extends StatelessWidget {
             for (var product in products) {
               product.isFavorite =
                   PreferencesManager().getBool("favorite_${product.id}") ??
-                      false;
+                  false;
               product.shoppingCart =
-                  PreferencesManager().getBool(
-                    "shoppingCart_${product.id}",
-                  ) ??
-                      false;
+                  PreferencesManager().getBool("shoppingCart_${product.id}") ??
+                  false;
             }
 
             WidgetsBinding.instance.addPostFrameCallback((_) {
