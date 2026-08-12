@@ -87,38 +87,13 @@ class ProviderController extends ChangeNotifier {
     super.dispose();
   }
 
-  /// save the favorite and shopping cart status to shared preferences and screen
 
-  List<ProductModel> get favoriteProducts =>
-      allProducts.where((p) => p.isFavorite).toList();
 
   List<ProductModel> get cartProducts =>
       allProducts.where((p) => p.shoppingCart).toList();
 
 
-  void toggleFavorite(ProductModel product) async {
-    product.isFavorite = !product.isFavorite;
 
-    await PreferencesManager().setBool(
-      "favorite_${product.id}",
-      product.isFavorite,
-    );
-    notifyListeners();
-
-
-    // حفظ في Firebase
-    final user = FirebaseAuth.instance.currentUser;
-
-    if (user != null) {
-      await FirebaseService().saveFavorite(
-        userId: user.uid,
-        productId: product.id,
-        isFavorite: product.isFavorite,
-      );
-    }
-
-    notifyListeners();
-  }
 
   void toggleShoppingCart(ProductModel product) async {
     product.shoppingCart = !product.shoppingCart;

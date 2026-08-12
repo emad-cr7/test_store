@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:ql/core/provider/provider_controller.dart';
 import 'package:readmore/readmore.dart';
 
+import '../../favorite/favorite_controller.dart';
 import '../model/product_model.dart';
 
 class ProductDetailScreen extends StatelessWidget {
@@ -69,7 +70,7 @@ class ProductDetailScreen extends StatelessWidget {
                           Positioned(
                             top: 1,
                             right: 1,
-                            child: Consumer<ProviderController>(
+                            child: Consumer<FavoriteController>(
                               builder: (context, controller, _) {
                                 return IconButton(
                                   onPressed: () =>

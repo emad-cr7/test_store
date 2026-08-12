@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:provider/provider.dart';
+import '../../features/favorite/favorite_controller.dart';
 import '../../features/home/details/product_detail_screen.dart';
 import '../provider/provider_controller.dart';
 import '../../features/home/model/product_model.dart';
@@ -76,11 +77,11 @@ class CustomProduct extends StatelessWidget {
                           Positioned(
                             top: 1,
                             right: 1,
-                            child: Consumer<ProviderController>(
+                            child: Consumer<FavoriteController>(
                               builder:
                                   (
                                     BuildContext context,
-                                    ProviderController controller,
+                                  FavoriteController controller,
                                     Widget? child,
                                   ) {
                                     return IconButton(
