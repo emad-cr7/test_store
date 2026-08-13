@@ -50,10 +50,7 @@ class ProfileScreen extends StatelessWidget {
     }
 
     void _showLanguageDialog() {
-      final languageController = Provider.of<LanguageController>(
-        context,
-        listen: false,
-      );
+      final controller = context.read<LanguageController>();
       final t = AppLocalizations.of(context)!;
 
       showDialog(
@@ -65,10 +62,10 @@ class ProfileScreen extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 RadioGroup<String>(
-                  groupValue: languageController.locale.languageCode,
+                  groupValue: controller.locale.languageCode,
                   onChanged: (value) {
                     if (value != null) {
-                      languageController.changeLanguage(value);
+                      controller.changeLanguage(value);
                       Navigator.pop(dialogContext);
                     }
                   },
