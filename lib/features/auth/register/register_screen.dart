@@ -4,8 +4,10 @@ import 'package:provider/provider.dart';
 import 'package:ql/core/l10n/app_localizations.dart';
 import 'package:ql/features/auth/login/login_screen.dart';
 import 'package:ql/features/auth/register/register_controller.dart';
-import '../../../core/share_widget/custom_text_formField.dart';
-import '../../../core/share_widget/validators.dart';
+
+import '../../../core/share/validators/validators.dart';
+import '../../../core/share/widgets/custom_text_formField.dart';
+
 
 class RegisterScreen extends StatelessWidget {
   const RegisterScreen({super.key});

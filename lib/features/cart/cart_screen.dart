@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:provider/provider.dart';
-
-import '../../core/share_widget/custom_no_product.dart';
-import '../../core/share_widget/custom_product.dart';
 import '../../core/provider/provider_controller.dart';
 import '../../core/l10n/app_localizations.dart';
+import '../../core/share/widgets/custom_no_product.dart';
+import '../../core/share/widgets/custom_product.dart';
 import 'cart_controller.dart';
 
 class CartScreen extends StatelessWidget {

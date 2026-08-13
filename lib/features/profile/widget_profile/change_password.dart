@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:ql/features/profile/widget_profile/change_password_controller.dart';
 import 'package:ql/features/profile/widget_profile/password_field.dart';
 import '../../../core/l10n/app_localizations.dart';
-import '../../../core/share_widget/validators.dart';
+import '../../../core/share/validators/validators.dart';
 import '../../auth/login/forget_password/forget_password_screen.dart';
 
 class ChangePassword extends StatelessWidget {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../../../core/share_widget/custom_product.dart';
-import '../../../../core/share_widget/custom_query.dart';
+import '../../../../core/share/widgets/custom_product.dart';
+import '../../../../core/share/widgets/custom_query.dart';
 import '../../../../core/provider/provider_controller.dart';
 import '../../search/search_screen.dart';
 

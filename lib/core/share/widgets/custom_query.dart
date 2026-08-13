@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:provider/provider.dart';
-import '../../features/home/model/product_model.dart';
-import '../datasource/Preferences_manager/preferences_manager.dart';
-import '../datasource/api/api_config/api_config.dart';
-import '../datasource/api/query.dart';
-import '../provider/provider_controller.dart';
-import '../../features/favorite/favorite_controller.dart';
-import '../../features/cart/cart_controller.dart';
+import '../../datasource/models/product_model.dart';
+import '../../datasource/local/preferences_manager.dart';
+import '../../datasource/remote/api_config.dart';
+import '../../datasource/remote/query.dart';
+import '../../provider/provider_controller.dart';
+import '../../../features/favorite/favorite_controller.dart';
+import '../../../features/cart/cart_controller.dart';
 import '../skeleton/skeleton_loading.dart';
 import 'custom_no_product.dart';
 

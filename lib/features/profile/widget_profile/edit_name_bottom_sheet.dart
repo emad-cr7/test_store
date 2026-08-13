@@ -3,8 +3,9 @@ import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:provider/provider.dart';
 
 import '../../../core/l10n/app_localizations.dart';
-import '../../../core/share_widget/custom_text_formField.dart';
-import '../../../core/share_widget/validators.dart';
+
+import '../../../core/share/validators/validators.dart';
+import '../../../core/share/widgets/custom_text_formField.dart';
 import 'edit_name_controller.dart';
 
 Future<void> showEditNameBottomSheet(BuildContext context) {

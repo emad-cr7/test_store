@@ -1,8 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import '../home/model/product_model.dart';
-import '../../core/datasource/Preferences_manager/preferences_manager.dart';
-import '../../core/datasource/service/firebase_service .dart';
+import '../../core/datasource/models/product_model.dart';
+import '../../core/datasource/local/preferences_manager.dart';
+import '../../core/datasource/remote/firebase_service .dart';
 
 /// Controller مسؤول فقط عن منطق الـ Cart (بعد فصله عن ProviderController)
 class CartController extends ChangeNotifier {

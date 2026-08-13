@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import '../../features/home/model/product_model.dart';
+import '../datasource/models/product_model.dart';
 
 
 class ProviderController extends ChangeNotifier {

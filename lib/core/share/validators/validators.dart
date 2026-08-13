@@ -1,5 +1,5 @@
-import '../../main.dart';
-import '../l10n/app_localizations.dart';
+import '../../../main.dart';
+import '../../l10n/app_localizations.dart';
 
 class Validators {
   static AppLocalizations get _t =>

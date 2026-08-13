@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../constants/storage_key.dart';
-import '../datasource/Preferences_manager/preferences_manager.dart';
+import '../datasource/local/preferences_manager.dart';
 
 class LanguageController extends ChangeNotifier {
   Locale _locale = const Locale('en');

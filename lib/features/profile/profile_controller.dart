@@ -2,9 +2,9 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../core/cart/cart_controller.dart';
-import '../../core/datasource/Preferences_manager/preferences_manager.dart';
-import '../../core/favorite/favorite_controller.dart';
+import '../../features/favorite/favorite_controller.dart';
+import '../../features/cart/cart_controller.dart';
+import '../../core/datasource/local/preferences_manager.dart';
 import '../../core/l10n/app_localizations.dart';
 import '../../core/language/language_controller.dart';
 import '../../core/provider/provider_controller.dart';
@@ -52,7 +52,7 @@ class ProfileController extends ChangeNotifier {
     showDialog(
       context: context,
       builder: (dialogContext) {
-        return  AlertDialog(
+        return AlertDialog(
           title: Text(t.chooseLanguage),
           content: Column(
             mainAxisSize: MainAxisSize.min,
@@ -71,7 +71,6 @@ class ProfileController extends ChangeNotifier {
                       title: Text(t.english),
                       value: 'en',
                     ),
-
                     RadioListTile<String>(
                       title: Text(t.arabic),
                       value: 'ar',
