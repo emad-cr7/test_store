@@ -89,14 +89,14 @@ final ThemeData lightTheme = ThemeData(
   ),
 
   switchTheme: SwitchThemeData(
-    thumbColor: MaterialStateProperty.resolveWith(
-      (states) => states.contains(MaterialState.selected)
+    thumbColor: WidgetStateProperty.resolveWith(
+          (states) => states.contains(WidgetState.selected)
           ? AppColors.lightAccent
           : Colors.grey.shade400,
     ),
-    trackColor: MaterialStateProperty.resolveWith(
-      (states) => states.contains(MaterialState.selected)
-          ? AppColors.lightAccent.withOpacity(0.5)
+    trackColor: WidgetStateProperty.resolveWith(
+          (states) => states.contains(WidgetState.selected)
+          ? AppColors.lightAccent.withValues(alpha: 0.5)
           : Colors.grey.shade300,
     ),
   ),

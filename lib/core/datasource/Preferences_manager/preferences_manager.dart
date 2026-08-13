@@ -41,9 +41,6 @@ class PreferencesManager {
     return await _preferences.clear();
   }
 
-  /// بيمسح بيانات المستخدم (تسجيل الدخول، الفيفوريت، السلة، ...) بس
-  /// من غير ما يمسح إعدادات التطبيق العامة زي اللغة والثيم،
-  /// عشان تفضل محفوظة حتى بعد تسجيل الخروج.
   Future<void> clearUserData() async {
     final savedLanguage = _preferences.getString(StorageKey.languageCode);
     final savedIsDarkMode = _preferences.getBool(StorageKey.isDarkMode);

@@ -130,11 +130,9 @@ class _MainScreenState extends State<MainScreen> {
 class _NavItemData {
   final IconData icon;
   final String label;
-  final bool showBadge;
 
   const _NavItemData({
     required this.icon,
     required this.label,
-    this.showBadge = false,
   });
 }

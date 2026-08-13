@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:ql/core/l10n/app_localizations.dart';
@@ -15,6 +16,9 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final t = AppLocalizations.of(context)!;
+
+
+
     return ChangeNotifierProvider(
       create: (BuildContext context)=> ProfileController(),
       child: Consumer<ProfileController>(
