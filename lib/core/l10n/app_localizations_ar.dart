@@ -310,4 +310,13 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get categoryOthers => 'أخرى';
+
+  @override
+  String get editProfileSubtitle => 'قم بتحديث اسمك بالأسفل';
+
+  @override
+  String get save => 'حفظ';
+
+  @override
+  String get nameUpdatedSuccessfully => 'تم تحديث الاسم بنجاح';
 }

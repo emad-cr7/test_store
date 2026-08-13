@@ -1,7 +1,6 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:ql/features/auth/login/login_screen.dart';
 
 import '../../../../core/l10n/app_localizations.dart';
 import '../../../../main.dart';

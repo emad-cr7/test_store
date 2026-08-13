@@ -308,4 +308,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get categoryOthers => 'Others';
+
+  @override
+  String get editProfileSubtitle => 'Update your name below';
+
+  @override
+  String get save => 'Save';
+
+  @override
+  String get nameUpdatedSuccessfully => 'Name updated successfully';
 }

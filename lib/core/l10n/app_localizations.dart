@@ -685,6 +685,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Others'**
   String get categoryOthers;
+
+  /// No description provided for @editProfileSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Update your name below'**
+  String get editProfileSubtitle;
+
+  /// No description provided for @save.
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get save;
+
+  /// No description provided for @nameUpdatedSuccessfully.
+  ///
+  /// In en, this message translates to:
+  /// **'Name updated successfully'**
+  String get nameUpdatedSuccessfully;
 }
 
 class _AppLocalizationsDelegate

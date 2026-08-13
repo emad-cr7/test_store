@@ -39,15 +39,15 @@ class SplashScreen extends StatelessWidget {
           Container(
             padding: const EdgeInsets.all(20),
             decoration: BoxDecoration(
-              color: colors.onPrimary.withOpacity(0.15),
+              color: colors.onPrimary.withValues(alpha: 0.15),
               shape: BoxShape.circle,
               border: Border.all(
-                color: colors.onPrimary.withOpacity(0.3),
+                color: colors.onPrimary.withValues(alpha: 0.3),
                 width: 1.5,
               ),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withOpacity(0.15),
+                  color: Colors.black.withValues(alpha: 0.15),
                   blurRadius: 30,
                   offset: const Offset(0, 15),
                 ),
@@ -73,7 +73,7 @@ class SplashScreen extends StatelessWidget {
           Text(
             t.splashTagline,
             style: textTheme.bodySmall?.copyWith(
-              color: colors.onPrimary.withOpacity(0.85),
+              color: colors.onPrimary.withValues(alpha: 0.85),
               fontSize: 13,
               letterSpacing: 0.3,
             ),

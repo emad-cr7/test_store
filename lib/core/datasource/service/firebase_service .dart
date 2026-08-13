@@ -3,10 +3,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class FirebaseService {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-  // =========================
-  // Save Favorite
-  // =========================
-
   Future<void> saveFavorite({
     required String userId,
     required int productId,

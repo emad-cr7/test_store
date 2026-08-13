@@ -112,5 +112,8 @@
   "categoryElectronics": "إلكترونيات",
   "categoryFurniture": "أثاث",
   "categoryShoes": "أحذية",
-  "categoryOthers": "أخرى"
+  "categoryOthers": "أخرى",
+  "editProfileSubtitle": "قم بتحديث اسمك بالأسفل",
+  "save": "حفظ",
+  "nameUpdatedSuccessfully": "تم تحديث الاسم بنجاح"
 }

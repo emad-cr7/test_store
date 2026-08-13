@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:skeletonizer/skeletonizer.dart';
 
 class CustomProductSkeleton extends StatelessWidget {
   const CustomProductSkeleton({super.key, this.itemCount = 6});
