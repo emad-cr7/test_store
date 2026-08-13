@@ -41,10 +41,7 @@ class EditNameBottomSheet extends StatelessWidget {
                   top: Radius.circular(24),
                 ),
               ),
-              padding: const EdgeInsets.symmetric(
-                horizontal: 24,
-                vertical: 24,
-              ),
+              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 24),
               child: Form(
                 key: controller.formKey,
                 child: Column(
@@ -69,10 +66,7 @@ class EditNameBottomSheet extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 6),
-                    Text(
-                      t.editProfileSubtitle,
-                      style: textTheme.bodySmall,
-                    ),
+                    Text(t.editProfileSubtitle, style: textTheme.bodySmall),
                     const SizedBox(height: 24),
                     CustomTextFormField(
                       controller: controller.nameController,
@@ -84,14 +78,6 @@ class EditNameBottomSheet extends StatelessWidget {
                     const SizedBox(height: 28),
                     Row(
                       children: [
-                        Expanded(
-                          child: OutlinedButton(
-                            onPressed: controller.isLoading
-                                ? null
-                                : () => Navigator.pop(context),
-                            child: Text(t.cancel),
-                          ),
-                        ),
                         const SizedBox(width: 16),
                         Expanded(
                           child: ElevatedButton(

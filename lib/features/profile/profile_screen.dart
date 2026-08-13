@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:ql/core/l10n/app_localizations.dart';
@@ -17,12 +16,10 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final t = AppLocalizations.of(context)!;
 
-
-
     return ChangeNotifierProvider(
-      create: (BuildContext context)=> ProfileController(),
+      create: (BuildContext context) => ProfileController(),
       child: Consumer<ProfileController>(
-        builder: ( context,  controller, Widget? child) {
+        builder: (context, controller, Widget? child) {
           return Scaffold(
             appBar: AppBar(title: Text(t.profileTitle), centerTitle: true),
 
@@ -44,7 +41,10 @@ class ProfileScreen extends StatelessWidget {
                   },
                 ),
 
-                Text('${controller.user!.email}', style: Theme.of(context).textTheme.bodySmall),
+                Text(
+                  '${controller.user!.email}',
+                  style: Theme.of(context).textTheme.bodySmall,
+                ),
 
                 SizedBox(height: 30),
 
