@@ -59,28 +59,32 @@ class ProfileScreen extends StatelessWidget {
       showDialog(
         context: context,
         builder: (dialogContext) {
-          return AlertDialog(
+          return  AlertDialog(
             title: Text(t.chooseLanguage),
             content: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                RadioListTile<String>(
-                  title: Text(t.english),
-                  value: 'en',
+                RadioGroup<String>(
                   groupValue: languageController.locale.languageCode,
                   onChanged: (value) {
-                    languageController.changeLanguage(value!);
-                    Navigator.pop(dialogContext);
+                    if (value != null) {
+                      languageController.changeLanguage(value);
+                      Navigator.pop(dialogContext);
+                    }
                   },
-                ),
-                RadioListTile<String>(
-                  title: Text(t.arabic),
-                  value: 'ar',
-                  groupValue: languageController.locale.languageCode,
-                  onChanged: (value) {
-                    languageController.changeLanguage(value!);
-                    Navigator.pop(dialogContext);
-                  },
+                  child: Column(
+                    children: [
+                      RadioListTile<String>(
+                        title: Text(t.english),
+                        value: 'en',
+                      ),
+
+                      RadioListTile<String>(
+                        title: Text(t.arabic),
+                        value: 'ar',
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),
