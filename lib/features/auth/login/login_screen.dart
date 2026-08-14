@@ -11,7 +11,7 @@ import 'forget_password/forget_password_screen.dart';
 import 'login_controller.dart';
 
 class LoginScreen extends StatelessWidget {
-  LoginScreen({super.key});
+  const LoginScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

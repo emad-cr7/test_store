@@ -3,6 +3,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class FirebaseService {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
+  // Save favorite
+
   Future<void> saveFavorite({
     required String userId,
     required int productId,
@@ -21,9 +23,7 @@ class FirebaseService {
     }
   }
 
-  // =========================
   // Save Cart
-  // =========================
 
   Future<void> saveCart({
     required String userId,
@@ -43,9 +43,7 @@ class FirebaseService {
     }
   }
 
-  // =========================
   // Get Favorites
-  // =========================
 
   Future<List<int>> getFavorites(String userId) async {
     final snapshot = await _firestore
@@ -59,9 +57,7 @@ class FirebaseService {
         .toList();
   }
 
-  // =========================
   // Get Cart
-  // =========================
 
   Future<List<int>> getCart(String userId) async {
     final snapshot = await _firestore

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class CustomNoProduct extends StatelessWidget {
-  CustomNoProduct({
+  const CustomNoProduct({
     super.key,
     required this.refetch,
     required this.title,
