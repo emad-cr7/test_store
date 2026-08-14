@@ -21,63 +21,72 @@ class CustomQuery extends StatelessWidget {
     return Query(
       options: QueryOptions(document: gql(Queries.getProducts)),
       builder: (result, {fetchMore, refetch}) {
-        return Consumer3<ProviderController, FavoriteController, CartController>(
-          builder: (context, controller, favoriteController, cartController, _) {
-            if (result.isLoading) {
-              return const SkeletonLoading();
-            }
+        return Consumer3<
+          ProviderController,
+          FavoriteController,
+          CartController
+        >(
+          builder:
+              (context, controller, favoriteController, cartController, _) {
+                if (result.isLoading) {
+                  return const SkeletonLoading();
+                }
 
-            if (result.hasException) {
-              final isNetworkError =
-                  result.exception.toString().contains('SocketException') ||
-                  result.exception.toString().contains('Failed host lookup');
+                if (result.hasException) {
+                  final isNetworkError =
+                      result.exception.toString().contains('SocketException') ||
+                      result.exception.toString().contains(
+                        'Failed host lookup',
+                      );
 
-              return CustomNoProduct(
-                refetch: refetch,
-                title: isNetworkError
-                    ? 'No internet connection'
-                    : 'Something went wrong',
-                icon: isNetworkError ? Icons.wifi_off : Icons.error,
-              );
-            }
+                  return CustomNoProduct(
+                    refetch: refetch,
+                    title: isNetworkError
+                        ? 'No internet connection'
+                        : 'Something went wrong',
+                    icon: isNetworkError ? Icons.wifi_off : Icons.error,
+                  );
+                }
 
-            final productsJson = result.data?[ApiConfig.products] as List;
-            final products = productsJson
-                .map((json) => ProductModel.fromJson(json))
-                .toList();
+                final productsJson = result.data?[ApiConfig.products] as List;
+                final products = productsJson
+                    .map((json) => ProductModel.fromJson(json))
+                    .toList();
 
-            for (var product in products) {
-              product.isFavorite =
-                  PreferencesManager().getBool("favorite_${product.id}") ??
-                  false;
-              product.shoppingCart =
-                  PreferencesManager().getBool("shoppingCart_${product.id}") ??
-                  false;
-            }
+                for (var product in products) {
+                  product.isFavorite =
+                      PreferencesManager().getBool("favorite_${product.id}") ??
+                      false;
+                  product.shoppingCart =
+                      PreferencesManager().getBool(
+                        "shoppingCart_${product.id}",
+                      ) ??
+                      false;
+                }
 
-            WidgetsBinding.instance.addPostFrameCallback((_) {
-              if (controller.allProducts.isEmpty) {
-                controller.syncProducts(products);
-                favoriteController.setProducts(products);
-                cartController.setProducts(products);
-                favoriteController.loadFavorites();
-                cartController.loadCart();
-              }
-            });
+                WidgetsBinding.instance.addPostFrameCallback((_) {
+                  if (controller.allProducts.isEmpty) {
+                    controller.syncProducts(products);
+                    favoriteController.setProducts(products);
+                    cartController.setProducts(products);
+                    favoriteController.loadFavorites();
+                    cartController.loadCart();
+                  }
+                });
 
-            if (controller.allProducts.isEmpty ||
-                favoriteController.isLoadingFirebase ||
-                cartController.isLoadingFirebase) {
-              return const SkeletonLoading();
-            }
+                if (controller.allProducts.isEmpty ||
+                    favoriteController.isLoadingFirebase ||
+                    cartController.isLoadingFirebase) {
+                  return const SkeletonLoading();
+                }
 
-            return RefreshIndicator.adaptive(
-              onRefresh: () async {
-                await refetch?.call();
+                return RefreshIndicator.adaptive(
+                  onRefresh: () async {
+                    await refetch?.call();
+                  },
+                  child: builder(products),
+                );
               },
-              child: builder(products),
-            );
-          },
         );
       },
     );
