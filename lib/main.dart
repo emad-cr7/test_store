@@ -15,21 +15,19 @@ final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 void main() async {
   await bootstrapApp();
-  final client = createGraphQLClient();
-  runApp(MyApp(client: client));
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  final ValueNotifier<GraphQLClient> client;
 
-  const MyApp({super.key, required this.client});
+  const MyApp({super.key, });
 
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: appProviders,
       child: GraphQLProvider(
-        client: client,
+        client: GraphqlSetup.client,
         child: Consumer<LanguageController>(
           builder: (context, languageController, _) {
             return ValueListenableBuilder<ThemeMode>(
