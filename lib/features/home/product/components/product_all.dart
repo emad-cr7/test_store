@@ -18,20 +18,16 @@ class ProductAll extends StatelessWidget {
         ),
       ),
       body: SafeArea(
-        child: CustomQuery(
-          builder: (products) {
-            return Consumer<ProviderController>(
-              builder: (context, controller, _) {
-                return CustomScrollView(
-                  slivers: [
-                    SearchScreen(),
-                    CustomProduct(
-                      products: controller.filteredProducts,
-                      itemCount: controller.filteredProducts.length,
-                    ),
-                  ],
-                );
-              },
+        child: Consumer<ProviderController>(
+          builder: (context, controller, _) {
+            return CustomScrollView(
+              slivers: [
+                SearchScreen(),
+                CustomProduct(
+                  products: controller.filteredProducts,
+                  itemCount: controller.filteredProducts.length,
+                ),
+              ],
             );
           },
         ),
