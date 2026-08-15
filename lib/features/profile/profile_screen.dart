@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:ql/core/l10n/app_localizations.dart';
-import 'package:ql/features/profile/profile_controller.dart';
-import 'package:ql/features/profile/share_profile/share_widget_list_tile.dart';
-import 'package:ql/features/profile/widget_profile/change_password.dart';
-import 'package:ql/features/profile/widget_profile/edit_name_bottom_sheet.dart';
-import 'package:ql/features/profile/widget_profile/edit_name_controller.dart';
+import 'package:ql/features/profile/presentation/controllers/profile_controller.dart';
+import 'package:ql/features/profile/presentation/widgets/share_profile/share_widget_list_tile.dart';
+import 'package:ql/features/profile/presentation/widgets/change_password.dart';
+import 'package:ql/features/profile/presentation/widgets/edit_name_bottom_sheet.dart';
+import 'package:ql/features/profile/presentation/controllers/edit_name_controller.dart';
 import '../../core/language/language_controller.dart';
 import '../../core/theme/theme_controller.dart';
 

@@ -2,14 +2,14 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../features/favorite/favorite_controller.dart';
-import '../../features/cart/cart_controller.dart';
-import '../../core/datasource/local/preferences_manager.dart';
-import '../../core/l10n/app_localizations.dart';
-import '../../core/language/language_controller.dart';
-import '../../core/provider/provider_controller.dart';
-import '../../main.dart';
-import '../auth/login/login_screen.dart';
+import '../../../favorite/favorite_controller.dart';
+import '../../../cart/cart_controller.dart';
+import '../../../../core/datasource/local/preferences_manager.dart';
+import '../../../../core/l10n/app_localizations.dart';
+import '../../../../core/language/language_controller.dart';
+import '../../../../core/provider/provider_controller.dart';
+import '../../../../main.dart';
+import '../../../auth/login/login_screen.dart';
 
 class ProfileController extends ChangeNotifier {
   final User? user = FirebaseAuth.instance.currentUser;

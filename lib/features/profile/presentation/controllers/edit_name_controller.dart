@@ -1,9 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-import '../../../core/l10n/app_localizations.dart';
-import '../../../core/share/widgets/custom_snackbar.dart';
-import '../../../main.dart';
+import '../../../../core/l10n/app_localizations.dart';
+import '../../../../core/share/widgets/custom_snackbar.dart';
+import '../../../../main.dart';
 
 class EditNameController extends ChangeNotifier {
 
