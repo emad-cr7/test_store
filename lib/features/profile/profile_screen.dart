@@ -7,7 +7,7 @@ import 'package:ql/features/profile/presentation/widgets/change_password.dart';
 import 'package:ql/features/profile/presentation/widgets/edit_name_bottom_sheet.dart';
 import 'package:ql/features/profile/presentation/controllers/edit_name_controller.dart';
 import '../../core/language/language_controller.dart';
-import '../../core/theme/theme_controller.dart';
+import '../../core/theming/theme_controller.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
