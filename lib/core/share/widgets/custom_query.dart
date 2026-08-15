@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:provider/provider.dart';
-import '../../datasource/models/product_model.dart';
+import '../../../features/home/models/product_model.dart';
 import '../../datasource/local/preferences_manager.dart';
 import '../../datasource/remote/api_config.dart';
 import '../../datasource/remote/query.dart';

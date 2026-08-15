@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import '../../core/datasource/models/product_model.dart';
+import '../home/models/product_model.dart';
 import '../../core/datasource/local/preferences_manager.dart';
 import '../../core/datasource/remote/firebase_service .dart';
 
@@ -18,7 +18,6 @@ class FavoriteController extends ChangeNotifier {
   List<ProductModel> get favoriteProducts =>
       _products.where((p) => p.isFavorite).toList();
 
-  /// يمسح كل بيانات الفيفوريت القديمة عند تسجيل الخروج
   void resetOnLogout() {
     isLoadingFirebase = false;
 

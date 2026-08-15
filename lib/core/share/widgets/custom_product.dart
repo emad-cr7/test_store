@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 import '../../../features/home/details/product_detail_screen.dart';
 import '../../../features/favorite/favorite_controller.dart';
 import '../../../features/cart/cart_controller.dart';
-import '../../datasource/models/product_model.dart';
+import '../../../features/home/models/product_model.dart';
 import '../../l10n/app_localizations.dart';
 import 'custom_snackbar.dart';
 

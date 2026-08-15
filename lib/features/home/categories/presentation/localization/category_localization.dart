@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 
-import '../../../core/l10n/app_localizations.dart';
+import '../../../../../core/l10n/app_localizations.dart';
 
 /// يترجم اسم الفئة (Category) بناءً على الـ id الثابت في categories_data.dart
 /// لو الـ id مش معروف، بيرجع الاسم الأصلي القادم من الـ API كما هو.

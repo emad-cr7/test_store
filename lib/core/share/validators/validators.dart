@@ -2,8 +2,7 @@ import '../../../main.dart';
 import '../../l10n/app_localizations.dart';
 
 class Validators {
-  static AppLocalizations get _t =>
-      AppLocalizations.of(navigatorKey.currentContext!)!;
+  static AppLocalizations get _t => AppLocalizations.of(navigatorKey.currentContext!)!;
 
   static String? required(String? value, String message) {
     if (value == null || value.trim().isEmpty) {

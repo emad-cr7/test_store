@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import '../../core/datasource/models/product_model.dart';
+import '../home/models/product_model.dart';
 import '../../core/datasource/local/preferences_manager.dart';
 import '../../core/datasource/remote/firebase_service .dart';
 

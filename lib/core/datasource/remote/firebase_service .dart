@@ -52,9 +52,7 @@ class FirebaseService {
         .collection('favorites')
         .get();
 
-    return snapshot.docs
-        .map((doc) => int.parse(doc.id))
-        .toList();
+    return snapshot.docs.map((doc) => int.parse(doc.id)).toList();
   }
 
   // Get Cart
@@ -66,8 +64,6 @@ class FirebaseService {
         .collection('cart')
         .get();
 
-    return snapshot.docs
-        .map((doc) => int.parse(doc.id))
-        .toList();
+    return snapshot.docs.map((doc) => int.parse(doc.id)).toList();
   }
 }

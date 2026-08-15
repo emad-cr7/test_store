@@ -5,7 +5,7 @@ import 'package:ql/features/home/search/search_screen.dart';
 import 'package:ql/features/home/view_all/view_all_screen.dart';
 import '../../core/share/widgets/custom_product.dart';
 import '../../core/share/widgets/custom_query.dart';
-import 'categories/categories_screen.dart';
+import 'categories/presentation/screens/categories_screen.dart';
 import '../../core/provider/provider_controller.dart';
 import '../../core/l10n/app_localizations.dart';
 

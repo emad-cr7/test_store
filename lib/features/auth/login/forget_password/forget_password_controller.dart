@@ -8,7 +8,6 @@ import '../../../../main.dart';
 class ForgetPasswordController extends ChangeNotifier {
   final formKey = GlobalKey<FormState>();
   final emailController = TextEditingController();
-
   bool isLoading = false;
 
   Future<void> forgetPassword() async {

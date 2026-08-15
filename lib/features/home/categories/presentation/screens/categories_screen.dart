@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:ql/features/home/categories/categories_controller.dart';
-import 'category_localization.dart';
-import 'categories_data.dart';
+import 'package:ql/features/home/categories/presentation/categories_controller.dart';
+import '../localization/category_localization.dart';
+import '../../data/categories_data.dart';
 import 'category_products_screen.dart';
 
 class Categories extends StatelessWidget {

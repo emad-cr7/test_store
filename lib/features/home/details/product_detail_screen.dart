@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:ql/features/favorite/favorite_controller.dart';
 import 'package:readmore/readmore.dart';
 
-import '../../../core/datasource/models/product_model.dart';
+import '../models/product_model.dart';
 import '../../../core/l10n/app_localizations.dart';
 
 class ProductDetailScreen extends StatelessWidget {
