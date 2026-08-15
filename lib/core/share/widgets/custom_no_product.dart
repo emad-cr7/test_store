@@ -9,13 +9,15 @@ class CustomNoProduct extends StatelessWidget {
     required this.icon,
   });
 
-  final Function()? refetch;
+  final Future<void> Function()? refetch;
   final String title;
   final IconData icon;
   @override
   Widget build(BuildContext context) {
     return RefreshIndicator.adaptive(
-      onRefresh: () => refetch?.call(),
+      onRefresh: () async {
+        await refetch?.call();
+      },
       child: ListView(
         physics: const AlwaysScrollableScrollPhysics(),
         children: [
@@ -25,8 +27,8 @@ class CustomNoProduct extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                   Icon(icon , size: AppSizes.sp60, color: Colors.grey),
-                   SizedBox(height: AppSizes.h16),
+                  Icon(icon , size: AppSizes.sp60, color: Colors.grey),
+                  SizedBox(height: AppSizes.h16),
                   Text(title, style: TextStyle(fontSize: AppSizes.sp16)),
                 ],
               ),

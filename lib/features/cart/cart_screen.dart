@@ -36,7 +36,7 @@ class CartScreen extends StatelessWidget {
 
           if (cartProducts.isEmpty) {
             return CustomNoProduct(
-              refetch: () {},
+              refetch: () async{},
               title: t.noProductsInCart,
               icon: Icons.shopping_cart,
             );

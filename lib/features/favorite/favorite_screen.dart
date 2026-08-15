@@ -36,7 +36,7 @@ class FavoriteScreen extends StatelessWidget {
 
           if (favoriteProducts.isEmpty) {
             return CustomNoProduct(
-              refetch: () {},
+              refetch: () async{},
               title: t.noFavoriteProducts,
               icon: Icons.favorite,
             );
