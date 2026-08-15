@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../theming/app_sizes.dart';
 
 class CustomProductSkeleton extends StatelessWidget {
   const CustomProductSkeleton({super.key, this.itemCount = 6});
@@ -32,11 +33,11 @@ class CustomProductSkeleton extends StatelessWidget {
                     ),
 
                     Positioned(
-                      top: 1,
-                      right: 1,
+                      top: AppSizes.h1,
+                      right: AppSizes.w1,
                       child: IconButton(
                         onPressed: null,
-                        icon: const Icon(Icons.favorite_border, size: 25),
+                        icon: Icon(Icons.favorite_border, size: AppSizes.sp25),
                       ),
                     ),
                   ],
@@ -44,7 +45,7 @@ class CustomProductSkeleton extends StatelessWidget {
               ),
 
               Padding(
-                padding: const EdgeInsets.all(5),
+                padding: EdgeInsets.all(AppSizes.r5),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -55,16 +56,16 @@ class CustomProductSkeleton extends StatelessWidget {
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
 
-                    const SizedBox(height: 4),
+                    SizedBox(height: AppSizes.ph4),
 
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const Text(
+                        Text(
                           '\$99.99',
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            fontSize: 15,
+                            fontSize: AppSizes.sp15,
                           ),
                         ),
 

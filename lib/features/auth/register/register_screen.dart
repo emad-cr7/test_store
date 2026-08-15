@@ -7,6 +7,7 @@ import 'package:ql/features/auth/register/register_controller.dart';
 
 import '../../../core/share/validators/validators.dart';
 import '../../../core/share/widgets/custom_text_formField.dart';
+import '../../../core/theming/app_sizes.dart';
 
 
 class RegisterScreen extends StatelessWidget {
@@ -30,20 +31,20 @@ class RegisterScreen extends StatelessWidget {
                   Widget? child,
                 ) {
                   return SingleChildScrollView(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 26,
-                      vertical: 20,
+                    padding: EdgeInsets.symmetric(
+                      horizontal: AppSizes.w26,
+                      vertical: AppSizes.ph20,
                     ),
                     child: Form(
                       key: controller.formKey,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const SizedBox(height: 30),
+                          SizedBox(height: AppSizes.ph30),
 
                           Center(
                             child: Container(
-                              padding: const EdgeInsets.all(20),
+                              padding: EdgeInsets.all(AppSizes.r20),
                               decoration: BoxDecoration(
                                 color: colors.primary,
                                 shape: BoxShape.circle,
@@ -57,34 +58,34 @@ class RegisterScreen extends StatelessWidget {
                               ),
                               child: Icon(
                                 Icons.person_add_alt_1_outlined,
-                                size: 42,
+                                size: AppSizes.sp42,
                                 color: colors.onPrimary,
                               ),
                             ),
                           ),
 
-                          const SizedBox(height: 32),
+                          SizedBox(height: AppSizes.h32),
 
                           Text(
                             t.createAccount,
                             style: textTheme.titleLarge?.copyWith(
-                              fontSize: 30,
+                              fontSize: AppSizes.sp30,
                               fontWeight: FontWeight.w800,
                               letterSpacing: -0.5,
                             ),
                           ),
 
-                          const SizedBox(height: 6),
+                          SizedBox(height: AppSizes.h6),
 
                           Text(
                             t.registerSubtitle,
-                            style: textTheme.bodySmall?.copyWith(fontSize: 15),
+                            style: textTheme.bodySmall?.copyWith(fontSize: AppSizes.sp15),
                           ),
 
-                          const SizedBox(height: 36),
+                          SizedBox(height: AppSizes.h36),
 
                           Text(t.fullName, style: textTheme.labelLarge),
-                          const SizedBox(height: 8),
+                          SizedBox(height: AppSizes.h8),
                           CustomTextFormField(
                             controller: controller.nameController,
                             keyboardType: TextInputType.name,
@@ -94,10 +95,10 @@ class RegisterScreen extends StatelessWidget {
                             validator: Validators.name,
                           ),
 
-                          const SizedBox(height: 20),
+                          SizedBox(height: AppSizes.ph20),
 
                           Text(t.email, style: textTheme.labelLarge),
-                          const SizedBox(height: 8),
+                          SizedBox(height: AppSizes.h8),
                           CustomTextFormField(
                             controller: controller.emailController,
                             keyboardType: TextInputType.emailAddress,
@@ -107,10 +108,10 @@ class RegisterScreen extends StatelessWidget {
                             validator: Validators.email,
                           ),
 
-                          const SizedBox(height: 20),
+                          SizedBox(height: AppSizes.ph20),
 
                           Text(t.password, style: textTheme.labelLarge),
-                          const SizedBox(height: 8),
+                          SizedBox(height: AppSizes.h8),
                           CustomTextFormField(
                             controller: controller.passwordController,
                             obscureText: controller.obscurePassword,
@@ -123,16 +124,16 @@ class RegisterScreen extends StatelessWidget {
                                 controller.obscurePassword
                                     ? Icons.visibility_off_outlined
                                     : Icons.visibility_outlined,
-                                size: 20,
+                                size: AppSizes.sp20,
                               ),
                               onPressed: controller.togglePassword
                             ),
                           ),
 
-                          const SizedBox(height: 20),
+                          SizedBox(height: AppSizes.ph20),
 
                           Text(t.confirmPassword, style: textTheme.labelLarge),
-                          const SizedBox(height: 8),
+                          SizedBox(height: AppSizes.h8),
                           CustomTextFormField(
                             controller: controller.confirmPasswordController,
                             obscureText: controller.obscureConfirmPassword,
@@ -148,28 +149,28 @@ class RegisterScreen extends StatelessWidget {
                                 controller.obscureConfirmPassword
                                     ? Icons.visibility_off_outlined
                                     : Icons.visibility_outlined,
-                                size: 20,
+                                size: AppSizes.sp20,
                               ),
                               onPressed: controller.toggleConfirmPassword
                             ),
                           ),
 
-                          const SizedBox(height: 28),
+                          SizedBox(height: AppSizes.h28),
 
                           SizedBox(
                             width: double.infinity,
-                            height: 56,
+                            height: AppSizes.h56,
                             child: ElevatedButton(
                               onPressed: controller.isLoading ? null : controller.register,
                               child: controller.isLoading
                                   ? LoadingAnimationWidget.fourRotatingDots(
                                       color: Colors.blue,
-                                      size: 25,
+                                      size: AppSizes.sp25,
                                     )
                                   : Text(
                                       t.register,
                                       style: TextStyle(
-                                        fontSize: 16,
+                                        fontSize: AppSizes.sp16,
                                         fontWeight: FontWeight.w700,
                                         letterSpacing: 0.3,
                                       ),
@@ -177,7 +178,7 @@ class RegisterScreen extends StatelessWidget {
                             ),
                           ),
 
-                          const SizedBox(height: 40),
+                          SizedBox(height: AppSizes.h40),
 
                           Center(
                             child: Row(
@@ -203,9 +204,9 @@ class RegisterScreen extends StatelessWidget {
                                   ),
                                   child: Text(
                                     t.login,
-                                    style: const TextStyle(
+                                    style: TextStyle(
                                       fontWeight: FontWeight.w700,
-                                      fontSize: 14,
+                                      fontSize: AppSizes.sp14,
                                     ),
                                   ),
                                 ),
@@ -213,7 +214,7 @@ class RegisterScreen extends StatelessWidget {
                             ),
                           ),
 
-                          const SizedBox(height: 20),
+                          SizedBox(height: AppSizes.ph20),
                         ],
                       ),
                     ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../theming/app_sizes.dart';
 
 class CustomNoProduct extends StatelessWidget {
   const CustomNoProduct({
@@ -24,9 +25,9 @@ class CustomNoProduct extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                   Icon(icon , size: 60, color: Colors.grey),
-                   SizedBox(height: 16),
-                  Text(title, style: TextStyle(fontSize: 16)),
+                   Icon(icon , size: AppSizes.sp60, color: Colors.grey),
+                   SizedBox(height: AppSizes.h16),
+                  Text(title, style: TextStyle(fontSize: AppSizes.sp16)),
                 ],
               ),
             ),

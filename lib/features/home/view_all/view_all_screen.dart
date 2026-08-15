@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../product/product_all.dart';
 import '../../../core/l10n/app_localizations.dart';
+import '../../../core/theming/app_sizes.dart';
 
 
 class ViewAllScreen extends StatelessWidget {
@@ -13,7 +14,7 @@ class ViewAllScreen extends StatelessWidget {
     final t = AppLocalizations.of(context)!;
     return SliverToBoxAdapter(
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 16),
+        padding: EdgeInsets.symmetric(horizontal: AppSizes.pw16),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [

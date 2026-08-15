@@ -6,6 +6,7 @@ import '../../core/share/widgets/custom_product.dart';
 import '../../core/provider/provider_controller.dart';
 import '../../core/l10n/app_localizations.dart';
 import 'favorite_controller.dart';
+import '../../core/theming/app_sizes.dart';
 
 class FavoriteScreen extends StatelessWidget {
   const FavoriteScreen({super.key});
@@ -17,7 +18,7 @@ class FavoriteScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           t.favorite,
-          style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+          style: TextStyle(fontSize: AppSizes.sp24, fontWeight: FontWeight.bold),
         ),
       ),
       body: Consumer2<ProviderController, FavoriteController>(
@@ -26,7 +27,7 @@ class FavoriteScreen extends StatelessWidget {
             return Center(
               child: LoadingAnimationWidget.fourRotatingDots(
                 color: Colors.blue,
-                size: 55,
+                size: AppSizes.sp55,
               ),
             );
           }
@@ -47,8 +48,8 @@ class FavoriteScreen extends StatelessWidget {
                 products: favoriteProducts,
                 itemCount: favoriteProducts.length,
               ),
-              const SliverToBoxAdapter(
-                child: SizedBox(height: 105),
+              SliverToBoxAdapter(
+                child: SizedBox(height: AppSizes.h105),
               ),
             ],
           );

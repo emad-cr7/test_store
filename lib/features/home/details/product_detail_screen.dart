@@ -8,6 +8,7 @@ import 'package:readmore/readmore.dart';
 
 import '../models/product_model.dart';
 import '../../../core/l10n/app_localizations.dart';
+import '../../../core/theming/app_sizes.dart';
 
 class ProductDetailScreen extends StatelessWidget {
   ProductDetailScreen({super.key, required this.product});
@@ -25,18 +26,18 @@ class ProductDetailScreen extends StatelessWidget {
       appBar: AppBar(title: Text(t.productDetails)),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(16),
+          padding: EdgeInsets.all(AppSizes.r16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               ClipRRect(
-                borderRadius: BorderRadius.circular(12),
+                borderRadius: BorderRadius.circular(AppSizes.r12),
                 child: hasImage
                     ? Stack(
                         children: [
                           CarouselSlider(
                             options: CarouselOptions(
-                              height: 350,
+                              height: AppSizes.h350,
                               viewportFraction: 1,
                               autoPlay: product.images.length > 1,
                               autoPlayInterval: const Duration(seconds: 3),
@@ -53,14 +54,14 @@ class ProductDetailScreen extends StatelessWidget {
                                   child:
                                       LoadingAnimationWidget.fourRotatingDots(
                                         color: Colors.blue,
-                                        size: 30,
+                                        size: AppSizes.sp30,
                                       ),
                                 ),
                                 errorWidget: (context, url, error) => Container(
                                   color: Colors.grey[300],
-                                  child: const Icon(
+                                  child: Icon(
                                     Icons.broken_image,
-                                    size: 80,
+                                    size: AppSizes.sp80,
                                     color: Colors.grey,
                                   ),
                                 ),
@@ -69,8 +70,8 @@ class ProductDetailScreen extends StatelessWidget {
                           ),
 
                           Positioned(
-                            top: 1,
-                            right: 1,
+                            top: AppSizes.h1,
+                            right: AppSizes.w1,
                             child: Consumer<FavoriteController>(
                               builder: (context, favoriteController, _) {
                                 return IconButton(
@@ -90,9 +91,9 @@ class ProductDetailScreen extends StatelessWidget {
                           ),
                           if (product.images.length > 1)
                             Positioned(
-                              bottom: 10,
-                              left: 0,
-                              right: 0,
+                              bottom: AppSizes.h10,
+                              left: AppSizes.w0,
+                              right: AppSizes.w0,
                               child: ValueListenableBuilder<int>(
                                 valueListenable: _currentPage,
                                 builder: (context, currentIndex, _) {
@@ -107,11 +108,11 @@ class ProductDetailScreen extends StatelessWidget {
                                           duration: const Duration(
                                             milliseconds: 250,
                                           ),
-                                          margin: const EdgeInsets.symmetric(
-                                            horizontal: 4,
+                                          margin: EdgeInsets.symmetric(
+                                            horizontal: AppSizes.w4,
                                           ),
                                           width: isSelected ? 20 : 8,
-                                          height: 8,
+                                          height: AppSizes.h8,
                                           decoration: BoxDecoration(
                                             color: isSelected
                                                 ? Colors.white
@@ -131,41 +132,41 @@ class ProductDetailScreen extends StatelessWidget {
                       )
                     : Container(
                         color: Colors.grey[300],
-                        height: 350,
+                        height: AppSizes.h350,
                         width: double.infinity,
-                        child: const Icon(
+                        child: Icon(
                           Icons.image_not_supported,
-                          size: 80,
+                          size: AppSizes.sp80,
                           color: Colors.grey,
                         ),
                       ),
               ),
 
-              const SizedBox(height: 20),
+              SizedBox(height: AppSizes.ph20),
 
               Text(
                 product.title,
-                style: const TextStyle(
-                  fontSize: 24,
+                style: TextStyle(
+                  fontSize: AppSizes.sp24,
                   fontWeight: FontWeight.bold,
                 ),
               ),
 
-              const SizedBox(height: 8),
-              const Center(child: SizedBox(width: 300, child: Divider())),
-              const SizedBox(height: 8),
+              SizedBox(height: AppSizes.h8),
+              Center(child: SizedBox(width: AppSizes.w300, child: Divider())),
+              SizedBox(height: AppSizes.h8),
 
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
                     t.description,
-                    style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    style: TextStyle(fontSize: AppSizes.sp18, fontWeight: FontWeight.bold),
                   ),
                   Text(
                     "\$${product.price.toStringAsFixed(2)}",
-                    style: const TextStyle(
-                      fontSize: 22,
+                    style: TextStyle(
+                      fontSize: AppSizes.sp22,
                       color: Colors.green,
                       fontWeight: FontWeight.w600,
                     ),
@@ -173,7 +174,7 @@ class ProductDetailScreen extends StatelessWidget {
                 ],
               ),
 
-              const SizedBox(height: 8),
+              SizedBox(height: AppSizes.h8),
 
               ReadMoreText(
                 product.description.isNotEmpty
@@ -183,7 +184,7 @@ class ProductDetailScreen extends StatelessWidget {
                 trimMode: TrimMode.Line,
                 trimCollapsedText: t.showMore,
                 trimExpandedText: t.showLess,
-                style: const TextStyle(fontSize: 16, height: 1.5),
+                style: TextStyle(fontSize: AppSizes.sp16, height: AppSizes.h1_5),
                 moreStyle: const TextStyle(
                   color: Colors.blue,
                   fontWeight: FontWeight.bold,

@@ -8,6 +8,7 @@ import '../../core/share/widgets/custom_query.dart';
 import 'categories/presentation/screens/categories_screen.dart';
 import '../../core/provider/provider_controller.dart';
 import '../../core/l10n/app_localizations.dart';
+import '../../core/theming/app_sizes.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -19,7 +20,7 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           t.store,
-          style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+          style: TextStyle(fontSize: AppSizes.sp24, fontWeight: FontWeight.bold),
         ),
       ),
       body: SafeArea(
@@ -36,7 +37,7 @@ class HomeScreen extends StatelessWidget {
                       products: controller.filteredProducts,
                       itemCount: min(controller.filteredProducts.length, 10),
                     ),
-                    const SliverToBoxAdapter(child: SizedBox(height: 80)),
+                    SliverToBoxAdapter(child: SizedBox(height: AppSizes.ph80)),
                   ],
                 );
               },

@@ -5,6 +5,7 @@ import '../features/favorite/favorite_screen.dart';
 import '../features/home/home_screen.dart';
 import '../features/profile/profile_screen.dart';
 import '../core/l10n/app_localizations.dart';
+import '../core/theming/app_sizes.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -44,20 +45,20 @@ class _MainScreenState extends State<MainScreen> {
           IndexedStack(index: currentIndex, children: pages),
 
           Positioned(
-            left: 20,
-            right: 20,
-            bottom: 12,
+            left: AppSizes.w20,
+            right: AppSizes.w20,
+            bottom: AppSizes.h12,
 
             child: SafeArea(
               top: false,
 
               child: Container(
-                height: 68,
+                height: AppSizes.h68,
 
                 decoration: BoxDecoration(
                   color: theme.cardColor,
 
-                  borderRadius: BorderRadius.circular(40),
+                  borderRadius: BorderRadius.circular(AppSizes.r40),
 
                   boxShadow: [
                     BoxShadow(
@@ -89,7 +90,7 @@ class _MainScreenState extends State<MainScreen> {
                         children: [
                           Icon(
                             item.icon,
-                            size: 30,
+                            size: AppSizes.sp30,
                             color: isSelected
                                 ? selectedColor
                                 : theme.iconTheme.color?.withValues(
@@ -101,17 +102,17 @@ class _MainScreenState extends State<MainScreen> {
                             duration: const Duration(milliseconds: 200),
                             child: isSelected
                                 ? Padding(
-                                    padding: const EdgeInsets.only(top: 3),
+                                    padding: EdgeInsets.only(top: AppSizes.h3),
                                     child: Text(
                                       item.label,
                                       style: TextStyle(
-                                        fontSize: 13,
+                                        fontSize: AppSizes.sp13,
                                         fontWeight: FontWeight.w600,
                                         color: selectedColor,
                                       ),
                                     ),
                                   )
-                                : const SizedBox(width: 0, height: 0),
+                                : SizedBox(width: AppSizes.w0, height: AppSizes.h0),
                           ),
                         ],
                       ),

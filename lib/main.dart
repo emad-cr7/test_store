@@ -45,6 +45,14 @@ class MyApp extends StatelessWidget {
                     darkTheme: darkTheme,
                     themeMode: themeMode,
                     home: SplashScreen(),
+                    builder: (context, child) {
+                      return MediaQuery(
+                        data: MediaQuery.of(context).copyWith(
+                          textScaler: TextScaler.noScaling,
+                        ),
+                        child: child!,
+                      );
+                    },
                   );
                 },
               );

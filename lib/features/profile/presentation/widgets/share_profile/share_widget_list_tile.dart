@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../../../core/theming/app_sizes.dart';
 
 class ShareWidgetListTile extends StatelessWidget {
   const ShareWidgetListTile({
@@ -47,10 +48,10 @@ class ShareWidgetListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(15),
+      padding: EdgeInsets.all(AppSizes.r15),
       child: Material(
         color: Theme.of(context).dividerColor,
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(AppSizes.r20),
         clipBehavior: Clip.antiAlias,
         child: Column(
           children: [

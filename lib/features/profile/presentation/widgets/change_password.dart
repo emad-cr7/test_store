@@ -6,6 +6,7 @@ import 'package:ql/features/profile/presentation/widgets/password_field.dart';
 import '../../../../core/l10n/app_localizations.dart';
 import '../../../../core/share/validators/validators.dart';
 import '../../../auth/login/forget_password/forget_password_screen.dart';
+import '../../../../core/theming/app_sizes.dart';
 
 class ChangePassword extends StatelessWidget {
   const ChangePassword({super.key});
@@ -23,21 +24,21 @@ class ChangePassword extends StatelessWidget {
             builder: ( context,  controller,
                 Widget? child) {
               return SingleChildScrollView(
-                padding: const EdgeInsets.symmetric(horizontal: 26, vertical: 20),
+                padding: EdgeInsets.symmetric(horizontal: AppSizes.w26, vertical: AppSizes.ph20),
                 child: Form(
                   key: controller.formKey,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const SizedBox(height: 10),
+                      SizedBox(height: AppSizes.h10),
                       IconButton(
                         onPressed: () => Navigator.pop(context),
-                        icon: const Icon(Icons.arrow_back_ios_new, size: 20),
+                        icon: Icon(Icons.arrow_back_ios_new, size: AppSizes.sp20),
                       ),
-                      const SizedBox(height: 20),
+                      SizedBox(height: AppSizes.ph20),
                       Center(
                         child: Container(
-                          padding: const EdgeInsets.all(20),
+                          padding: EdgeInsets.all(AppSizes.r20),
                           decoration: BoxDecoration(
                             color: colors.primary,
                             shape: BoxShape.circle,
@@ -51,27 +52,27 @@ class ChangePassword extends StatelessWidget {
                           ),
                           child: Icon(
                             Icons.lock_reset_outlined,
-                            size: 42,
+                            size: AppSizes.sp42,
                             color: colors.onPrimary,
                           ),
                         ),
                       ),
-                       SizedBox(height: 32),
+                       SizedBox(height: AppSizes.h32),
                       Text(
                         t.changePassword,
                         style: textTheme.titleLarge?.copyWith(
-                          fontSize: 30,
+                          fontSize: AppSizes.sp30,
                           fontWeight: FontWeight.w800,
                           letterSpacing: -0.5,
                         ),
                       ),
-                       SizedBox(height: 6),
+                       SizedBox(height: AppSizes.h6),
                       Text(
                         t.changePasswordSubtitle,
-                        style: textTheme.bodySmall?.copyWith(fontSize: 15),
+                        style: textTheme.bodySmall?.copyWith(fontSize: AppSizes.sp15),
                       ),
 
-                       SizedBox(height: 36),
+                       SizedBox(height: AppSizes.h36),
                       PasswordField(
                         controller: controller.currentPasswordController,
                         obscureText: controller.obscureCurrentPassword,
@@ -104,7 +105,7 @@ class ChangePassword extends StatelessWidget {
                             t.forgotPassword,
                             style: TextStyle(
                               fontWeight: FontWeight.w600,
-                              fontSize: 13,
+                              fontSize: AppSizes.sp13,
                             ),
                           ),
                         ),
@@ -119,7 +120,7 @@ class ChangePassword extends StatelessWidget {
                         validator: Validators.password,
                       ),
 
-                      const SizedBox(height: 22),
+                      SizedBox(height: AppSizes.h22),
 
                       PasswordField(
                         controller: controller.confirmPasswordController,
@@ -134,21 +135,21 @@ class ChangePassword extends StatelessWidget {
                           controller.newPasswordController.text,
                         ),
                       ),
-                      SizedBox(height: 36,),
+                      SizedBox(height: AppSizes.h36,),
                       SizedBox(
                         width: double.infinity,
-                        height: 56,
+                        height: AppSizes.h56,
                         child: ElevatedButton(
                           onPressed: controller.isLoading ? null : controller.changePassword,
                           child: controller.isLoading
                               ? LoadingAnimationWidget.fourRotatingDots(
                             color: colors.onPrimary,
-                            size: 25,
+                            size: AppSizes.sp25,
                           )
                               : Text(
                             t.changePassword,
                             style: TextStyle(
-                              fontSize: 16,
+                              fontSize: AppSizes.sp16,
                               fontWeight: FontWeight.w700,
                               letterSpacing: 0.3,
                             ),
@@ -156,7 +157,7 @@ class ChangePassword extends StatelessWidget {
                         ),
                       ),
 
-                      const SizedBox(height: 40),
+                      SizedBox(height: AppSizes.h40),
                     ],
                   ),
                 ),

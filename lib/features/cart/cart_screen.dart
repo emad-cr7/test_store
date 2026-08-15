@@ -6,6 +6,7 @@ import '../../core/l10n/app_localizations.dart';
 import '../../core/share/widgets/custom_no_product.dart';
 import '../../core/share/widgets/custom_product.dart';
 import 'cart_controller.dart';
+import '../../core/theming/app_sizes.dart';
 
 class CartScreen extends StatelessWidget {
   const CartScreen({super.key});
@@ -17,7 +18,7 @@ class CartScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           t.cart,
-          style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+          style: TextStyle(fontSize: AppSizes.sp24, fontWeight: FontWeight.bold),
         ),
       ),
       body: Consumer2<ProviderController, CartController>(
@@ -26,7 +27,7 @@ class CartScreen extends StatelessWidget {
             return Center(
               child: LoadingAnimationWidget.fourRotatingDots(
                 color: Colors.blue,
-                size: 55,
+                size: AppSizes.sp55,
               ),
             );
           }
@@ -47,8 +48,8 @@ class CartScreen extends StatelessWidget {
                 products: cartProducts,
                 itemCount: cartProducts.length,
               ),
-              const SliverToBoxAdapter(
-                child: SizedBox(height: 105),
+              SliverToBoxAdapter(
+                child: SizedBox(height: AppSizes.h105),
               ),
             ],
           );

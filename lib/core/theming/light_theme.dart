@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'app_colors.dart';
+import 'app_sizes.dart';
 
 final ThemeData lightTheme = ThemeData(
   brightness: Brightness.light,
@@ -18,14 +19,14 @@ final ThemeData lightTheme = ThemeData(
     error: Colors.redAccent,
   ),
 
-  appBarTheme: const AppBarTheme(
+  appBarTheme: AppBarTheme(
     backgroundColor: AppColors.lightPrimary,
     foregroundColor: Colors.white,
     elevation: 0,
     centerTitle: true,
     iconTheme: IconThemeData(color: Colors.white),
     titleTextStyle: TextStyle(
-      fontSize: 20,
+      fontSize: AppSizes.sp20,
       fontWeight: FontWeight.bold,
       color: Colors.white,
     ),
@@ -33,11 +34,11 @@ final ThemeData lightTheme = ThemeData(
 
   iconTheme: const IconThemeData(color: AppColors.lightTextPrimary),
 
-  textTheme: const TextTheme(
+  textTheme: TextTheme(
     titleLarge: TextStyle(
       color: AppColors.lightTextPrimary,
       fontWeight: FontWeight.bold,
-      fontSize: 22,
+      fontSize: AppSizes.sp22,
     ),
     bodyLarge: TextStyle(color: AppColors.lightTextPrimary),
     bodyMedium: TextStyle(color: AppColors.lightTextPrimary),
@@ -54,7 +55,7 @@ final ThemeData lightTheme = ThemeData(
       foregroundColor: Colors.white,
       elevation: 0,
       minimumSize: const Size.fromHeight(56),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppSizes.r16)),
     ),
   ),
 
@@ -65,26 +66,26 @@ final ThemeData lightTheme = ThemeData(
   inputDecorationTheme: InputDecorationTheme(
     filled: true,
     fillColor: AppColors.lightFieldFill,
-    hintStyle: const TextStyle(
+    hintStyle: TextStyle(
       color: AppColors.lightTextSecondary,
-      fontSize: 14,
+      fontSize: AppSizes.sp14,
     ),
-    contentPadding: const EdgeInsets.symmetric(vertical: 18, horizontal: 16),
+    contentPadding: EdgeInsets.symmetric(vertical: AppSizes.h18, horizontal: AppSizes.pw16),
     border: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(16),
+      borderRadius: BorderRadius.circular(AppSizes.r16),
       borderSide: BorderSide.none,
     ),
     enabledBorder: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(16),
+      borderRadius: BorderRadius.circular(AppSizes.r16),
       borderSide: BorderSide.none,
     ),
     focusedBorder: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(16),
-      borderSide: const BorderSide(color: AppColors.lightPrimary, width: 1.5),
+      borderRadius: BorderRadius.circular(AppSizes.r16),
+      borderSide: BorderSide(color: AppColors.lightPrimary, width: AppSizes.w1_5),
     ),
     errorBorder: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(16),
-      borderSide: const BorderSide(color: Colors.redAccent, width: 1.2),
+      borderRadius: BorderRadius.circular(AppSizes.r16),
+      borderSide: BorderSide(color: Colors.redAccent, width: AppSizes.w1_2),
     ),
   ),
 

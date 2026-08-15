@@ -9,6 +9,7 @@ import '../../../core/share/widgets/custom_text_formField.dart';
 import '../register/register_screen.dart';
 import 'forget_password/forget_password_screen.dart';
 import 'login_controller.dart';
+import '../../../core/theming/app_sizes.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -30,16 +31,16 @@ class LoginScreen extends StatelessWidget {
                   Widget? child,
                 ) {
                   return SingleChildScrollView(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 26,
-                      vertical: 20,
+                    padding: EdgeInsets.symmetric(
+                      horizontal: AppSizes.w26,
+                      vertical: AppSizes.ph20,
                     ),
                     child: Form(
                       key: controller.formKey,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const SizedBox(height: 30),
+                          SizedBox(height: AppSizes.ph30),
 
                           Consumer<LanguageController>(
                             builder: (context, languageController, _) {
@@ -50,7 +51,7 @@ class LoginScreen extends StatelessWidget {
                                   onPressed: () {
                                     languageController.toggleLanguage();
                                   },
-                                  icon: const Icon(Icons.language, size: 18),
+                                  icon: Icon(Icons.language, size: AppSizes.sp18),
                                   label: Text(
                                     languageController.isArabic
                                         ? t.english
@@ -63,7 +64,7 @@ class LoginScreen extends StatelessWidget {
 
                           Center(
                             child: Container(
-                              padding: const EdgeInsets.all(20),
+                              padding: EdgeInsets.all(AppSizes.r20),
                               decoration: BoxDecoration(
                                 color: colors.primary,
                                 shape: BoxShape.circle,
@@ -77,34 +78,34 @@ class LoginScreen extends StatelessWidget {
                               ),
                               child: Icon(
                                 Icons.shopping_bag_outlined,
-                                size: 42,
+                                size: AppSizes.sp42,
                                 color: colors.onPrimary,
                               ),
                             ),
                           ),
 
-                          const SizedBox(height: 32),
+                          SizedBox(height: AppSizes.h32),
 
                           Text(
                             AppLocalizations.of(context)!.welcomeBack,
                             style: textTheme.titleLarge?.copyWith(
-                              fontSize: 30,
+                              fontSize: AppSizes.sp30,
                               fontWeight: FontWeight.w800,
                               letterSpacing: -0.5,
                             ),
                           ),
 
-                          const SizedBox(height: 6),
+                          SizedBox(height: AppSizes.h6),
 
                           Text(
                             t.loginSubtitle,
-                            style: textTheme.bodySmall?.copyWith(fontSize: 15),
+                            style: textTheme.bodySmall?.copyWith(fontSize: AppSizes.sp15),
                           ),
 
-                          const SizedBox(height: 36),
+                          SizedBox(height: AppSizes.h36),
 
                           Text(t.email, style: textTheme.labelLarge),
-                          const SizedBox(height: 8),
+                          SizedBox(height: AppSizes.h8),
                           CustomTextFormField(
                             controller: controller.emailController,
                             keyboardType: TextInputType.emailAddress,
@@ -114,10 +115,10 @@ class LoginScreen extends StatelessWidget {
                             validator: Validators.email,
                           ),
 
-                          const SizedBox(height: 20),
+                          SizedBox(height: AppSizes.ph20),
 
                           Text(t.password, style: textTheme.labelLarge),
-                          const SizedBox(height: 8),
+                          SizedBox(height: AppSizes.h8),
                           CustomTextFormField(
                             controller: controller.passwordController,
                             textInputAction: TextInputAction.done,
@@ -130,7 +131,7 @@ class LoginScreen extends StatelessWidget {
                                 controller.obscurePassword
                                     ? Icons.visibility_off_outlined
                                     : Icons.visibility_outlined,
-                                size: 20,
+                                size: AppSizes.sp20,
                               ),
                               onPressed: controller.togglePassword,
                             ),
@@ -151,19 +152,19 @@ class LoginScreen extends StatelessWidget {
                               },
                               child: Text(
                                 t.forgotPassword,
-                                style: const TextStyle(
+                                style: TextStyle(
                                   fontWeight: FontWeight.w600,
-                                  fontSize: 13,
+                                  fontSize: AppSizes.sp13,
                                 ),
                               ),
                             ),
                           ),
 
-                          const SizedBox(height: 8),
+                          SizedBox(height: AppSizes.h8),
 
                           SizedBox(
                             width: double.infinity,
-                            height: 56,
+                            height: AppSizes.h56,
                             child: ElevatedButton(
                               onPressed: controller.isLoading
                                   ? null
@@ -171,12 +172,12 @@ class LoginScreen extends StatelessWidget {
                               child: controller.isLoading
                                   ? LoadingAnimationWidget.fourRotatingDots(
                                       color: Colors.blue,
-                                      size: 25,
+                                      size: AppSizes.sp25,
                                     )
                                   : Text(
                                       t.login,
                                       style: TextStyle(
-                                        fontSize: 16,
+                                        fontSize: AppSizes.sp16,
                                         fontWeight: FontWeight.w700,
                                         letterSpacing: 0.3,
                                       ),
@@ -184,7 +185,7 @@ class LoginScreen extends StatelessWidget {
                             ),
                           ),
 
-                          const SizedBox(height: 40),
+                          SizedBox(height: AppSizes.h40),
 
                           Center(
                             child: Row(
@@ -210,9 +211,9 @@ class LoginScreen extends StatelessWidget {
                                   ),
                                   child: Text(
                                     t.signUp,
-                                    style: const TextStyle(
+                                    style: TextStyle(
                                       fontWeight: FontWeight.w700,
-                                      fontSize: 14,
+                                      fontSize: AppSizes.sp14,
                                     ),
                                   ),
                                 ),
@@ -220,7 +221,7 @@ class LoginScreen extends StatelessWidget {
                             ),
                           ),
 
-                          const SizedBox(height: 20),
+                          SizedBox(height: AppSizes.ph20),
                         ],
                       ),
                     ),

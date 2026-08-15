@@ -7,6 +7,7 @@ import '../../../../../core/l10n/app_localizations.dart';
 import '../../../../../core/share/widgets/custom_no_product.dart';
 import '../../../../../core/share/widgets/custom_product.dart';
 import '../localization/category_localization.dart';
+import '../../../../../core/theming/app_sizes.dart';
 
 class CategoryProductsScreen extends StatelessWidget {
   const CategoryProductsScreen({super.key, required this.category});
@@ -22,7 +23,7 @@ class CategoryProductsScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           categoryDisplayName,
-          style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+          style: TextStyle(fontSize: AppSizes.sp22, fontWeight: FontWeight.bold),
         ),
       ),
       body: SafeArea(

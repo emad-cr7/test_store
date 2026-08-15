@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import '../../../core/share/widgets/custom_product.dart';
 import '../../../core/provider/provider_controller.dart';
 import '../search/search_screen.dart';
+import '../../../core/theming/app_sizes.dart';
 
 class ProductAll extends StatelessWidget {
   const ProductAll({super.key});
@@ -13,7 +14,7 @@ class ProductAll extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           'Store',
-          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+          style: TextStyle(fontSize: AppSizes.sp24, fontWeight: FontWeight.bold),
         ),
       ),
       body: SafeArea(

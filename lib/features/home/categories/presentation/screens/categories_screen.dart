@@ -4,6 +4,7 @@ import 'package:ql/features/home/categories/presentation/categories_controller.d
 import '../localization/category_localization.dart';
 import '../../data/categories_data.dart';
 import 'category_products_screen.dart';
+import '../../../../../core/theming/app_sizes.dart';
 
 class Categories extends StatelessWidget {
   const Categories({super.key});
@@ -18,7 +19,7 @@ class Categories extends StatelessWidget {
         builder: (context, controller, _) {
           return SliverToBoxAdapter(
             child: SizedBox(
-              height: 110,
+              height: AppSizes.h110,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 itemCount: categories.length,
@@ -42,7 +43,7 @@ class Categories extends StatelessWidget {
                   }
 
                   return Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8),
+                    padding: EdgeInsets.symmetric(horizontal: AppSizes.pw8),
                     child: GestureDetector(
                       behavior: HitTestBehavior.opaque,
                       onTap: handleTap,
@@ -56,11 +57,11 @@ class Categories extends StatelessWidget {
                               child: InkWell(
                                 onTap: handleTap,
                                 child: SizedBox(
-                                  width: 70,
-                                  height: 70,
+                                  width: AppSizes.w70,
+                                  height: AppSizes.h70,
                                   child: Icon(
                                     category.icon ?? Icons.category,
-                                    size: 30,
+                                    size: AppSizes.sp30,
                                     color: isSelected
                                         ? theme.colorScheme.onPrimary
                                         : theme.colorScheme.primary,
@@ -69,9 +70,9 @@ class Categories extends StatelessWidget {
                               ),
                             ),
                           ),
-                          const SizedBox(height: 8),
+                          SizedBox(height: AppSizes.h8),
                           SizedBox(
-                            width: 70,
+                            width: AppSizes.w70,
                             child: Text(
                               localizedCategoryName(context, category.id, category.name),
                               textAlign: TextAlign.center,

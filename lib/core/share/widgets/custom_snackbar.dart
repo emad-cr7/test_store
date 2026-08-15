@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../theming/app_sizes.dart';
 
 class AppSnackBar {
   static void show(
@@ -16,22 +17,22 @@ class AppSnackBar {
         SnackBar(
           behavior: SnackBarBehavior.floating,
           margin: EdgeInsets.only(
-            bottom: 85,
-            left: 20,
-            right: 20,
+            bottom: AppSizes.h85,
+            left: AppSizes.w20,
+            right: AppSizes.w20,
           ),
 
           backgroundColor: backgroundColor,
           duration: duration,
 
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12),
+            borderRadius: BorderRadius.circular(AppSizes.r12),
           ),
 
           content: Row(
             children: [
               Icon(icon, color: iconColor),
-              const SizedBox(width: 10),
+              SizedBox(width: AppSizes.w10),
               Expanded(
                 child: Text(
                   message,

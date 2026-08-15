@@ -7,6 +7,7 @@ import '../../../../core/l10n/app_localizations.dart';
 import '../../../../core/share/validators/validators.dart';
 import '../../../../core/share/widgets/custom_text_formField.dart';
 import '../controllers/edit_name_controller.dart';
+import '../../../../core/theming/app_sizes.dart';
 
 Future<void> showEditNameBottomSheet(BuildContext context) {
   return showModalBottomSheet(
@@ -37,11 +38,11 @@ class EditNameBottomSheet extends StatelessWidget {
             child: Container(
               decoration: BoxDecoration(
                 color: colors.surface,
-                borderRadius: const BorderRadius.vertical(
-                  top: Radius.circular(24),
+                borderRadius: BorderRadius.vertical(
+                  top: Radius.circular(AppSizes.r24),
                 ),
               ),
-              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 24),
+              padding: EdgeInsets.symmetric(horizontal: AppSizes.pw24, vertical: AppSizes.ph24),
               child: Form(
                 key: controller.formKey,
                 child: Column(
@@ -50,24 +51,24 @@ class EditNameBottomSheet extends StatelessWidget {
                   children: [
                     Center(
                       child: Container(
-                        width: 44,
-                        height: 5,
+                        width: AppSizes.w44,
+                        height: AppSizes.h5,
                         decoration: BoxDecoration(
                           color: colors.outlineVariant,
-                          borderRadius: BorderRadius.circular(10),
+                          borderRadius: BorderRadius.circular(AppSizes.r10),
                         ),
                       ),
                     ),
-                    const SizedBox(height: 20),
+                    SizedBox(height: AppSizes.ph20),
                     Text(
                       t.editProfile,
                       style: textTheme.titleLarge?.copyWith(
                         fontWeight: FontWeight.w800,
                       ),
                     ),
-                    const SizedBox(height: 6),
+                    SizedBox(height: AppSizes.h6),
                     Text(t.editProfileSubtitle, style: textTheme.bodySmall),
-                    const SizedBox(height: 24),
+                    SizedBox(height: AppSizes.h24),
                     CustomTextFormField(
                       controller: controller.nameController,
                       prefixIcon: Icons.person_outline,
@@ -75,10 +76,10 @@ class EditNameBottomSheet extends StatelessWidget {
                       textInputAction: TextInputAction.done,
                       validator: Validators.name,
                     ),
-                    const SizedBox(height: 28),
+                    SizedBox(height: AppSizes.h28),
                     Row(
                       children: [
-                        const SizedBox(width: 16),
+                        SizedBox(width: AppSizes.w16),
                         Expanded(
                           child: ElevatedButton(
                             onPressed: controller.isLoading
@@ -87,14 +88,14 @@ class EditNameBottomSheet extends StatelessWidget {
                             child: controller.isLoading
                                 ? LoadingAnimationWidget.fourRotatingDots(
                                     color: colors.onPrimary,
-                                    size: 22,
+                                    size: AppSizes.sp22,
                                   )
                                 : Text(t.save),
                           ),
                         ),
                       ],
                     ),
-                    const SizedBox(height: 12),
+                    SizedBox(height: AppSizes.h12),
                   ],
                 ),
               ),

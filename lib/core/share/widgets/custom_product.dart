@@ -9,6 +9,7 @@ import '../../../features/cart/cart_controller.dart';
 import '../../../features/home/models/product_model.dart';
 import '../../l10n/app_localizations.dart';
 import 'custom_snackbar.dart';
+import '../../theming/app_sizes.dart';
 
 class CustomProduct extends StatelessWidget {
   const CustomProduct({
@@ -62,23 +63,23 @@ class CustomProduct extends StatelessWidget {
                             placeholder: (context, url) => Center(
                               child: LoadingAnimationWidget.fourRotatingDots(
                                 color: Colors.blue,
-                                size: 20,
+                                size: AppSizes.sp20,
                               ),
                             ),
                             errorWidget: (context, url, error) {
                               return Container(
                                 color: Colors.grey[300],
-                                child: const Icon(
+                                child: Icon(
                                   Icons.broken_image,
-                                  size: 50,
+                                  size: AppSizes.sp50,
                                   color: Colors.grey,
                                 ),
                               );
                             },
                           ),
                           Positioned(
-                            top: 1,
-                            right: 1,
+                            top: AppSizes.h1,
+                            right: AppSizes.w1,
                             child: Consumer<FavoriteController>(
                               builder:
                                   (
@@ -129,7 +130,7 @@ class CustomProduct extends StatelessWidget {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.all(5),
+                      padding: EdgeInsets.all(AppSizes.r5),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -139,7 +140,7 @@ class CustomProduct extends StatelessWidget {
                             overflow: TextOverflow.ellipsis,
                             style: const TextStyle(fontWeight: FontWeight.bold),
                           ),
-                          const SizedBox(height: 4),
+                          SizedBox(height: AppSizes.ph4),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -147,7 +148,7 @@ class CustomProduct extends StatelessWidget {
                                 '\$${product.price.toStringAsFixed(2)}',
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
-                                  fontSize: 15,
+                                  fontSize: AppSizes.sp15,
                                   color: Colors.lightGreen.shade700,
                                 ),
                               ),

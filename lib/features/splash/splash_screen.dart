@@ -6,18 +6,18 @@ import 'package:page_transition/page_transition.dart';
 import 'package:ql/main/main_screen.dart';
 import '../../core/l10n/app_localizations.dart';
 import '../auth/login/login_screen.dart';
+import '../../core/theming/app_sizes.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
 
   Future<Widget> _resolveNextScreen() async {
     final user = FirebaseAuth.instance.currentUser;
-
     if (user != null && user.emailVerified) {
-      return  MainScreen();
+      return MainScreen();
     }
 
-    return  LoginScreen();
+    return LoginScreen();
   }
 
   @override
@@ -28,7 +28,7 @@ class SplashScreen extends StatelessWidget {
 
     return AnimatedSplashScreen.withScreenFunction(
       duration: 2400,
-      splashIconSize: 260,
+      splashIconSize: AppSizes.r320,
       splashTransition: SplashTransition.fadeTransition,
       pageTransitionType: PageTransitionType.fade,
       backgroundColor: colors.primary,
@@ -37,54 +37,54 @@ class SplashScreen extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           Container(
-            padding: const EdgeInsets.all(20),
+            padding: EdgeInsets.all(AppSizes.r20),
             decoration: BoxDecoration(
               color: colors.onPrimary.withValues(alpha: 0.15),
               shape: BoxShape.circle,
               border: Border.all(
                 color: colors.onPrimary.withValues(alpha: 0.3),
-                width: 1.5,
+                width: AppSizes.w1_5,
               ),
               boxShadow: [
                 BoxShadow(
                   color: Colors.black.withValues(alpha: 0.15),
-                  blurRadius: 30,
+                  blurRadius: AppSizes.r30,
                   offset: const Offset(0, 15),
                 ),
               ],
             ),
             child: Icon(
               Icons.shopping_bag_outlined,
-              size: 70,
+              size: AppSizes.sp70,
               color: colors.onPrimary,
             ),
           ),
-          const SizedBox(height: 18),
+          SizedBox(height: AppSizes.h18),
           Text(
             'QL Shop',
             style: textTheme.titleLarge?.copyWith(
               color: colors.onPrimary,
-              fontSize: 28,
+              fontSize: AppSizes.sp28,
               fontWeight: FontWeight.w800,
               letterSpacing: 0.5,
             ),
           ),
-          const SizedBox(height: 6),
+          SizedBox(height: AppSizes.h6),
           Text(
             t.splashTagline,
             style: textTheme.bodySmall?.copyWith(
               color: colors.onPrimary.withValues(alpha: 0.85),
-              fontSize: 13,
+              fontSize: AppSizes.sp13,
               letterSpacing: 0.3,
             ),
           ),
-          const SizedBox(height: 35),
+          SizedBox(height: AppSizes.h35),
           SizedBox(
-            width: 30,
-            height: 30,
+            width: AppSizes.w30,
+            height: AppSizes.h30,
             child: LoadingAnimationWidget.fourRotatingDots(
               color: Colors.white,
-              size: 40,
+              size: AppSizes.sp40,
             ),
           ),
         ],

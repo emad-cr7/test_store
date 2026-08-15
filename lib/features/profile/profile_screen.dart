@@ -8,6 +8,7 @@ import 'package:ql/features/profile/presentation/widgets/edit_name_bottom_sheet.
 import 'package:ql/features/profile/presentation/controllers/edit_name_controller.dart';
 import '../../core/language/language_controller.dart';
 import '../../core/theming/theme_controller.dart';
+import '../../core/theming/app_sizes.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -26,11 +27,11 @@ class ProfileScreen extends StatelessWidget {
             body: SingleChildScrollView(
               child: Column(
                 children: [
-                  SizedBox(height: 15),
+                  SizedBox(height: AppSizes.h15),
               
-                  CircleAvatar(radius: 50, child: Icon(Icons.person, size: 50)),
+                  CircleAvatar(radius: AppSizes.r50, child: Icon(Icons.person, size: AppSizes.sp50)),
               
-                  SizedBox(height: 15),
+                  SizedBox(height: AppSizes.h15),
               
                   ValueListenableBuilder<String?>(
                     valueListenable: EditNameController.displayNameNotifier,
@@ -47,7 +48,7 @@ class ProfileScreen extends StatelessWidget {
                     style: Theme.of(context).textTheme.bodySmall,
                   ),
               
-                  SizedBox(height: 30),
+                  SizedBox(height: AppSizes.ph30),
               
                   ValueListenableBuilder<ThemeMode>(
                     valueListenable: ThemeController.themeNotifier,
@@ -60,7 +61,7 @@ class ProfileScreen extends StatelessWidget {
                             /// list 1
                             icon1: Icons.person_outline,
                             titleList1: t.editProfile,
-                            trailing1: Icon(Icons.arrow_forward_ios, size: 20),
+                            trailing1: Icon(Icons.arrow_forward_ios, size: AppSizes.sp20),
                             onTap1: () {
                               showEditNameBottomSheet(context);
                             },
@@ -89,7 +90,7 @@ class ProfileScreen extends StatelessWidget {
                             /// list 4
                             icon4: Icons.lock_outline,
                             titleList4: t.changePassword,
-                            trailing4: Icon(Icons.arrow_forward_ios, size: 20),
+                            trailing4: Icon(Icons.arrow_forward_ios, size: AppSizes.sp20),
                             onTap4: () {
                               Navigator.push(
                                 context,
